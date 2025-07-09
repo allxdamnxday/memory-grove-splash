@@ -73,6 +73,7 @@ const config: Config = {
         "fade-in": "fadeIn 300ms ease-out",
         "scale-in": "scaleIn 500ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-up": "slideUp 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "float": "float 20s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
@@ -86,6 +87,13 @@ const config: Config = {
         slideUp: {
           "0%": { transform: "translateY(10px)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        float: {
+          "0%": { transform: "translateY(0) translateX(0) rotate(0deg)" },
+          "25%": { transform: "translateY(100vh) translateX(20px) rotate(90deg)" },
+          "50%": { transform: "translateY(50vh) translateX(-20px) rotate(180deg)" },
+          "75%": { transform: "translateY(80vh) translateX(40px) rotate(270deg)" },
+          "100%": { transform: "translateY(120vh) translateX(0) rotate(360deg)" },
         },
       },
       boxShadow: {

@@ -15,12 +15,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   
   if (!post) {
     return {
-      title: 'Post Not Found - The Memory Grove',
+      title: 'Post Not Found - Memory Groves',
     }
   }
 
   return {
-    title: `${post.title} - The Memory Grove`,
+    title: `${post.title} - Memory Groves`,
     description: post.excerpt,
   }
 }

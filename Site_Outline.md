@@ -1,4 +1,4 @@
-# The Memory Grove - Splash Page & Marketing Site Outline
+# Memory Groves - Splash Page & Marketing Site Outline
 
 ## Phase 1: MVP Splash Page (Week 1-2)
 

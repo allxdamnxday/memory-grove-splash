@@ -1,0 +1,253 @@
+{
+  "timestamp": "2025-07-09T05:14:33.911Z",
+  "blogListingPage": {
+    "url": "http://localhost:3000/blog",
+    "posts": [
+      {
+        "title": "Digital Legacy in the Modern Age",
+        "url": "http://localhost:3000/blog/digital-legacy-in-the-modern-age",
+        "slug": "digital-legacy-in-the-modern-age",
+        "excerpt": "As our lives become increasingly digital, how do we ensure what matters most—our love, wisdom, and authentic selves—is preserved for future generations?"
+      },
+      {
+        "title": "Digital Legacy in the Modern Age",
+        "url": "http://localhost:3000/blog/digital-legacy-modern-age",
+        "slug": "digital-legacy-modern-age",
+        "excerpt": "As our lives become increasingly digital, how do we ensure our most precious memories and wisdom are preserved with dignity? Explore the intersection of technology and legacy."
+      },
+      {
+        "title": "Why Your Voice Matters",
+        "url": "http://localhost:3000/blog/why-your-voice-matters",
+        "slug": "why-your-voice-matters",
+        "excerpt": "Your voice carries more than words—it holds the essence of who you are. Discover why preserving your authentic voice creates connections that transcend time."
+      },
+      {
+        "title": "The Sacred Act of Memory Keeping",
+        "url": "http://localhost:3000/blog/sacred-act-of-memory-keeping",
+        "slug": "sacred-act-of-memory-keeping",
+        "excerpt": "In a world that moves at lightning speed, the act of preserving memories becomes a sacred ritual—a way to honor what matters most and ensure our love transcends time."
+      },
+      {
+        "title": "The Sacred Act of Memory Keeping",
+        "url": "http://localhost:3000/blog/the-sacred-act-of-memory-keeping",
+        "slug": "the-sacred-act-of-memory-keeping",
+        "excerpt": "In a world moving at digital speed, the act of preserving memories becomes a sacred ritual—one that connects us to our past and gifts wisdom to our future."
+      }
+    ],
+    "seo": {
+      "title": "Memory Stories - Memory Groves Blog",
+      "description": "Explore stories, wisdom, and insights about preserving memories, digital legacy, and the sacred act of memory keeping.",
+      "ogTitle": "Memory Groves - Where Memories Bloom Eternal",
+      "ogDescription": "Create a sacred digital sanctuary where memories bloom eternal.",
+      "ogImage": "http://localhost:3000/images/og-image.jpg",
+      "twitterCard": "summary_large_image"
+    },
+    "performance": {
+      "loadTime": "17764ms"
+    },
+    "features": {
+      "hasPagination": false,
+      "paginationButtons": 0,
+      "hasFilters": false,
+      "filterCount": 0,
+      "hasSearch": false
+    }
+  },
+  "individualPosts": [
+    {
+      "title": "Digital Legacy in the Modern Age",
+      "url": "http://localhost:3000/blog/digital-legacy-in-the-modern-age",
+      "slug": "digital-legacy-in-the-modern-age",
+      "excerpt": "As our lives become increasingly digital, how do we ensure what matters most—our love, wisdom, and authentic selves—is preserved for future generations?",
+      "seo": {
+        "title": "Digital Legacy in the Modern Age - Memory Groves",
+        "description": "As our lives become increasingly digital, how do we ensure what matters most—our love, wisdom, and authentic selves—is preserved for future generations?",
+        "ogTitle": "Memory Groves - Where Memories Bloom Eternal",
+        "ogDescription": "Create a sacred digital sanctuary where memories bloom eternal.",
+        "ogImage": "http://localhost:3000/images/og-image.jpg",
+        "articlePublishedTime": null,
+        "articleAuthor": null
+      },
+      "mdxFeatures": {
+        "codeBlocks": false,
+        "headings": true,
+        "lists": true,
+        "links": true,
+        "images": false,
+        "blockquotes": false
+      },
+      "performance": {
+        "loadTime": "9089ms"
+      },
+      "metadata": {
+        "title": "Digital Legacy in the Modern Age",
+        "date": "January 28, 2024"
+      },
+      "interactiveElements": {
+        "buttons": 2,
+        "forms": 1,
+        "inputs": 1
+      },
+      "hasTableOfContents": false,
+      "hasSocialShare": false
+    },
+    {
+      "title": "Digital Legacy in the Modern Age",
+      "url": "http://localhost:3000/blog/digital-legacy-modern-age",
+      "slug": "digital-legacy-modern-age",
+      "excerpt": "As our lives become increasingly digital, how do we ensure our most precious memories and wisdom are preserved with dignity? Explore the intersection of technology and legacy.",
+      "seo": {
+        "title": "Digital Legacy in the Modern Age - Memory Groves",
+        "description": "As our lives become increasingly digital, how do we ensure our most precious memories and wisdom are preserved with dignity? Explore the intersection of technology and legacy.",
+        "ogTitle": "Memory Groves - Where Memories Bloom Eternal",
+        "ogDescription": "Create a sacred digital sanctuary where memories bloom eternal.",
+        "ogImage": "http://localhost:3000/images/og-image.jpg",
+        "articlePublishedTime": null,
+        "articleAuthor": null
+      },
+      "mdxFeatures": {
+        "codeBlocks": false,
+        "headings": true,
+        "lists": true,
+        "links": true,
+        "images": false,
+        "blockquotes": false
+      },
+      "performance": {
+        "loadTime": "1347ms"
+      },
+      "metadata": {
+        "title": "Digital Legacy in the Modern Age",
+        "date": "January 28, 2024"
+      },
+      "interactiveElements": {
+        "buttons": 2,
+        "forms": 1,
+        "inputs": 1
+      },
+      "hasTableOfContents": false,
+      "hasSocialShare": false
+    },
+    {
+      "title": "Why Your Voice Matters",
+      "url": "http://localhost:3000/blog/why-your-voice-matters",
+      "slug": "why-your-voice-matters",
+      "excerpt": "Your voice carries more than words—it holds the essence of who you are. Discover why preserving your authentic voice creates connections that transcend time.",
+      "seo": {
+        "title": "Why Your Voice Matters - Memory Groves",
+        "description": "Your voice carries more than words—it holds the essence of who you are. Discover why preserving your authentic voice creates connections that transcend time.",
+        "ogTitle": "Memory Groves - Where Memories Bloom Eternal",
+        "ogDescription": "Create a sacred digital sanctuary where memories bloom eternal.",
+        "ogImage": "http://localhost:3000/images/og-image.jpg",
+        "articlePublishedTime": null,
+        "articleAuthor": null
+      },
+      "mdxFeatures": {
+        "codeBlocks": false,
+        "headings": true,
+        "lists": true,
+        "links": true,
+        "images": false,
+        "blockquotes": false
+      },
+      "performance": {
+        "loadTime": "1471ms"
+      },
+      "metadata": {
+        "title": "Why Your Voice Matters",
+        "date": "January 21, 2024"
+      },
+      "interactiveElements": {
+        "buttons": 2,
+        "forms": 1,
+        "inputs": 1
+      },
+      "hasTableOfContents": false,
+      "hasSocialShare": false
+    },
+    {
+      "title": "The Sacred Act of Memory Keeping",
+      "url": "http://localhost:3000/blog/sacred-act-of-memory-keeping",
+      "slug": "sacred-act-of-memory-keeping",
+      "excerpt": "In a world that moves at lightning speed, the act of preserving memories becomes a sacred ritual—a way to honor what matters most and ensure our love transcends time.",
+      "seo": {
+        "title": "The Sacred Act of Memory Keeping - Memory Groves",
+        "description": "In a world that moves at lightning speed, the act of preserving memories becomes a sacred ritual—a way to honor what matters most and ensure our love transcends time.",
+        "ogTitle": "Memory Groves - Where Memories Bloom Eternal",
+        "ogDescription": "Create a sacred digital sanctuary where memories bloom eternal.",
+        "ogImage": "http://localhost:3000/images/og-image.jpg",
+        "articlePublishedTime": null,
+        "articleAuthor": null
+      },
+      "mdxFeatures": {
+        "codeBlocks": false,
+        "headings": true,
+        "lists": true,
+        "links": true,
+        "images": false,
+        "blockquotes": false
+      },
+      "performance": {
+        "loadTime": "1525ms"
+      },
+      "metadata": {
+        "title": "The Sacred Act of Memory Keeping",
+        "date": "January 14, 2024"
+      },
+      "interactiveElements": {
+        "buttons": 2,
+        "forms": 1,
+        "inputs": 1
+      },
+      "hasTableOfContents": false,
+      "hasSocialShare": false
+    },
+    {
+      "title": "The Sacred Act of Memory Keeping",
+      "url": "http://localhost:3000/blog/the-sacred-act-of-memory-keeping",
+      "slug": "the-sacred-act-of-memory-keeping",
+      "excerpt": "In a world moving at digital speed, the act of preserving memories becomes a sacred ritual—one that connects us to our past and gifts wisdom to our future.",
+      "seo": {
+        "title": "The Sacred Act of Memory Keeping - Memory Groves",
+        "description": "In a world moving at digital speed, the act of preserving memories becomes a sacred ritual—one that connects us to our past and gifts wisdom to our future.",
+        "ogTitle": "Memory Groves - Where Memories Bloom Eternal",
+        "ogDescription": "Create a sacred digital sanctuary where memories bloom eternal.",
+        "ogImage": "http://localhost:3000/images/og-image.jpg",
+        "articlePublishedTime": null,
+        "articleAuthor": null
+      },
+      "mdxFeatures": {
+        "codeBlocks": false,
+        "headings": true,
+        "lists": true,
+        "links": true,
+        "images": false,
+        "blockquotes": true
+      },
+      "performance": {
+        "loadTime": "1370ms"
+      },
+      "metadata": {
+        "title": "The Sacred Act of Memory Keeping",
+        "date": "January 14, 2024"
+      },
+      "interactiveElements": {
+        "buttons": 2,
+        "forms": 1,
+        "inputs": 1
+      },
+      "hasTableOfContents": false,
+      "hasSocialShare": false
+    }
+  ],
+  "mdxRendering": {
+    "codeBlocks": false,
+    "formatting": true,
+    "images": false
+  },
+  "userExperience": {
+    "navigation": "Basic - simple list view",
+    "readability": "Excellent - clear titles and excerpts",
+    "interactivity": "Interactive elements present"
+  }
+}

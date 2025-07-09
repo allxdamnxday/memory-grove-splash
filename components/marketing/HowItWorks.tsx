@@ -1,32 +1,41 @@
+import Button from '@/components/ui/Button'
+
 export default function HowItWorks() {
   const steps = [
     {
-      number: '01',
-      title: 'Plant Your Grove',
-      description: 'Begin with a simple conversation. Share your name, your story, and what matters most to you. Your grove starts with a single seed of intention.',
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-        </svg>
-      )
-    },
-    {
-      number: '02',
-      title: 'Nurture Your Memories',
-      description: 'Record your voice sharing stories, wisdom, and love. Add photos, write letters, and create a living tapestry of your life that grows richer with time.',
+      number: '1',
+      title: 'Plant Your Voice',
+      description: 'Start with what\'s easy—a favorite story, a simple "I love you," or advice for the future. Our gentle prompts guide you.',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5.5 10.5h1m11 0h1m-6.5-5v1" className="opacity-50" />
         </svg>
       )
     },
     {
-      number: '03',
-      title: 'Watch It Bloom',
-      description: 'Share your grove with loved ones when you\'re ready. They\'ll experience your presence, hear your voice, and feel your love blooming across time.',
+      number: '2',
+      title: 'Grow Your Grove',
+      description: 'Add messages for specific moments: birthdays, graduations, "when you need me" times. Build your legacy naturally, one recording at a time.',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v18M5 7h14m0 4H5m14 4H5m14 4H5" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3l7-1v20l-7-1m14-18l-7-1v20l7-1" />
+          <circle cx="12" cy="8" r="1" fill="currentColor" />
+          <circle cx="9" cy="12" r="1" fill="currentColor" />
+          <circle cx="15" cy="12" r="1" fill="currentColor" />
+          <circle cx="12" cy="16" r="1" fill="currentColor" />
+        </svg>
+      )
+    },
+    {
+      number: '3',
+      title: 'Set Your Seasons',
+      description: 'Choose when messages bloom—immediately, on specific dates, or when life milestones arrive. Your voice, perfectly timed.',
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" className="scale-50 origin-center translate-x-2 -translate-y-3" />
         </svg>
       )
     }
@@ -35,15 +44,10 @@ export default function HowItWorks() {
   return (
     <section className="section-spacing bg-warm-sand">
       <div className="container-grove">
-        <div className="text-center mb-16">
-          <h2 className="font-serif text-h1 text-sage-deep mb-6">
-            Your Journey Through The Grove
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="font-serif text-h1 md:text-display-sm text-sage-deep mb-6">
+            Three Simple Steps Between Today and Forever
           </h2>
-          <p className="text-text-secondary text-body-lg max-w-3xl mx-auto">
-            Creating your digital legacy is as natural as planting a seed. 
-            We guide you gently through each step, ensuring your memories are 
-            preserved with the care and reverence they deserve.
-          </p>
         </div>
 
         <div className="relative">
@@ -52,11 +56,11 @@ export default function HowItWorks() {
           
           <div className="grid lg:grid-cols-3 gap-12 relative">
             {steps.map((step, index) => (
-              <div key={index} className="relative">
-                {/* Step number */}
+              <div key={index} className="relative animate-scale-in" style={{ animationDelay: `${index * 200}ms` }}>
+                {/* Step number circle */}
                 <div className="flex items-center justify-center mb-6">
                   <div className="w-20 h-20 rounded-full bg-sage-mist flex items-center justify-center relative">
-                    <span className="font-serif text-h3 text-sage-deep">{step.number}</span>
+                    <span className="font-sans text-h2 text-sage-deep font-medium">{step.number}</span>
                     {/* Icon */}
                     <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-warm-white rounded-full flex items-center justify-center shadow-gentle text-sage-primary">
                       {step.icon}
@@ -78,17 +82,12 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        <div className="text-center mt-16">
-          <p className="text-sage-primary text-body-lg mb-8">
-            Ready to begin your journey?
-          </p>
-          <Button href="/join" size="lg">
-            Plant Your First Seed
+        <div className="text-center mt-16 animate-fade-in animation-delay-800">
+          <Button href="/start" size="lg">
+            Begin Recording Today
           </Button>
         </div>
       </div>
     </section>
   )
 }
-
-import Button from '@/components/ui/Button'

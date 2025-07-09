@@ -71,7 +71,7 @@ export default function ContactPage() {
   const contactInfo = [
     {
       title: 'General Inquiries',
-      description: 'Questions about The Memory Grove, how it works, or how to begin your journey.',
+      description: 'Questions about Memory Groves, how it works, or how to begin your journey.',
       icon: '💬',
     },
     {
@@ -81,7 +81,7 @@ export default function ContactPage() {
     },
     {
       title: 'Partnership Opportunities',
-      description: 'Explore ways to bring The Memory Grove to your community or organization.',
+      description: 'Explore ways to bring Memory Groves to your community or organization.',
       icon: '🤝',
     },
   ]
@@ -206,7 +206,7 @@ export default function ContactPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-text-secondary text-body-sm mb-4">
-                    Interested in bringing The Memory Grove to your community, 
+                    Interested in bringing Memory Groves to your community, 
                     healthcare facility, or organization?
                   </p>
                   <a
@@ -225,7 +225,7 @@ export default function ContactPage() {
                 <CardContent>
                   <p className="text-text-secondary text-body-sm mb-4">
                     Writing a story about digital legacy, memory preservation, 
-                    or The Memory Grove?
+                    or Memory Groves?
                   </p>
                   <a
                     href="mailto:press@memorygrove.com"

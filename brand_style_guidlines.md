@@ -1,4 +1,4 @@
-# The Memory Grove Brand Guidelines
+# Memory Groves Brand Guidelines
 
 *Version 1.0 | 2024*
 
@@ -260,7 +260,7 @@ Consider all family structures, beliefs, and backgrounds.
 #### Onboarding
 *Warm and welcoming, like a friend guiding you through a garden*
 
-"Welcome to The Memory Grove. You're taking a beautiful first step. Let's begin with something simple — what name would you like to be remembered by?"
+"Welcome to Memory Groves. You're taking a beautiful first step. Let's begin with something simple — what name would you like to be remembered by?"
 
 #### Recording Memories
 *Gentle and supportive, like a compassionate companion*

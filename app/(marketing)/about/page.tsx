@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button'
 import Card, { CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 
 export const metadata: Metadata = {
-  title: 'About Us - The Memory Grove',
+  title: 'About Us - Memory Groves',
   description: 'Learn about our mission to create a sacred digital sanctuary where memories bloom eternal through voice, story, and connection.',
 }
 
@@ -60,12 +60,12 @@ export default function AboutPage() {
         <div className="container-grove">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-serif text-h1 text-sage-deep mb-8 text-center">
-              Why We Built The Memory Grove
+              Why We Built Memory Groves
             </h2>
             
             <div className="prose prose-sage max-w-none text-body">
               <p className="text-text-secondary mb-6">
-                The Memory Grove was born from a simple yet profound realization: 
+                Memory Groves was born from a simple yet profound realization: 
                 our voices carry the weight of our experiences, our stories hold 
                 the wisdom of our journeys, and our love deserves to bloom beyond 
                 the boundaries of time.
@@ -80,7 +80,7 @@ export default function AboutPage() {
               
               <p className="text-text-secondary mb-6">
                 {`We believe that every life has stories worth preserving, wisdom worth 
-                sharing, and love worth passing on. The Memory Grove isn't just about 
+                sharing, and love worth passing on. Memory Groves isn't just about 
                 recording voices or storing photos—it's about creating living legacies 
                 that grow richer with time, like a garden tended with love.`}
               </p>
@@ -157,7 +157,7 @@ export default function AboutPage() {
                 and to continue loving even after we're gone."`}
               </p>
               <p className="text-sage-primary text-body-sm mt-4">
-                — The Memory Grove Team
+                — Memory Groves Team
               </p>
             </div>
           </div>

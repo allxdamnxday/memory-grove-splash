@@ -1,4 +1,4 @@
--- The Memory Grove Database Schema
+-- Memory Groves Database Schema
 -- Run this in your Supabase SQL Editor to set up the required tables
 
 -- Create subscribers table for email capture

@@ -1,17 +1,27 @@
 import Hero from '@/components/marketing/Hero'
-import ValueProposition from '@/components/marketing/ValueProposition'
+import RealityCheck from '@/components/marketing/RealityCheck'
 import HowItWorks from '@/components/marketing/HowItWorks'
-import Testimonials from '@/components/marketing/Testimonials'
-import CTA from '@/components/marketing/CTA'
+import StoriesOfConnection from '@/components/marketing/StoriesOfConnection'
+import UseCases from '@/components/marketing/UseCases'
+import UrgencySection from '@/components/marketing/UrgencySection'
+import Pricing from '@/components/marketing/Pricing'
+import FAQ from '@/components/marketing/FAQ'
+import FooterCTA from '@/components/marketing/FooterCTA'
+import FloatingElements from '@/components/marketing/FloatingElements'
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <ValueProposition />
+      <RealityCheck />
       <HowItWorks />
-      <Testimonials />
-      <CTA />
+      <StoriesOfConnection />
+      <UseCases />
+      <UrgencySection />
+      <Pricing />
+      <FAQ />
+      <FooterCTA />
+      <FloatingElements />
     </>
   )
 }

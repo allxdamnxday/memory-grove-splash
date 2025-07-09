@@ -1,10 +1,10 @@
-# The Memory Grove - Landing Page
+# Memory Groves - Landing Page
 
-A sacred digital sanctuary where memories bloom eternal. This is the marketing splash site for The Memory Grove, built with Next.js 14 and designed with care to honor the importance of preserving memories.
+A sacred digital sanctuary where memories bloom eternal. This is the marketing splash site for Memory Groves, built with Next.js 14 and designed with care to honor the importance of preserving memories.
 
 ## 🌿 Project Overview
 
-The Memory Grove helps people preserve their essence through voice, story, and connection. This landing page introduces visitors to our mission and allows them to join our growing community.
+Memory Groves helps people preserve their essence through voice, story, and connection. This landing page introduces visitors to our mission and allows them to join our growing community.
 
 ## 🚀 Quick Start
 
@@ -136,7 +136,7 @@ Before going live, replace placeholder images in `/public/images/`:
 
 ## 🌱 Brand Guidelines
 
-The Memory Grove follows these design principles:
+Memory Groves follows these design principles:
 
 - **Colors**: Sage greens and warm neutrals
 - **Typography**: Cormorant Garamond (headings), Source Sans Pro (body)
@@ -167,7 +167,7 @@ npm run format
 
 ## 📄 License
 
-© 2025 The Memory Grove. All rights reserved.
+© 2025 Memory Groves. All rights reserved.
 
 ---
 

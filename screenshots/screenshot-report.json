@@ -1,0 +1,1442 @@
+{
+  "loadTime": "1245ms",
+  "screenshots": [
+    "homepage-full.png",
+    "hero-section.png",
+    "features-section.png",
+    "homepage-mobile-full.png",
+    "hero-section-mobile.png",
+    "cta-section-1.png"
+  ],
+  "visualElements": {
+    "colors": {
+      "--background": "#FDFCF8",
+      "background": "rgb(253, 252, 248)",
+      "text": "rgb(58, 63, 54)"
+    },
+    "typography": {
+      "bodyFont": "\"Source Sans Pro\", sans-serif",
+      "bodySize": "18px",
+      "bodyLineHeight": "30px",
+      "h1Font": "\"Cormorant Garamond\", serif",
+      "h1Size": "48px",
+      "h1Weight": "300"
+    },
+    "animations": [
+      {
+        "element": "HTML",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "HEAD",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "LINK",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "LINK",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "TITLE",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "META",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "LINK",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "BODY.min-h-screen",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "HEADER.bg-warm-white/80",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "NAV.container-grove",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-10",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SPAN.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "UL.hidden",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.btn-primary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "BUTTON.md:hidden",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "MAIN.flex-1",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SECTION.relative",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "2s cubic-bezier(0.4, 0, 0.6, 1) 0s infinite normal none running pulse",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "2s cubic-bezier(0.4, 0, 0.6, 1) 0.4s infinite normal none running pulse",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.container-grove",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.max-w-4xl",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-sage-primary",
+        "animation": "0.3s ease-out 0s 1 normal none running fadeIn",
+        "transition": "all"
+      },
+      {
+        "element": "H1.font-serif",
+        "animation": "0.3s ease-out 0.2s 1 normal none running fadeIn",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "0.3s ease-out 0.4s 1 normal none running fadeIn",
+        "transition": "all"
+      },
+      {
+        "element": "FORM.max-w-md",
+        "animation": "0.3s ease-out 0.6s 1 normal none running fadeIn",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-full",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "INPUT.input-field",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "0.2s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "BUTTON.inline-flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "DIV.mt-16",
+        "animation": "0.3s ease-out 0.6s 1 normal none running fadeIn",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SPAN",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SPAN",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SPAN",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SECTION.section-spacing",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.container-grove",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.text-center",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H2.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.grid",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.rounded-xl",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "transform 0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "DIV.mb-6",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H3.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.text-text-primary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.mt-2",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.rounded-xl",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "transform 0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "DIV.mb-6",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H3.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.text-text-primary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.mt-2",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.rounded-xl",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "transform 0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "DIV.mb-6",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H3.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.text-text-primary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.mt-2",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SECTION.section-spacing",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.container-grove",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.text-center",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H2.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.relative",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.grid",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.relative",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-20",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SPAN.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.text-center",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H3.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.relative",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-20",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SPAN.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.text-center",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H3.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.relative",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-20",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SPAN.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.text-center",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H3.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.text-center",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-sage-primary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.inline-flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "SECTION.section-spacing",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.container-grove",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.text-center",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H2.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.grid",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.rounded-xl",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "DIV.text-text-primary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-12",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SPAN.text-sage-deep",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-sage-deep",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-light",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.rounded-xl",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "DIV.text-text-primary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-12",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SPAN.text-sage-deep",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-sage-deep",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-light",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.rounded-xl",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "DIV.text-text-primary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-12",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SPAN.text-sage-deep",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-sage-deep",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-light",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SECTION.section-spacing",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.absolute",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.container-grove",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.max-w-4xl",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H2.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.inline-flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "A.inline-flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "P.mt-8",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "FOOTER.bg-warm-sand",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.container-grove",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.grid",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.col-span-1",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-10",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "svg",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "path",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SPAN.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.w-10",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "SPAN.sr-only",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-4",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.w-10",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "SPAN.sr-only",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-4",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.w-10",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "SPAN.sr-only",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.w-4",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H3.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "UL.space-y-3",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "DIV",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H3.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "UL.space-y-3",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "LI",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "A.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), text-decoration-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      {
+        "element": "DIV.border-t",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.max-w-2xl",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "H3.font-serif",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-secondary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "FORM.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "INPUT.input-field",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "0.2s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "BUTTON.btn-primary",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "0.3s cubic-bezier(0, 0, 0.2, 1)"
+      },
+      {
+        "element": "DIV.border-t",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "DIV.flex",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-light",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "P.text-text-light",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "SCRIPT",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      },
+      {
+        "element": "NEXT-ROUTE-ANNOUNCER",
+        "animation": "none 0s ease 0s 1 normal none running",
+        "transition": "all"
+      }
+    ],
+    "images": []
+  },
+  "accessibilityIssues": [
+    "Form input without label: email",
+    "Form input without label: email",
+    "Check color contrast for link: Begin Your Grove",
+    "Check color contrast for link: Plant Your First Seed",
+    "Check color contrast for link: Start Your Grove Today",
+    "Check color contrast for link: Twitter",
+    "Check color contrast for link: Instagram",
+    "Check color contrast for link: LinkedIn"
+  ],
+  "consoleMessages": [
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+      "location": {
+        "url": "webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js",
+        "lineNumber": 38559,
+        "columnNumber": 16
+      }
+    }
+  ],
+  "pageErrors": [],
+  "timestamp": "2025-07-09T05:16:08.303Z"
+}

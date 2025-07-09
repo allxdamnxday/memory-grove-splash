@@ -33,7 +33,7 @@ export default function Header() {
               </svg>
             </div>
             <span className="font-serif text-h3 text-sage-deep">
-              The Memory Grove
+              Memory Groves
             </span>
           </Link>
 

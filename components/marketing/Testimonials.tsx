@@ -5,7 +5,7 @@ export default function Testimonials() {
     {
       name: "Sarah Mitchell",
       relation: "Daughter",
-      content: "Hearing my mother\'s voice tell her childhood stories brought tears to my eyes. The Memory Grove gave us a gift we\'ll treasure forever.",
+      content: "Hearing my mother\'s voice tell her childhood stories brought tears to my eyes. Memory Groves gave us a gift we\'ll treasure forever.",
       image: "/images/testimonial-1.jpg"
     },
     {

@@ -24,10 +24,10 @@ export default function Hero() {
       })
 
       if (response.ok) {
-        setMessage({ type: 'success', text: 'Your seed has been planted. Welcome to the grove!' })
+        setMessage({ type: 'success', text: 'Your journey begins. Welcome to the grove!' })
         setEmail('')
       } else {
-        setMessage({ type: 'error', text: 'The seed couldn\'t find its place. Please try again.' })
+        setMessage({ type: 'error', text: 'The path is unclear. Please try again.' })
       }
     } catch (error) {
       setMessage({ type: 'error', text: 'The grove is resting. Please try again later.' })
@@ -47,73 +47,58 @@ export default function Hero() {
       
       <div className="container-grove relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Tagline */}
-          <p className="text-sage-primary text-body-lg mb-6 animate-fade-in">
-            A Sacred Digital Sanctuary
-          </p>
-          
           {/* Main heading */}
-          <h1 className="font-serif text-display-lg md:text-display text-sage-deep mb-8 animate-fade-in animation-delay-200">
-            Where Memories Bloom Eternal
+          <h1 className="font-serif text-display-lg md:text-display text-sage-deep mb-8 animate-fade-in">
+            Your Voice. Their Comfort. Forever.
           </h1>
           
-          {/* Description */}
-          <p className="text-text-secondary text-body-lg md:text-body-lg max-w-2xl mx-auto mb-12 animate-fade-in animation-delay-400">
-            Preserve your essence, share your wisdom, and ensure your love lives on 
-            through voice, story, and connection. Create a living legacy that nurtures 
-            future generations.
+          {/* Subheading */}
+          <p className="text-text-secondary text-body-lg md:text-body-lg max-w-3xl mx-auto mb-12 animate-fade-in animation-delay-200">
+            Every day, someone desperately searches for just one more voicemail from someone they&apos;ve lost. 
+            Today, while voices are strong and stories are fresh, you can ensure your love speaks across time.
           </p>
           
-          {/* Email capture form */}
-          <form onSubmit={handleSubmit} className="max-w-md mx-auto animate-fade-in animation-delay-600">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Input
-                type="email"
-                placeholder="Your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="flex-1"
-                disabled={isSubmitting}
-              />
-              <Button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="whitespace-nowrap"
-              >
-                {isSubmitting ? 'Planting...' : 'Begin Your Grove'}
-              </Button>
-            </div>
-            
-            {message && (
-              <p className={`mt-4 text-body-sm animate-fade-in ${
-                message.type === 'success' ? 'text-sage-primary' : 'text-accent-earth'
-              }`}>
-                {message.text}
-              </p>
-            )}
-          </form>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6 animate-fade-in animation-delay-400">
+            <Button href="/start" size="lg">
+              Start Your Legacy
+            </Button>
+            <Button href="/stories/emma" variant="secondary" size="lg">
+              Listen to Emma&apos;s Story
+            </Button>
+          </div>
           
-          {/* Trust indicators */}
-          <div className="mt-16 flex flex-wrap justify-center gap-8 text-text-light text-caption animate-fade-in animation-delay-600">
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              <span>Your memories are sacred & secure</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>Preserved for generations</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-              <span>Created with reverence</span>
-            </div>
+          {/* Micro-copy */}
+          <p className="text-body-sm text-text-light mb-8 animate-fade-in animation-delay-500">
+            No credit card required. Begin with a single recording.
+          </p>
+          
+          {/* Email Form */}
+          <div className="max-w-md mx-auto animate-fade-in animation-delay-600">
+            <form onSubmit={handleSubmit}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-1"
+                  aria-label="Email address"
+                  disabled={isSubmitting}
+                />
+                <Button type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? 'Starting...' : 'Get Started'}
+                </Button>
+              </div>
+              {message && (
+                <p className={`mt-4 text-body-sm animate-fade-in ${
+                  message.type === 'success' ? 'text-sage-primary' : 'text-accent-earth'
+                }`}>
+                  {message.text}
+                </p>
+              )}
+            </form>
           </div>
         </div>
       </div>

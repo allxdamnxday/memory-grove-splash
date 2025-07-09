@@ -15,6 +15,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/join',
+        destination: '/start',
+        permanent: false,
+      },
+    ]
+  },
 }
 
 const withMDX = createMDX({

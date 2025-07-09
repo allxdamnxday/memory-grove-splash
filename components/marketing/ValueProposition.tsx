@@ -39,7 +39,7 @@ export default function ValueProposition() {
             Plant Seeds That Bloom Forever
           </h2>
           <p className="text-text-secondary text-body-lg max-w-3xl mx-auto">
-            {`The Memory Grove isn't just another digital platform. It's a sacred space 
+            {`Memory Groves isn't just another digital platform. It's a sacred space 
             where technology serves love, where your essence is preserved with reverence, 
             and where memories grow stronger with time.`}
           </p>

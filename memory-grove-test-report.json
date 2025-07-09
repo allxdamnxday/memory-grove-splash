@@ -1,0 +1,796 @@
+{
+  "timestamp": "2025-07-09T05:16:38.494Z",
+  "siteStructure": {
+    "navigation": [
+      {
+        "href": "/",
+        "text": "Home"
+      },
+      {
+        "href": "/about",
+        "text": "About"
+      },
+      {
+        "href": "/how-it-works",
+        "text": "How It Works"
+      },
+      {
+        "href": "/blog",
+        "text": "Stories"
+      },
+      {
+        "href": "/contact",
+        "text": "Contact"
+      },
+      {
+        "href": "/join",
+        "text": "Begin Your Grove"
+      }
+    ]
+  },
+  "pagesVisited": [
+    {
+      "url": "/",
+      "title": "Memory Groves - Where Memories Bloom Eternal",
+      "screenshot": "homepage/full-page.png",
+      "timestamp": "2025-07-09T05:16:40.774Z"
+    },
+    {
+      "url": "/about",
+      "name": "about",
+      "title": "About Us - Memory Groves",
+      "screenshot": "about/full-page.png",
+      "timestamp": "2025-07-09T05:16:42.525Z"
+    },
+    {
+      "url": "/contact",
+      "name": "contact",
+      "title": "Memory Groves - Where Memories Bloom Eternal",
+      "screenshot": "contact/full-page.png",
+      "timestamp": "2025-07-09T05:16:44.011Z"
+    },
+    {
+      "url": "/blog",
+      "name": "blog",
+      "title": "Memory Stories - Memory Groves Blog",
+      "screenshot": "blog/full-page.png",
+      "timestamp": "2025-07-09T05:16:47.205Z"
+    }
+  ],
+  "pageContent": {
+    "/": {
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Where Memories Bloom Eternal"
+        },
+        {
+          "level": "H2",
+          "text": "Plant Seeds That Bloom Forever"
+        },
+        {
+          "level": "H3",
+          "text": "Preserve Your Essence"
+        },
+        {
+          "level": "H3",
+          "text": "Living Legacy"
+        },
+        {
+          "level": "H3",
+          "text": "Connection Across Time"
+        },
+        {
+          "level": "H2",
+          "text": "Your Journey Through The Grove"
+        },
+        {
+          "level": "H3",
+          "text": "Plant Your Grove"
+        },
+        {
+          "level": "H3",
+          "text": "Nurture Your Memories"
+        },
+        {
+          "level": "H3",
+          "text": "Watch It Bloom"
+        },
+        {
+          "level": "H2",
+          "text": "Voices From The Grove"
+        },
+        {
+          "level": "H2",
+          "text": "Your Story Deserves to Live On"
+        },
+        {
+          "level": "H3",
+          "text": "Explore"
+        },
+        {
+          "level": "H3",
+          "text": "Support"
+        },
+        {
+          "level": "H3",
+          "text": "Join Our Growing Garden"
+        }
+      ],
+      "ctaButtons": [
+        {
+          "text": "Contact",
+          "href": "/contact"
+        },
+        {
+          "text": "Begin Your Grove",
+          "href": "/join"
+        },
+        {
+          "text": "",
+          "href": "button"
+        },
+        {
+          "text": "Begin Your Grove",
+          "href": "button"
+        },
+        {
+          "text": "Plant Your First Seed",
+          "href": "/join"
+        },
+        {
+          "text": "Start Your Grove Today",
+          "href": "/join"
+        },
+        {
+          "text": "Contact Us",
+          "href": "/contact"
+        },
+        {
+          "text": "Plant Your Seed",
+          "href": "button"
+        }
+      ],
+      "natureMessaging": [
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\n\nA Sacred Digital Sanctuary\n\nWhere Memories Bloom Eternal\n\nPreserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Begin Your Grove\nYour memories are sacred & secure\nPreserved for generations\nCreated with reverence\nPlant Seeds That Bloom Forever\n\nMemory Groves isn't just another digital platform.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\n\nA Sacred Digital Sanctuary\n\nWhere Memories Bloom Eternal\n\nPreserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Start Your Grove Today\nLearn More\n\nJoin thousands who are preserving their legacy with love\n\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\n\nA Sacred Digital Sanctuary\n\nWhere Memories Bloom Eternal\n\nPreserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Begin Your Grove\nYour memories are sacred & secure\nPreserved for generations\nCreated with reverence\nPlant Seeds That Bloom Forever\n\nMemory Groves isn't just another digital platform.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\n\nA Sacred Digital Sanctuary\n\nWhere Memories Bloom Eternal\n\nPreserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Begin Your Grove\nYour memories are sacred & secure\nPreserved for generations\nCreated with reverence\nPlant Seeds That Bloom Forever\n\nMemory Groves isn't just another digital platform.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\n\nA Sacred Digital Sanctuary\n\nWhere Memories Bloom Eternal\n\nPreserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Preserve Your Essence\n\nYour voice carries the weight of your experiences.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\n\nA Sacred Digital Sanctuary\n\nWhere Memories Bloom Eternal\n\nPreserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Share your name, your story, and what matters most to you.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\n\nA Sacred Digital Sanctuary\n\nWhere Memories Bloom Eternal\n\nPreserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Connection Across Time\n\nBridge generations with your voice and stories.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\n\nA Sacred Digital Sanctuary\n\nWhere Memories Bloom Eternal\n\nPreserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Preserve Your Essence\n\nYour voice carries the weight of your experiences.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\n\nA Sacred Digital Sanctuary\n\nWhere Memories Bloom Eternal\n\nPreserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Begin Your Grove\nYour memories are sacred & secure\nPreserved for generations\nCreated with reverence\nPlant Seeds That Bloom Forever\n\nMemory Groves isn't just another digital platform."
+      ]
+    },
+    "/about": {
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Our Sacred Mission"
+        },
+        {
+          "level": "H2",
+          "text": "Why We Built Memory Groves"
+        },
+        {
+          "level": "H2",
+          "text": "Our Vision for Tomorrow"
+        },
+        {
+          "level": "H2",
+          "text": "The Roots of Our Grove"
+        },
+        {
+          "level": "H3",
+          "text": "Reverence"
+        },
+        {
+          "level": "H3",
+          "text": "Authenticity"
+        },
+        {
+          "level": "H3",
+          "text": "Connection"
+        },
+        {
+          "level": "H3",
+          "text": "Stewardship"
+        },
+        {
+          "level": "H3",
+          "text": "Growth"
+        },
+        {
+          "level": "H2",
+          "text": "Tending The Grove"
+        },
+        {
+          "level": "H2",
+          "text": "Begin Your Own Journey"
+        },
+        {
+          "level": "H3",
+          "text": "Explore"
+        },
+        {
+          "level": "H3",
+          "text": "Support"
+        },
+        {
+          "level": "H3",
+          "text": "Join Our Growing Garden"
+        },
+        {
+          "level": "H3",
+          "text": "Explore"
+        },
+        {
+          "level": "H3",
+          "text": "Support"
+        },
+        {
+          "level": "H3",
+          "text": "Join Our Growing Garden"
+        }
+      ],
+      "forms": [
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        },
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        }
+      ],
+      "interactiveElements": [],
+      "natureMessaging": [
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nOur Sacred Mission\n\nTo create a sacred digital sanctuary where memories bloom eternal, enabling people to preserve their essence, share their wisdom, and ensure their love lives on through voice, story, and connection.",
+        "Why We Built Memory Groves\n\nMemory Groves was born from a simple yet profound realization: our voices carry the weight of our experiences, our stories hold the wisdom of our journeys, and our love deserves to bloom beyond the boundaries of time.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nOur Sacred Mission\n\nTo create a sacred digital sanctuary where memories bloom eternal, enabling people to preserve their essence, share their wisdom, and ensure their love lives on through voice, story, and connection.",
+        "\"We're not just building a platform; we're creating a sanctuary where technology serves humanity's deepest need—to be remembered, to be heard, and to continue loving even after we're gone.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nOur Sacred Mission\n\nTo create a sacred digital sanctuary where memories bloom eternal, enabling people to preserve their essence, share their wisdom, and ensure their love lives on through voice, story, and connection.",
+        "In an age where technology often feels cold and disconnected, we envisioned something different—a digital space that feels as warm as a grandmother's embrace, as sacred as a family heirloom, and as natural as memories shared around a dinner table.",
+        "🌸\nGrowth\n\nLike nature, memories planted with us continue to bloom and nurture.",
+        "🌸\nGrowth\n\nLike nature, memories planted with us continue to bloom and nurture.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nOur Sacred Mission\n\nTo create a sacred digital sanctuary where memories bloom eternal, enabling people to preserve their essence, share their wisdom, and ensure their love lives on through voice, story, and connection.",
+        "Why We Built Memory Groves\n\nMemory Groves was born from a simple yet profound realization: our voices carry the weight of our experiences, our stories hold the wisdom of our journeys, and our love deserves to bloom beyond the boundaries of time.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nOur Sacred Mission\n\nTo create a sacred digital sanctuary where memories bloom eternal, enabling people to preserve their essence, share their wisdom, and ensure their love lives on through voice, story, and connection.",
+        "In an age where technology often feels cold and disconnected, we envisioned something different—a digital space that feels as warm as a grandmother's embrace, as sacred as a family heirloom, and as natural as memories shared around a dinner table.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nOur Sacred Mission\n\nTo create a sacred digital sanctuary where memories bloom eternal, enabling people to preserve their essence, share their wisdom, and ensure their love lives on through voice, story, and connection.",
+        "The Roots of Our Grove\n🌿\nReverence\n\nWe treat every memory, voice, and story with the sacred respect it deserves.",
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nOur Sacred Mission\n\nTo create a sacred digital sanctuary where memories bloom eternal, enabling people to preserve their essence, share their wisdom, and ensure their love lives on through voice, story, and connection.",
+        "Our Vision for Tomorrow\n\nA world where every life story is preserved with dignity, where technology serves love rather than replacing it, and where future generations can experience the authentic presence of those who came before."
+      ],
+      "textContent": [
+        "To create a sacred digital sanctuary where memories bloom eternal, enabling people to preserve their essence, share their wisdom, and ensure their love lives on through voice, story, and connection.",
+        "Memory Groves was born from a simple yet profound realization: our voices carry the weight of our experiences, our stories hold the wisdom of our journeys, and our love deserves to bloom beyond the boundaries of time.",
+        "In an age where technology often feels cold and disconnected, we \n                envisioned something different—a digital space that feels as warm \n                as a grandmother's embrace, as sacred as a family heirloom, and as \n                natural as memories shared around a dinner table.",
+        "Our technology serves a deeply human purpose: to ensure that the essence of who we are—our laughter, our lessons, our love—continues to nurture and guide those who come after us. Because in the end, the greatest gift we can leave behind is not what we owned, but who we were.",
+        "A world where every life story is preserved with dignity, where technology serves love rather than replacing it, and where future generations can experience the authentic presence of those who came before.",
+        "We treat every memory, voice, and story with the sacred respect it deserves.",
+        "We preserve genuine human essence, not artificial recreations.",
+        "We bridge the temporal divide with love and intention.",
+        "Like nature, memories planted with us continue to bloom and nurture.",
+        "We are a small team of technologists, storytellers, and dreamers united by a shared belief: that love transcends time, and memories deserve to be preserved with reverence.",
+        "\"We're not just building a platform; we're creating a sanctuary where \n                technology serves humanity's deepest need—to be remembered, to be heard, \n                and to continue loving even after we're gone.\"",
+        "Join us in creating a world where memories bloom eternal and love knows no bounds.",
+        "A sacred digital sanctuary where memories bloom eternal. Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Receive gentle wisdom about preserving memories and creating lasting legacies.",
+        "© 2025 Memory Groves. Nurturing memories with reverence and care.",
+        "A sacred digital sanctuary where memories bloom eternal. Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Receive gentle wisdom about preserving memories and creating lasting legacies.",
+        "© 2025 Memory Groves. Nurturing memories with reverence and care."
+      ]
+    },
+    "/contact": {
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Let's Connect"
+        },
+        {
+          "level": "H3",
+          "text": "General Inquiries"
+        },
+        {
+          "level": "H3",
+          "text": "Press & Media"
+        },
+        {
+          "level": "H3",
+          "text": "Partnership Opportunities"
+        },
+        {
+          "level": "H3",
+          "text": "Send Us a Message"
+        },
+        {
+          "level": "H2",
+          "text": "Other Ways to Reach Us"
+        },
+        {
+          "level": "H3",
+          "text": "For Partners & Organizations"
+        },
+        {
+          "level": "H3",
+          "text": "For Media Inquiries"
+        },
+        {
+          "level": "H3",
+          "text": "Explore"
+        },
+        {
+          "level": "H3",
+          "text": "Support"
+        },
+        {
+          "level": "H3",
+          "text": "Join Our Growing Garden"
+        },
+        {
+          "level": "H3",
+          "text": "Explore"
+        },
+        {
+          "level": "H3",
+          "text": "Support"
+        },
+        {
+          "level": "H3",
+          "text": "Join Our Growing Garden"
+        }
+      ],
+      "forms": [
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "hidden",
+              "name": "type",
+              "placeholder": "",
+              "required": false,
+              "label": ""
+            },
+            {
+              "type": "text",
+              "name": "name",
+              "placeholder": "",
+              "required": false,
+              "label": "Your Name"
+            },
+            {
+              "type": "email",
+              "name": "email",
+              "placeholder": "",
+              "required": false,
+              "label": "Email Address"
+            },
+            {
+              "type": "text",
+              "name": "subject",
+              "placeholder": "",
+              "required": false,
+              "label": "Subject"
+            },
+            {
+              "type": "textarea",
+              "name": "message",
+              "placeholder": "",
+              "required": false,
+              "label": "Your Message"
+            }
+          ],
+          "submitButton": "Send Message"
+        },
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        },
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        }
+      ],
+      "interactiveElements": [],
+      "natureMessaging": [
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nLet's Connect\n\nWhether you have questions, stories to share, or want to explore partnerships, we're here to listen.",
+        "Every conversation helps our grove grow stronger.",
+        "com\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "Made with 🌱 for those we love\n\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "com\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "Made with 🌱 for those we love\n\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "com\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "Made with 🌱 for those we love\n\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "com\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "Twitter\nInstagram\nLinkedIn\nExplore\nHow It Works\nOur Story\nMemory Stories\nSupport\nContact Us\nPrivacy\nTerms\nJoin Our Growing Garden\n\nReceive gentle wisdom about preserving memories and creating lasting legacies.",
+        "Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "com\nFor Media Inquiries\n\nWriting a story about digital legacy, memory preservation, or Memory Groves?\n\npress@memorygrove.",
+        "Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection."
+      ],
+      "textContent": [
+        "Whether you have questions, stories to share, or want to explore partnerships, \n              we're here to listen. Every conversation helps our grove grow stronger.",
+        "Questions about Memory Groves, how it works, or how to begin your journey.",
+        "For media inquiries, interviews, or press resources about our mission.",
+        "Explore ways to bring Memory Groves to your community or organization.",
+        "Share your thoughts, questions, or ideas. We read every message with care.",
+        "Interested in bringing Memory Groves to your community, healthcare facility, or organization?",
+        "Writing a story about digital legacy, memory preservation, or Memory Groves?",
+        "A sacred digital sanctuary where memories bloom eternal. Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Receive gentle wisdom about preserving memories and creating lasting legacies.",
+        "© 2025 Memory Groves. Nurturing memories with reverence and care.",
+        "A sacred digital sanctuary where memories bloom eternal. Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Receive gentle wisdom about preserving memories and creating lasting legacies.",
+        "© 2025 Memory Groves. Nurturing memories with reverence and care."
+      ]
+    },
+    "/blog": {
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Memory Stories"
+        },
+        {
+          "level": "H3",
+          "text": "Digital Legacy in the Modern Age"
+        },
+        {
+          "level": "H3",
+          "text": "Digital Legacy in the Modern Age"
+        },
+        {
+          "level": "H3",
+          "text": "Why Your Voice Matters"
+        },
+        {
+          "level": "H3",
+          "text": "The Sacred Act of Memory Keeping"
+        },
+        {
+          "level": "H3",
+          "text": "The Sacred Act of Memory Keeping"
+        },
+        {
+          "level": "H2",
+          "text": "Nurture Your Understanding"
+        },
+        {
+          "level": "H3",
+          "text": "Explore"
+        },
+        {
+          "level": "H3",
+          "text": "Support"
+        },
+        {
+          "level": "H3",
+          "text": "Join Our Growing Garden"
+        },
+        {
+          "level": "H3",
+          "text": "Explore"
+        },
+        {
+          "level": "H3",
+          "text": "Support"
+        },
+        {
+          "level": "H3",
+          "text": "Join Our Growing Garden"
+        }
+      ],
+      "forms": [
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Join Our Garden"
+        },
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        },
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        }
+      ],
+      "interactiveElements": [],
+      "natureMessaging": [
+        "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Stories\n\nWisdom gathered from the grove.",
+        "January 28, 2024\nDigital Legacy in the Modern Age\n\nAs our lives become increasingly digital, how do we ensure what matters most—our love, wisdom, and authentic selves—is preserved for future generations?\n\n3 min read\n→\n\nBy Memory Groves Team\n\nJanuary 28, 2024\nDigital Legacy in the Modern Age\n\nAs our lives become increasingly digital, how do we ensure our most precious memories and wisdom are preserved with dignity? Explore the intersection of technology and legacy.",
+        "Join Our Garden\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "Made with 🌱 for those we love\n\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "Stories about preserving memories, honoring legacies, and the sacred act of remembering those we love.",
+        "5 min read\n→\n\nBy Memory Groves Team\n\nJanuary 14, 2024\nThe Sacred Act of Memory Keeping\n\nIn a world that moves at lightning speed, the act of preserving memories becomes a sacred ritual—a way to honor what matters most and ensure our love transcends time.",
+        "Join Our Garden\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "Made with 🌱 for those we love\n\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+        "Stories about preserving memories, honoring legacies, and the sacred act of remembering those we love.",
+        "January 28, 2024\nDigital Legacy in the Modern Age\n\nAs our lives become increasingly digital, how do we ensure what matters most—our love, wisdom, and authentic selves—is preserved for future generations?\n\n3 min read\n→\n\nBy Memory Groves Team\n\nJanuary 28, 2024\nDigital Legacy in the Modern Age\n\nAs our lives become increasingly digital, how do we ensure our most precious memories and wisdom are preserved with dignity? Explore the intersection of technology and legacy.",
+        "5 min read\n→\n\nBy Memory Groves Team\n\nJanuary 21, 2024\nWhy Your Voice Matters\n\nYour voice carries more than words—it holds the essence of who you are.",
+        "Discover why preserving your authentic voice creates connections that transcend time.",
+        "Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Twitter\nInstagram\nLinkedIn\nExplore\nHow It Works\nOur Story\nMemory Stories\nSupport\nContact Us\nPrivacy\nTerms\nJoin Our Growing Garden\n\nReceive gentle wisdom about preserving memories and creating lasting legacies."
+      ],
+      "textContent": [
+        "Wisdom gathered from the grove. Stories about preserving memories, honoring legacies, and the sacred act of remembering those we love.",
+        "As our lives become increasingly digital, how do we ensure what matters most—our love, wisdom, and authentic selves—is preserved for future generations?",
+        "As our lives become increasingly digital, how do we ensure our most precious memories and wisdom are preserved with dignity? Explore the intersection of technology and legacy.",
+        "Your voice carries more than words—it holds the essence of who you are. Discover why preserving your authentic voice creates connections that transcend time.",
+        "In a world that moves at lightning speed, the act of preserving memories becomes a sacred ritual—a way to honor what matters most and ensure our love transcends time.",
+        "In a world moving at digital speed, the act of preserving memories becomes a sacred ritual—one that connects us to our past and gifts wisdom to our future.",
+        "Receive gentle wisdom about preserving memories and creating lasting legacies. Join our community of memory keepers.",
+        "A sacred digital sanctuary where memories bloom eternal. Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Receive gentle wisdom about preserving memories and creating lasting legacies.",
+        "© 2025 Memory Groves. Nurturing memories with reverence and care.",
+        "A sacred digital sanctuary where memories bloom eternal. Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+        "Receive gentle wisdom about preserving memories and creating lasting legacies.",
+        "© 2025 Memory Groves. Nurturing memories with reverence and care."
+      ]
+    }
+  },
+  "forms": [
+    {
+      "page": "/about",
+      "forms": [
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        },
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        }
+      ]
+    },
+    {
+      "page": "/contact",
+      "forms": [
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "hidden",
+              "name": "type",
+              "placeholder": "",
+              "required": false,
+              "label": ""
+            },
+            {
+              "type": "text",
+              "name": "name",
+              "placeholder": "",
+              "required": false,
+              "label": "Your Name"
+            },
+            {
+              "type": "email",
+              "name": "email",
+              "placeholder": "",
+              "required": false,
+              "label": "Email Address"
+            },
+            {
+              "type": "text",
+              "name": "subject",
+              "placeholder": "",
+              "required": false,
+              "label": "Subject"
+            },
+            {
+              "type": "textarea",
+              "name": "message",
+              "placeholder": "",
+              "required": false,
+              "label": "Your Message"
+            }
+          ],
+          "submitButton": "Send Message"
+        },
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        },
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        }
+      ]
+    },
+    {
+      "page": "/blog",
+      "forms": [
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Join Our Garden"
+        },
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        },
+        {
+          "id": "unnamed-form",
+          "fields": [
+            {
+              "type": "email",
+              "name": "",
+              "placeholder": "Your email address",
+              "required": true,
+              "label": "Your email address"
+            }
+          ],
+          "submitButton": "Plant Your Seed"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "designConsistency": {
+    "colors": [
+      "rgb(58, 63, 54)",
+      "rgb(124, 132, 113)",
+      "rgb(90, 96, 81)",
+      "rgb(253, 252, 248)"
+    ],
+    "fonts": [
+      "\"Source Sans Pro\", sans-serif",
+      "\"Cormorant Garamond\", serif"
+    ],
+    "natureMessaging": [
+      "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\n\nA Sacred Digital Sanctuary\n\nWhere Memories Bloom Eternal\n\nPreserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+      "Begin Your Grove\nYour memories are sacred & secure\nPreserved for generations\nCreated with reverence\nPlant Seeds That Bloom Forever\n\nMemory Groves isn't just another digital platform.",
+      "Start Your Grove Today\nLearn More\n\nJoin thousands who are preserving their legacy with love\n\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+      "Preserve Your Essence\n\nYour voice carries the weight of your experiences.",
+      "Share your name, your story, and what matters most to you.",
+      "Connection Across Time\n\nBridge generations with your voice and stories.",
+      "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nOur Sacred Mission\n\nTo create a sacred digital sanctuary where memories bloom eternal, enabling people to preserve their essence, share their wisdom, and ensure their love lives on through voice, story, and connection.",
+      "Why We Built Memory Groves\n\nMemory Groves was born from a simple yet profound realization: our voices carry the weight of our experiences, our stories hold the wisdom of our journeys, and our love deserves to bloom beyond the boundaries of time.",
+      "\"We're not just building a platform; we're creating a sanctuary where technology serves humanity's deepest need—to be remembered, to be heard, and to continue loving even after we're gone.",
+      "In an age where technology often feels cold and disconnected, we envisioned something different—a digital space that feels as warm as a grandmother's embrace, as sacred as a family heirloom, and as natural as memories shared around a dinner table.",
+      "🌸\nGrowth\n\nLike nature, memories planted with us continue to bloom and nurture.",
+      "The Roots of Our Grove\n🌿\nReverence\n\nWe treat every memory, voice, and story with the sacred respect it deserves.",
+      "Our Vision for Tomorrow\n\nA world where every life story is preserved with dignity, where technology serves love rather than replacing it, and where future generations can experience the authentic presence of those who came before.",
+      "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nLet's Connect\n\nWhether you have questions, stories to share, or want to explore partnerships, we're here to listen.",
+      "Every conversation helps our grove grow stronger.",
+      "com\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+      "Made with 🌱 for those we love\n\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+      "Twitter\nInstagram\nLinkedIn\nExplore\nHow It Works\nOur Story\nMemory Stories\nSupport\nContact Us\nPrivacy\nTerms\nJoin Our Growing Garden\n\nReceive gentle wisdom about preserving memories and creating lasting legacies.",
+      "Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
+      "com\nFor Media Inquiries\n\nWriting a story about digital legacy, memory preservation, or Memory Groves?\n\npress@memorygrove.",
+      "Memory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Groves\nHome\nAbout\nHow It Works\nStories\nContact\nBegin Your Grove\nMemory Stories\n\nWisdom gathered from the grove.",
+      "January 28, 2024\nDigital Legacy in the Modern Age\n\nAs our lives become increasingly digital, how do we ensure what matters most—our love, wisdom, and authentic selves—is preserved for future generations?\n\n3 min read\n→\n\nBy Memory Groves Team\n\nJanuary 28, 2024\nDigital Legacy in the Modern Age\n\nAs our lives become increasingly digital, how do we ensure our most precious memories and wisdom are preserved with dignity? Explore the intersection of technology and legacy.",
+      "Join Our Garden\nMemory Groves\n\nA sacred digital sanctuary where memories bloom eternal.",
+      "Stories about preserving memories, honoring legacies, and the sacred act of remembering those we love.",
+      "5 min read\n→\n\nBy Memory Groves Team\n\nJanuary 14, 2024\nThe Sacred Act of Memory Keeping\n\nIn a world that moves at lightning speed, the act of preserving memories becomes a sacred ritual—a way to honor what matters most and ensure our love transcends time.",
+      "5 min read\n→\n\nBy Memory Groves Team\n\nJanuary 21, 2024\nWhy Your Voice Matters\n\nYour voice carries more than words—it holds the essence of who you are.",
+      "Discover why preserving your authentic voice creates connections that transcend time."
+    ]
+  }
+}

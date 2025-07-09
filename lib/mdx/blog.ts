@@ -40,7 +40,7 @@ export function getBlogBySlug(slug: string): BlogPost | null {
     title: data.title,
     excerpt: data.excerpt,
     date: data.date,
-    author: data.author || 'The Memory Grove Team',
+    author: data.author || 'Memory Groves Team',
     category: data.category || 'Memory Keeping',
     readingTime: stats.text,
     content,

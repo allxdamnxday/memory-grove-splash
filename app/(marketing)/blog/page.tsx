@@ -5,7 +5,7 @@ import Card, { CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = {
-  title: 'Memory Stories - The Memory Grove Blog',
+  title: 'Memory Stories - Memory Groves Blog',
   description: 'Explore stories, wisdom, and insights about preserving memories, digital legacy, and the sacred act of memory keeping.',
 }
 

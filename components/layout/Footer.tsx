@@ -42,7 +42,7 @@ export default function Footer() {
                 </svg>
               </div>
               <span className="font-serif text-h3 text-sage-deep">
-                The Memory Grove
+                Memory Groves
               </span>
             </Link>
             <p className="text-text-secondary text-body-sm max-w-md mb-6">
@@ -129,7 +129,7 @@ export default function Footer() {
         <div className="border-t border-warm-pebble/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-text-light text-caption">
-              © {currentYear} The Memory Grove. Nurturing memories with reverence and care.
+              © {currentYear} Memory Groves. Nurturing memories with reverence and care.
             </p>
             <p className="text-text-light text-caption">
               Made with 🌱 for those we love

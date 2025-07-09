@@ -5,21 +5,21 @@ import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://memorygrove.com'),
-  title: "The Memory Grove - Where Memories Bloom Eternal",
+  title: "Memory Groves - Where Memories Bloom Eternal",
   description: "Create a sacred digital sanctuary where memories bloom eternal. Preserve your essence, share your wisdom, and ensure your love lives on through voice, story, and connection.",
   keywords: "digital legacy planning, preserve family memories, voice recording for memories, ethical AI memorial",
-  authors: [{ name: "The Memory Grove" }],
+  authors: [{ name: "Memory Groves" }],
   openGraph: {
-    title: "The Memory Grove - Where Memories Bloom Eternal",
+    title: "Memory Groves - Where Memories Bloom Eternal",
     description: "Create a sacred digital sanctuary where memories bloom eternal.",
     url: "https://memorygrove.com",
-    siteName: "The Memory Grove",
+    siteName: "Memory Groves",
     images: [
       {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "The Memory Grove - A peaceful garden where memories bloom",
+        alt: "Memory Groves - A peaceful garden where memories bloom",
       },
     ],
     locale: "en_US",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Memory Grove - Where Memories Bloom Eternal",
+    title: "Memory Groves - Where Memories Bloom Eternal",
     description: "Create a sacred digital sanctuary where memories bloom eternal.",
     images: ["/images/twitter-image.jpg"],
   },
