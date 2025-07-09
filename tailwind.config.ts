@@ -22,18 +22,36 @@ const config: Config = {
           sand: "#F4F0E6",
           stone: "#E6E2D6",
           pebble: "#D4CFC0",
+          primary: "#D4A574", // Warm earthy orange
+          deep: "#B8935F",    // Deeper warm tone
         },
         // Text Colors
         text: {
           primary: "#3A3F36",
           secondary: "#5A5F56",
           light: "#7A7F76",
+          tertiary: "#9A9F96",
+        },
+        // Background Colors
+        background: {
+          primary: "#FFFFFF",
+          secondary: "#F9F8F5",
+        },
+        // Border Colors
+        border: {
+          primary: "#E6E2D6",
         },
         // Accent Colors (Use Sparingly)
         accent: {
           moss: "#5F6B3E",
           dawn: "#E8D5B7",
           earth: "#B8A088",
+        },
+        // Error/Alert Colors (Nature-inspired reds)
+        error: {
+          primary: "#D4756B", // Soft terracotta red
+          deep: "#B85A50",    // Deeper clay red
+          light: "#E8A59D",   // Light blush for backgrounds
         },
       },
       fontFamily: {

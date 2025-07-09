@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import AccountForm from '@/components/auth/AccountForm'
 import Link from 'next/link'
+import { FileAudio, User } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'My Account - Memory Grove',
@@ -37,7 +38,58 @@ export default async function AccountPage() {
             </p>
           </div>
 
+          {/* Navigation Cards */}
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <Link
+              href="/account/memories"
+              className="group bg-white shadow-soft rounded-lg p-6 hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="flex items-center mb-2">
+                    <FileAudio className="w-5 h-5 mr-2 text-sage-primary" />
+                    <h3 className="text-heading-sm font-medium">Voice Memories</h3>
+                  </div>
+                  <p className="text-body-sm text-text-secondary">
+                    Record and manage your preserved memories
+                  </p>
+                </div>
+                <svg
+                  className="w-5 h-5 text-text-tertiary group-hover:text-sage-primary transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+
+            <div className="group bg-white shadow-soft rounded-lg p-6 opacity-75 cursor-not-allowed">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="flex items-center mb-2">
+                    <User className="w-5 h-5 mr-2 text-text-tertiary" />
+                    <h3 className="text-heading-sm font-medium text-text-tertiary">Profile Settings</h3>
+                  </div>
+                  <p className="text-body-sm text-text-tertiary">
+                    Update your account information
+                  </p>
+                </div>
+                <svg
+                  className="w-5 h-5 text-text-tertiary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-white shadow-soft rounded-lg p-8">
+            <h2 className="text-heading-md font-serif mb-6">Account Settings</h2>
             <AccountForm user={user} />
           </div>
 
