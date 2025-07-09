@@ -20,7 +20,7 @@ export default function CTA() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button href="/join" size="lg">
+            <Button href="/signup" size="lg">
               Start Your Grove Today
             </Button>
             <Button href="/how-it-works" variant="secondary" size="lg">
