@@ -304,19 +304,62 @@ export async function uploadAudioFile(
       )
     }
     
-    console.log('[MiniMax] File upload response:', JSON.stringify(data, null, 2))
+    // Log the full response to see actual structure
+    console.log('[MiniMax] File upload raw response:', JSON.stringify(data, null, 2))
     
-    // Extract file_id from the response structure
+    // Try multiple possible response structures
+    let fileId: string | undefined
+    let extractedResponse: MiniMaxFileUploadResponse | undefined
+    
+    // Check various possible response formats
     if (data.file && data.file.file_id) {
-      console.log('[MiniMax] File uploaded successfully:', data.file.file_id)
-      return data.file as MiniMaxFileUploadResponse
+      fileId = data.file.file_id
+      extractedResponse = data.file as MiniMaxFileUploadResponse
+      console.log('[MiniMax] Found file_id in data.file.file_id:', fileId)
     } else if (data.file_id) {
-      // Fallback if response structure is different
-      console.log('[MiniMax] File uploaded successfully:', data.file_id)
-      return data as MiniMaxFileUploadResponse
+      fileId = data.file_id
+      extractedResponse = data as MiniMaxFileUploadResponse
+      console.log('[MiniMax] Found file_id in data.file_id:', fileId)
+    } else if (data.data && data.data.file_id) {
+      fileId = data.data.file_id
+      extractedResponse = data.data as MiniMaxFileUploadResponse
+      console.log('[MiniMax] Found file_id in data.data.file_id:', fileId)
+    } else if (data.id) {
+      // Alternative format with 'id' instead of 'file_id'
+      fileId = data.id
+      extractedResponse = {
+        file_id: data.id,
+        filename: data.filename || filename,
+        size: data.size || audioBuffer.length,
+        created_at: data.created_at || new Date().toISOString()
+      } as MiniMaxFileUploadResponse
+      console.log('[MiniMax] Found file_id in data.id:', fileId)
+    } else if (data.files && Array.isArray(data.files) && data.files.length > 0) {
+      // Check if response contains array of files
+      const firstFile = data.files[0]
+      if (firstFile.file_id || firstFile.id) {
+        fileId = firstFile.file_id || firstFile.id
+        extractedResponse = {
+          file_id: fileId,
+          filename: firstFile.filename || filename,
+          size: firstFile.size || audioBuffer.length,
+          created_at: firstFile.created_at || new Date().toISOString()
+        } as MiniMaxFileUploadResponse
+        console.log('[MiniMax] Found file_id in data.files[0]:', fileId)
+      }
+    }
+    
+    if (fileId && extractedResponse) {
+      console.log('[MiniMax] File uploaded successfully:', fileId)
+      return extractedResponse
     } else {
+      // Log all keys in the response to help debug
+      console.error('[MiniMax] Unable to find file_id in response. Response keys:', Object.keys(data))
+      if (data.data) {
+        console.error('[MiniMax] data.data keys:', Object.keys(data.data))
+      }
       throw new MiniMaxError(
-        'Invalid response format: missing file_id',
+        `Invalid response format: missing file_id. Response structure: ${JSON.stringify(data)}`,
         'INVALID_RESPONSE_FORMAT',
         500
       )
