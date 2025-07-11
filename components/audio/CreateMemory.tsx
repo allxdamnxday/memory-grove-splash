@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { Mic, Upload as UploadIcon, ArrowLeft, Loader2 } from 'lucide-react'
+import { Mic, Upload as UploadIcon, ArrowLeft, Loader2, Zap } from 'lucide-react'
 import AudioRecorder from './AudioRecorder'
 import AudioUploader from './AudioUploader'
+import VoiceCloneGenerator from '@/components/voice/VoiceCloneGenerator'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -16,13 +17,18 @@ const memorySchema = z.object({
 
 type MemoryFormData = z.infer<typeof memorySchema>
 
-export default function CreateMemory() {
+interface CreateMemoryProps {
+  voiceProfileId?: string
+}
+
+export default function CreateMemory({ voiceProfileId }: CreateMemoryProps) {
   const router = useRouter()
-  const [mode, setMode] = useState<'select' | 'record' | 'upload'>('select')
+  const [mode, setMode] = useState<'select' | 'record' | 'upload' | 'clone'>('select')
   const [audioFile, setAudioFile] = useState<{ blob: Blob; duration: number } | null>(null)
   const [isUploading, setIsUploading] = useState(false)
   const [uploadProgress, setUploadProgress] = useState(0)
   const [error, setError] = useState<string | null>(null)
+  const [hasVoiceProfiles, setHasVoiceProfiles] = useState(false)
 
   const {
     register,
@@ -31,6 +37,23 @@ export default function CreateMemory() {
   } = useForm<MemoryFormData>({
     resolver: zodResolver(memorySchema),
   })
+
+  useEffect(() => {
+    // Check if user has voice profiles
+    const checkVoiceProfiles = async () => {
+      try {
+        const response = await fetch('/api/voice-profile')
+        if (response.ok) {
+          const data = await response.json()
+          const hasReady = data.profiles?.some((p: any) => p.status === 'ready')
+          setHasVoiceProfiles(hasReady || false)
+        }
+      } catch (error) {
+        console.error('Error checking voice profiles:', error)
+      }
+    }
+    checkVoiceProfiles()
+  }, [])
 
   const handleRecordingComplete = useCallback((blob: Blob, duration: number) => {
     setAudioFile({ blob, duration })
@@ -117,7 +140,7 @@ export default function CreateMemory() {
             Create a New Memory
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className={`grid ${hasVoiceProfiles ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-6`}>
             <button
               onClick={() => setMode('record')}
               className="group relative p-6 bg-background-secondary rounded-lg hover:bg-sage-light/20 transition-all duration-200 border border-border-primary hover:border-sage-primary"
@@ -151,6 +174,25 @@ export default function CreateMemory() {
                 </div>
               </div>
             </button>
+
+            {hasVoiceProfiles && (
+              <button
+                onClick={() => setMode('clone')}
+                className="group relative p-6 bg-background-secondary rounded-lg hover:bg-sage-light/20 transition-all duration-200 border border-border-primary hover:border-sage-primary"
+              >
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 bg-sage-light rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                    <Zap className="w-8 h-8 text-sage-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-heading-sm font-medium">AI Voice</h3>
+                    <p className="text-body-sm text-text-secondary mt-1">
+                      Generate from text
+                    </p>
+                  </div>
+                </div>
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -182,7 +224,11 @@ export default function CreateMemory() {
           </div>
         )}
 
-        {audioFile && (
+        {mode === 'clone' && (
+          <VoiceCloneGenerator voiceProfileId={voiceProfileId} />
+        )}
+
+        {audioFile && mode !== 'clone' && (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="bg-white rounded-lg shadow-sm border border-border-primary p-6">
               <h2 className="text-heading-md font-serif mb-6">Memory Details</h2>

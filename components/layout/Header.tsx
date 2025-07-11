@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 
 export default function Header() {
@@ -20,18 +21,13 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 rounded-full bg-sage-mist flex items-center justify-center">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                className="w-6 h-6 text-sage-deep group-hover:scale-110 transition-transform duration-300"
-              >
-                <path d="M12 2C7 2 4 5 4 9c0 4 4 12 8 12s8-8 8-12c0-4-3-7-8-7z" />
-                <path d="M12 2v19M8 7c0 3 1.5 5 4 5s4-2 4-5" />
-              </svg>
-            </div>
+            <Image
+              src="/images/Logo_no_text_No_BG.svg"
+              alt="Memory Groves Logo"
+              width={40}
+              height={40}
+              className="group-hover:scale-110 transition-transform duration-300"
+            />
             <span className="font-serif text-h3 text-sage-deep">
               Memory Groves
             </span>

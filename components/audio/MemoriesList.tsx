@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { Plus, Loader2, FileAudio } from 'lucide-react'
+import { Plus, Loader2, FileAudio, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import MemoryCard from './MemoryCard'
 
@@ -148,13 +148,22 @@ export default function MemoriesList() {
             {pagination?.total || 0} {pagination?.total === 1 ? 'memory' : 'memories'} preserved
           </p>
         </div>
-        <Link
-          href="/account/memories/new"
-          className="inline-flex items-center px-4 py-2 bg-sage-primary text-white rounded-lg hover:bg-sage-deep transition-colors"
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          New Memory
-        </Link>
+        <div className="flex space-x-3">
+          <Link
+            href="/memories/voice-synthesis"
+            className="inline-flex items-center px-4 py-2 bg-warm-primary text-white rounded-lg hover:bg-warm-deep transition-colors"
+          >
+            <Sparkles className="w-4 h-4 mr-2" />
+            Create with AI
+          </Link>
+          <Link
+            href="/account/memories/new"
+            className="inline-flex items-center px-4 py-2 bg-sage-primary text-white rounded-lg hover:bg-sage-deep transition-colors"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Record New
+          </Link>
+        </div>
       </div>
 
       {/* Memories Grid */}

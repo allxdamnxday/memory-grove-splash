@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   description: 'Record or upload a new voice memory to preserve in your digital grove',
 }
 
-export default function NewMemoryPage() {
+export default function NewMemoryPage({
+  searchParams,
+}: {
+  searchParams: { voiceProfileId?: string }
+}) {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="mb-6">
@@ -27,7 +31,7 @@ export default function NewMemoryPage() {
           Preserve your voice and stories in your digital sanctuary
         </p>
 
-        <CreateMemory />
+        <CreateMemory voiceProfileId={searchParams.voiceProfileId} />
       </div>
     </div>
   )

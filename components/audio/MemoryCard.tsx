@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
-import { Trash2, Calendar, Clock, FileAudio } from 'lucide-react'
+import { Trash2, Calendar, Clock, FileAudio, Zap } from 'lucide-react'
 import AudioPlayer from './AudioPlayer'
 
 interface Memory {
@@ -13,6 +13,8 @@ interface Memory {
   file_size: number
   created_at: string
   signedUrl?: string
+  is_cloned?: boolean
+  source_text?: string
 }
 
 interface MemoryCardProps {
@@ -50,9 +52,17 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
       <div className="p-6">
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
-            <h3 className="text-heading-sm font-medium text-text-primary mb-1">
-              {memory.title}
-            </h3>
+            <div className="flex items-center space-x-2 mb-1">
+              <h3 className="text-heading-sm font-medium text-text-primary">
+                {memory.title}
+              </h3>
+              {memory.is_cloned && (
+                <div className="flex items-center px-2 py-0.5 bg-sage-light/30 rounded-full">
+                  <Zap className="w-3 h-3 text-sage-primary mr-1" />
+                  <span className="text-body-xs text-sage-deep font-medium">AI Generated</span>
+                </div>
+              )}
+            </div>
             {memory.description && (
               <p className="text-body-sm text-text-secondary line-clamp-2">
                 {memory.description}

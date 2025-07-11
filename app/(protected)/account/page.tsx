@@ -1,8 +1,9 @@
 import { Metadata } from 'next'
 import { createClient } from '@/lib/supabase/server'
 import AccountForm from '@/components/auth/AccountForm'
+import VoiceCloneConsent from '@/components/voice/VoiceCloneConsent'
 import Link from 'next/link'
-import { FileAudio, User } from 'lucide-react'
+import { FileAudio, User, Mic } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'My Account - Memory Grove',
@@ -65,6 +66,31 @@ export default async function AccountPage() {
               </div>
             </Link>
 
+            <Link
+              href="/memories/voice-profiles"
+              className="group bg-white shadow-soft rounded-lg p-6 hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="flex items-center mb-2">
+                    <Mic className="w-5 h-5 mr-2 text-sage-primary" />
+                    <h3 className="text-heading-sm font-medium">Voice Profiles</h3>
+                  </div>
+                  <p className="text-body-sm text-text-secondary">
+                    Create and manage voice clones
+                  </p>
+                </div>
+                <svg
+                  className="w-5 h-5 text-text-tertiary group-hover:text-sage-primary transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+
             <div className="group bg-white shadow-soft rounded-lg p-6 opacity-75 cursor-not-allowed">
               <div className="flex items-center justify-between">
                 <div>
@@ -91,6 +117,10 @@ export default async function AccountPage() {
           <div className="bg-white shadow-soft rounded-lg p-8">
             <h2 className="text-heading-md font-serif mb-6">Account Settings</h2>
             <AccountForm user={user} />
+          </div>
+
+          <div className="mt-6">
+            <VoiceCloneConsent />
           </div>
 
           <div className="mt-8 text-center">
