@@ -187,7 +187,7 @@ export default function VoiceTrainingModal({ profile, onClose, onSuccess }: Voic
                 <p className="text-text-secondary mb-4">
                   No suitable voice recordings found. You need a recording between 10 seconds and 5 minutes.
                 </p>
-                <a href="/memories/create" className="btn-primary">
+                <a href="/account/memories/new" className="btn-primary">
                   Record New Sample
                 </a>
               </div>
