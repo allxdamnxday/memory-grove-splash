@@ -250,6 +250,7 @@ export async function uploadAudioFile(
   const formData = new FormData()
   const blob = new Blob([audioBuffer], { type: mimeType })
   formData.append('file', blob, filename)
+  formData.append('purpose', 'voice_clone')
   
   return retryWithBackoff(async () => {
     const env = getEnv()
@@ -283,7 +284,8 @@ export async function uploadAudioFile(
       console.error('[MiniMax] File upload failed:', {
         status: response.status,
         statusText: response.statusText,
-        error: data
+        error: data,
+        fullResponse: JSON.stringify(data, null, 2)
       })
       
       // Check for specific authentication errors
@@ -302,8 +304,23 @@ export async function uploadAudioFile(
       )
     }
     
-    console.log('[MiniMax] File uploaded successfully:', data.file_id)
-    return data
+    console.log('[MiniMax] File upload response:', JSON.stringify(data, null, 2))
+    
+    // Extract file_id from the response structure
+    if (data.file && data.file.file_id) {
+      console.log('[MiniMax] File uploaded successfully:', data.file.file_id)
+      return data.file as MiniMaxFileUploadResponse
+    } else if (data.file_id) {
+      // Fallback if response structure is different
+      console.log('[MiniMax] File uploaded successfully:', data.file_id)
+      return data as MiniMaxFileUploadResponse
+    } else {
+      throw new MiniMaxError(
+        'Invalid response format: missing file_id',
+        'INVALID_RESPONSE_FORMAT',
+        500
+      )
+    }
   })
 }
 
