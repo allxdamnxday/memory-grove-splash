@@ -7,11 +7,26 @@ const envSchema = z.object({
   MINIMAX_GROUP_ID: z.string().min(1)
 })
 
-const env = envSchema.parse({
-  MINIMAX_API_KEY: process.env.MINIMAX_API_KEY,
-  MINIMAX_API_HOST: process.env.MINIMAX_API_HOST,
-  MINIMAX_GROUP_ID: process.env.MINIMAX_GROUP_ID
-})
+// Lazy environment loading to avoid build-time errors
+let cachedEnv: z.infer<typeof envSchema> | null = null
+
+function getEnv() {
+  if (cachedEnv) return cachedEnv
+  
+  try {
+    cachedEnv = envSchema.parse({
+      MINIMAX_API_KEY: process.env.MINIMAX_API_KEY,
+      MINIMAX_API_HOST: process.env.MINIMAX_API_HOST,
+      MINIMAX_GROUP_ID: process.env.MINIMAX_GROUP_ID
+    })
+    return cachedEnv
+  } catch (error) {
+    throw new MiniMaxError(
+      'MiniMax API configuration is missing. Please set MINIMAX_API_KEY, MINIMAX_API_HOST, and MINIMAX_GROUP_ID environment variables.',
+      'CONFIG_ERROR'
+    )
+  }
+}
 
 // API response types
 export interface MiniMaxFileUploadResponse {
@@ -97,12 +112,12 @@ async function makeRequest<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
-  const url = `${env.MINIMAX_API_HOST}${endpoint}?GroupId=${env.MINIMAX_GROUP_ID}`
+  const url = `${getEnv().MINIMAX_API_HOST}${endpoint}?GroupId=${getEnv().MINIMAX_GROUP_ID}`
   
   const response = await fetch(url, {
     ...options,
     headers: {
-      'Authorization': `Bearer ${env.MINIMAX_API_KEY}`,
+      'Authorization': `Bearer ${getEnv().MINIMAX_API_KEY}`,
       'Content-Type': 'application/json',
       ...options.headers
     }
@@ -139,12 +154,12 @@ export async function uploadAudioFile(
   formData.append('file', blob, filename)
   
   return retryWithBackoff(async () => {
-    const url = `${env.MINIMAX_API_HOST}/v1/files/upload?GroupId=${env.MINIMAX_GROUP_ID}`
+    const url = `${getEnv().MINIMAX_API_HOST}/v1/files/upload?GroupId=${getEnv().MINIMAX_GROUP_ID}`
     
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${env.MINIMAX_API_KEY}`
+        'Authorization': `Bearer ${getEnv().MINIMAX_API_KEY}`
       },
       body: formData
     })

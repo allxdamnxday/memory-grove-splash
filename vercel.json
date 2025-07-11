@@ -16,6 +16,15 @@
     },
     "app/api/memories/route.ts": {
       "maxDuration": 10
+    },
+    "app/api/voice/clone/initiate/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/voice/synthesize/route.ts": {
+      "maxDuration": 30
+    },
+    "app/api/voice/clone/status/route.ts": {
+      "maxDuration": 10
     }
   },
   "headers": [
