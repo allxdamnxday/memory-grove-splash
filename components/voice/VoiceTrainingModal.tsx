@@ -29,17 +29,11 @@ export default function VoiceTrainingModal({ profile, onClose, onSuccess }: Voic
   const [isTraining, setIsTraining] = useState(false)
   const [trainingStatus, setTrainingStatus] = useState<'idle' | 'uploading' | 'processing' | 'completed' | 'failed'>('idle')
   const [error, setError] = useState<string | null>(null)
-  const [pollingInterval, setPollingInterval] = useState<NodeJS.Timeout | null>(null)
+  // Removed polling interval - voice cloning is synchronous
   
   useEffect(() => {
     fetchMemories()
-    
-    return () => {
-      if (pollingInterval) {
-        clearInterval(pollingInterval)
-      }
-    }
-  }, [pollingInterval])
+  }, [])
   
   const fetchMemories = async () => {
     try {
@@ -86,15 +80,16 @@ export default function VoiceTrainingModal({ profile, onClose, onSuccess }: Voic
         throw new Error(data.error || 'Failed to start voice training')
       }
       
+      // Voice cloning is synchronous - response indicates immediate success or failure
       if (data.status === 'completed') {
         setTrainingStatus('completed')
         setTimeout(() => {
           onSuccess()
         }, 2000)
-      } else {
-        setTrainingStatus('processing')
-        // Start polling for status
-        startPolling()
+      } else if (data.status === 'failed') {
+        setTrainingStatus('failed')
+        setError(data.error || 'Voice cloning failed')
+        setIsTraining(false)
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to start voice training')
@@ -103,31 +98,7 @@ export default function VoiceTrainingModal({ profile, onClose, onSuccess }: Voic
     }
   }
   
-  const startPolling = () => {
-    const interval = setInterval(async () => {
-      try {
-        const response = await fetch(`/api/voice/clone/status?voice_profile_id=${profile.id}`)
-        const data = await response.json()
-        
-        if (data.status === 'completed') {
-          setTrainingStatus('completed')
-          clearInterval(interval)
-          setTimeout(() => {
-            onSuccess()
-          }, 2000)
-        } else if (data.status === 'failed') {
-          setTrainingStatus('failed')
-          setError(data.error_message || 'Voice training failed')
-          clearInterval(interval)
-          setIsTraining(false)
-        }
-      } catch (err) {
-        console.error('Failed to check training status:', err)
-      }
-    }, 3000) // Poll every 3 seconds
-    
-    setPollingInterval(interval)
-  }
+  // Voice cloning is synchronous - no polling needed
   
   const formatDuration = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
@@ -246,24 +217,22 @@ export default function VoiceTrainingModal({ profile, onClose, onSuccess }: Voic
           </div>
         )}
         
-        {(trainingStatus === 'uploading' || trainingStatus === 'processing') && (
+        {trainingStatus === 'uploading' && (
           <div className="p-6 text-center">
             <div className="mb-6">
               <Loader2 className="w-16 h-16 text-sage-primary mx-auto mb-4 animate-spin" />
               <h3 className="font-serif text-h4 text-sage-deep mb-2">
-                {trainingStatus === 'uploading' ? 'Uploading Voice Sample...' : 'Training Voice Profile...'}
+                Processing Voice Sample...
               </h3>
               <p className="text-text-secondary">
-                {trainingStatus === 'uploading' 
-                  ? 'Preparing your voice sample for training'
-                  : 'This typically takes about 30 seconds. Please wait...'}
+                Uploading and cloning your voice sample
               </p>
             </div>
             
             <div className="bg-sage-mist/30 rounded-lg p-4">
               <p className="text-body-sm text-text-secondary">
                 Your voice is being analyzed and cloned using advanced AI technology.
-                The window will close automatically when training is complete.
+                This should only take a few seconds.
               </p>
             </div>
           </div>

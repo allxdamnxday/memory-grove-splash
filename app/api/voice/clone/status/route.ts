@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { z } from 'zod'
-import { checkVoiceCloneStatus, MiniMaxError } from '@/lib/services/minimax'
+// Note: Voice cloning is synchronous, so this endpoint just returns the current DB status
 
 // GET /api/voice/clone/status?voice_profile_id=xxx - Check cloning status
 export async function GET(request: NextRequest) {
@@ -50,99 +50,25 @@ export async function GET(request: NextRequest) {
       )
     }
     
-    // If already completed or failed, return current status
-    if (voiceProfile.training_status === 'completed' || voiceProfile.training_status === 'failed') {
-      return NextResponse.json({
-        status: voiceProfile.training_status,
-        voice_profile_id: voiceProfileId,
-        minimax_voice_id: voiceProfile.minimax_voice_id,
-        error_message: voiceProfile.error_message,
-        completed_at: voiceProfile.training_completed_at
-      })
-    }
-    
-    // If pending, return pending status
-    if (voiceProfile.training_status === 'pending') {
-      return NextResponse.json({
-        status: 'pending',
-        voice_profile_id: voiceProfileId,
-        message: 'Voice cloning has not been initiated yet'
-      })
-    }
-    
-    // Check status with MiniMax
-    try {
-      const cloneStatus = await checkVoiceCloneStatus(voiceProfile.minimax_voice_id)
-      
-      // Update database based on MiniMax status
-      if (cloneStatus.status === 'completed') {
-        await supabase
-          .from('voice_profiles')
-          .update({
-            training_status: 'completed',
-            training_completed_at: new Date().toISOString()
-          })
-          .eq('id', voiceProfileId)
-        
-        return NextResponse.json({
-          status: 'completed',
-          voice_profile_id: voiceProfileId,
-          minimax_voice_id: voiceProfile.minimax_voice_id,
-          processing_time: cloneStatus.processing_time
-        })
-      } else if (cloneStatus.status === 'failed') {
-        await supabase
-          .from('voice_profiles')
-          .update({
-            training_status: 'failed',
-            error_message: cloneStatus.error_message || 'Voice cloning failed'
-          })
-          .eq('id', voiceProfileId)
-        
-        return NextResponse.json({
-          status: 'failed',
-          voice_profile_id: voiceProfileId,
-          error_message: cloneStatus.error_message
-        })
-      }
-      
-      // Still processing
-      const processingTime = voiceProfile.training_started_at 
+    // Return current database status
+    // Since voice cloning is synchronous, the status in the DB is the final status
+    const processingTime = voiceProfile.training_started_at && voiceProfile.training_completed_at
+      ? Math.floor((new Date(voiceProfile.training_completed_at).getTime() - new Date(voiceProfile.training_started_at).getTime()) / 1000)
+      : voiceProfile.training_started_at 
         ? Math.floor((Date.now() - new Date(voiceProfile.training_started_at).getTime()) / 1000)
         : 0
-      
-      return NextResponse.json({
-        status: 'processing',
-        voice_profile_id: voiceProfileId,
-        minimax_voice_id: voiceProfile.minimax_voice_id,
-        processing_time_seconds: processingTime,
-        message: 'Voice cloning in progress. This typically takes about 30 seconds.'
-      })
-      
-    } catch (error) {
-      if (error instanceof MiniMaxError) {
-        // If we can't check status, but profile shows processing, assume it's still processing
-        if (error.statusCode === 404) {
-          // Voice ID not found might mean it's still being created
-          return NextResponse.json({
-            status: 'processing',
-            voice_profile_id: voiceProfileId,
-            message: 'Voice cloning in progress'
-          })
-        }
-        
-        console.error('MiniMax status check error:', error)
-        return NextResponse.json(
-          { 
-            error: 'Failed to check cloning status',
-            details: error.message
-          },
-          { status: 500 }
-        )
-      }
-      
-      throw error
-    }
+    
+    return NextResponse.json({
+      status: voiceProfile.training_status,
+      voice_profile_id: voiceProfileId,
+      minimax_voice_id: voiceProfile.minimax_voice_id,
+      error_message: voiceProfile.error_message,
+      completed_at: voiceProfile.training_completed_at,
+      processing_time_seconds: processingTime,
+      message: voiceProfile.training_status === 'processing' 
+        ? 'Voice cloning should have completed. If stuck, please try again.'
+        : undefined
+    })
     
   } catch (error) {
     console.error('Unexpected error:', error)

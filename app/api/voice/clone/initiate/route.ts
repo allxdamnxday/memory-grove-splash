@@ -121,36 +121,30 @@ export async function POST(request: NextRequest) {
           upload_status: 'uploaded'
         })
       
-      // Start voice cloning
+      // Start voice cloning (synchronous operation)
       const cloneResult = await cloneVoice(
         uploadResult.file_id,
         voiceProfile.minimax_voice_id,
         voiceProfile.model_type as 'speech-02-hd' | 'speech-02-turbo'
       )
       
-      // If cloning is synchronous and completed
-      if (cloneResult.status === 'completed') {
-        await supabase
-          .from('voice_profiles')
-          .update({
-            training_status: 'completed',
-            training_completed_at: new Date().toISOString()
-          })
-          .eq('id', voice_profile_id)
-        
-        return NextResponse.json({
-          status: 'completed',
-          voice_profile_id,
-          minimax_voice_id: voiceProfile.minimax_voice_id
-        })
-      }
+      // Voice cloning is synchronous - it either succeeds or fails immediately
+      // The success check is done inside cloneVoice function
+      // If we reach here, cloning was successful
       
-      // If cloning is asynchronous
+      await supabase
+        .from('voice_profiles')
+        .update({
+          training_status: 'completed',
+          training_completed_at: new Date().toISOString()
+        })
+        .eq('id', voice_profile_id)
+      
       return NextResponse.json({
-        status: 'processing',
+        status: 'completed',
         voice_profile_id,
         minimax_voice_id: voiceProfile.minimax_voice_id,
-        message: 'Voice cloning initiated. This typically takes about 30 seconds.'
+        message: 'Voice cloning completed successfully!'
       })
       
     } catch (error) {

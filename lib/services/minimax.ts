@@ -94,11 +94,20 @@ export interface MiniMaxFileUploadResponse {
   created_at: string
 }
 
+// Voice Clone API Response (synchronous)
 export interface MiniMaxVoiceCloneResponse {
-  voice_id: string
-  status: 'pending' | 'processing' | 'completed' | 'failed'
-  error_message?: string
-  processing_time?: number
+  input_sensitive: boolean
+  input_sensitive_type?: number
+  base_resp: {
+    status_code: number
+    status_msg: string
+  }
+  // Optional preview fields if text was provided
+  audio_file?: {
+    url: string
+    duration: number
+    size: number
+  }
 }
 
 export interface MiniMaxSynthesisResponse {
@@ -298,11 +307,12 @@ export async function uploadAudioFile(
   })
 }
 
-// Voice cloning
+// Voice cloning (synchronous operation)
 export async function cloneVoice(
   fileId: string,
   voiceId: string,
-  modelType: 'speech-02-hd' | 'speech-02-turbo' = 'speech-02-hd'
+  modelType: 'speech-02-hd' | 'speech-02-turbo' = 'speech-02-hd',
+  previewText?: string
 ): Promise<MiniMaxVoiceCloneResponse> {
   // Validate voice ID (must be 8+ chars, start with letter)
   if (!/^[a-zA-Z][a-zA-Z0-9]{7,}$/.test(voiceId)) {
@@ -312,16 +322,40 @@ export async function cloneVoice(
     )
   }
   
-  return retryWithBackoff(async () => {
+  console.log(`[MiniMax] Cloning voice with ID: ${voiceId}, file: ${fileId}`)
+  
+  const response = await retryWithBackoff(async () => {
+    const body: any = {
+      file_id: fileId,
+      voice_id: voiceId,
+      model: modelType,
+      need_noise_reduction: false,
+      need_volume_normalization: false,
+      accuracy: 0.7
+    }
+    
+    // Add preview text if provided
+    if (previewText) {
+      body.text = previewText.substring(0, 2000) // Max 2000 chars
+    }
+    
     return makeRequest<MiniMaxVoiceCloneResponse>('/v1/voice_clone', {
       method: 'POST',
-      body: JSON.stringify({
-        file_id: fileId,
-        voice_id: voiceId,
-        model: modelType
-      })
+      body: JSON.stringify(body)
     })
   })
+  
+  // Check if cloning was successful
+  if (response.base_resp.status_code !== 0) {
+    throw new MiniMaxError(
+      `Voice cloning failed: ${response.base_resp.status_msg}`,
+      'CLONE_FAILED',
+      500
+    )
+  }
+  
+  console.log(`[MiniMax] Voice cloned successfully: ${voiceId}`)
+  return response
 }
 
 // Speech synthesis
@@ -388,16 +422,8 @@ export async function synthesizeSpeech(
   })
 }
 
-// Voice cloning status check
-export async function checkVoiceCloneStatus(
-  voiceId: string
-): Promise<MiniMaxVoiceCloneResponse> {
-  return retryWithBackoff(async () => {
-    return makeRequest<MiniMaxVoiceCloneResponse>(`/v1/voice_clone/status/${voiceId}`, {
-      method: 'GET'
-    })
-  })
-}
+// Note: Voice cloning is synchronous - there's no status check endpoint
+// The clone operation completes immediately with success or failure
 
 // Helper to download audio file
 export async function downloadAudioFile(url: string): Promise<Buffer> {
