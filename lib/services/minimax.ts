@@ -1,5 +1,35 @@
 import { z } from 'zod'
 
+// JWT validation helper
+function isValidJWT(token: string): boolean {
+  if (!token) return false
+  
+  const parts = token.split('.')
+  if (parts.length !== 3) {
+    console.error('[MiniMax] Invalid JWT format: Expected 3 parts, got', parts.length)
+    return false
+  }
+  
+  try {
+    // Try to decode the header and payload (not verifying signature)
+    const header = JSON.parse(Buffer.from(parts[0], 'base64').toString())
+    const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString())
+    
+    console.log('[MiniMax] JWT validation:', {
+      algorithm: header.alg,
+      type: header.typ,
+      issuer: payload.iss,
+      hasGroupId: !!payload.GroupID,
+      hasSubjectId: !!payload.SubjectID
+    })
+    
+    return true
+  } catch (e) {
+    console.error('[MiniMax] Failed to decode JWT:', e)
+    return false
+  }
+}
+
 // Environment validation
 const envSchema = z.object({
   MINIMAX_API_KEY: z.string().min(1),
@@ -13,16 +43,44 @@ let cachedEnv: z.infer<typeof envSchema> | null = null
 function getEnv() {
   if (cachedEnv) return cachedEnv
   
+  console.log('[MiniMax] Loading environment variables...')
+  
+  const envVars = {
+    MINIMAX_API_KEY: process.env.MINIMAX_API_KEY,
+    MINIMAX_API_HOST: process.env.MINIMAX_API_HOST,
+    MINIMAX_GROUP_ID: process.env.MINIMAX_GROUP_ID
+  }
+  
+  // Log which variables are present (without exposing sensitive data)
+  console.log('[MiniMax] Environment check:', {
+    hasApiKey: !!envVars.MINIMAX_API_KEY,
+    apiKeyLength: envVars.MINIMAX_API_KEY?.length || 0,
+    hasApiHost: !!envVars.MINIMAX_API_HOST,
+    apiHost: envVars.MINIMAX_API_HOST || 'NOT SET',
+    hasGroupId: !!envVars.MINIMAX_GROUP_ID,
+    groupId: envVars.MINIMAX_GROUP_ID || 'NOT SET'
+  })
+  
+  // Validate JWT format before parsing with Zod
+  if (envVars.MINIMAX_API_KEY && !isValidJWT(envVars.MINIMAX_API_KEY)) {
+    console.error('[MiniMax] API key appears to be invalid JWT format')
+  }
+  
   try {
-    cachedEnv = envSchema.parse({
-      MINIMAX_API_KEY: process.env.MINIMAX_API_KEY,
-      MINIMAX_API_HOST: process.env.MINIMAX_API_HOST,
-      MINIMAX_GROUP_ID: process.env.MINIMAX_GROUP_ID
-    })
+    cachedEnv = envSchema.parse(envVars)
+    console.log('[MiniMax] Environment variables loaded successfully')
     return cachedEnv
   } catch (error) {
+    console.error('[MiniMax] Environment validation failed:', error)
+    
+    // Provide more specific error messages
+    const missingVars = []
+    if (!envVars.MINIMAX_API_KEY) missingVars.push('MINIMAX_API_KEY')
+    if (!envVars.MINIMAX_API_HOST) missingVars.push('MINIMAX_API_HOST')
+    if (!envVars.MINIMAX_GROUP_ID) missingVars.push('MINIMAX_GROUP_ID')
+    
     throw new MiniMaxError(
-      'MiniMax API configuration is missing. Please set MINIMAX_API_KEY, MINIMAX_API_HOST, and MINIMAX_GROUP_ID environment variables.',
+      `MiniMax API configuration is missing. Missing variables: ${missingVars.join(', ')}. Please set these environment variables in Vercel.`,
       'CONFIG_ERROR'
     )
   }
@@ -112,20 +170,51 @@ async function makeRequest<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
-  const url = `${getEnv().MINIMAX_API_HOST}${endpoint}?GroupId=${getEnv().MINIMAX_GROUP_ID}`
+  const env = getEnv()
+  const url = `${env.MINIMAX_API_HOST}${endpoint}?GroupId=${env.MINIMAX_GROUP_ID}`
+  
+  console.log(`[MiniMax] Making request to: ${endpoint}`)
   
   const response = await fetch(url, {
     ...options,
     headers: {
-      'Authorization': `Bearer ${getEnv().MINIMAX_API_KEY}`,
+      'Authorization': `Bearer ${env.MINIMAX_API_KEY}`,
       'Content-Type': 'application/json',
       ...options.headers
     }
   })
   
-  const data = await response.json()
+  const responseText = await response.text()
+  let data: any
+  
+  try {
+    data = JSON.parse(responseText)
+  } catch (e) {
+    console.error('[MiniMax] Failed to parse response:', responseText)
+    throw new MiniMaxError(
+      `Invalid JSON response from MiniMax API: ${responseText}`,
+      'INVALID_RESPONSE',
+      response.status
+    )
+  }
   
   if (!response.ok) {
+    console.error('[MiniMax] API request failed:', {
+      status: response.status,
+      statusText: response.statusText,
+      endpoint,
+      error: data
+    })
+    
+    // Check for specific authentication errors
+    if (response.status === 401 || response.status === 403) {
+      throw new MiniMaxError(
+        `Authentication failed: ${data.message || 'Invalid API key or insufficient permissions'}. Please verify your MINIMAX_API_KEY is correct.`,
+        data.code || 'AUTH_ERROR',
+        response.status
+      )
+    }
+    
     throw new MiniMaxError(
       data.message || `API request failed: ${response.statusText}`,
       data.code,
@@ -154,19 +243,49 @@ export async function uploadAudioFile(
   formData.append('file', blob, filename)
   
   return retryWithBackoff(async () => {
-    const url = `${getEnv().MINIMAX_API_HOST}/v1/files/upload?GroupId=${getEnv().MINIMAX_GROUP_ID}`
+    const env = getEnv()
+    const url = `${env.MINIMAX_API_HOST}/v1/files/upload?GroupId=${env.MINIMAX_GROUP_ID}`
+    
+    console.log('[MiniMax] Uploading audio file:', { filename, mimeType, size: audioBuffer.length })
     
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${getEnv().MINIMAX_API_KEY}`
+        'Authorization': `Bearer ${env.MINIMAX_API_KEY}`
       },
       body: formData
     })
     
-    const data = await response.json()
+    const responseText = await response.text()
+    let data: any
+    
+    try {
+      data = JSON.parse(responseText)
+    } catch (e) {
+      console.error('[MiniMax] Failed to parse upload response:', responseText)
+      throw new MiniMaxError(
+        `Invalid JSON response from file upload: ${responseText}`,
+        'INVALID_RESPONSE',
+        response.status
+      )
+    }
     
     if (!response.ok) {
+      console.error('[MiniMax] File upload failed:', {
+        status: response.status,
+        statusText: response.statusText,
+        error: data
+      })
+      
+      // Check for specific authentication errors
+      if (response.status === 401 || response.status === 403) {
+        throw new MiniMaxError(
+          `Authentication failed during file upload: ${data.message || 'Invalid API key'}`,
+          data.code || 'AUTH_ERROR',
+          response.status
+        )
+      }
+      
       throw new MiniMaxError(
         data.message || `File upload failed: ${response.statusText}`,
         data.code,
@@ -174,6 +293,7 @@ export async function uploadAudioFile(
       )
     }
     
+    console.log('[MiniMax] File uploaded successfully:', data.file_id)
     return data
   })
 }

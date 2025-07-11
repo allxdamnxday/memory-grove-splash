@@ -28,7 +28,7 @@ export default function StoriesOfConnection() {
       role: '32'
     },
     {
-      title: 'Grandmother's Lullabies',
+      title: 'Grandmother\'s Lullabies',
       quote: "Mom had videos of Grandma from the 90s. We uploaded them, and now my baby falls asleep to the same lullabies Grandma sang to me. Her voice bridges three generations—it's like she's still here, loving us.",
       attribution: 'Sarah',
       role: '29'
