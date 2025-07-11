@@ -102,7 +102,10 @@ export async function POST(request: NextRequest) {
     }
     
     // Generate unique voice ID for MiniMax
-    const voiceId = `mg_${user.id.substring(0, 8)}_${Date.now()}`
+    // Must start with letter, be 8+ chars, and only contain alphanumeric
+    const timestamp = Date.now().toString(36)
+    const randomSuffix = Math.random().toString(36).substring(2, 8)
+    const voiceId = `voice${timestamp}${randomSuffix}`
     
     // Create voice profile
     const { data: newProfile, error: createError } = await supabase
