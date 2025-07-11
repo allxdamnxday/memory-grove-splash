@@ -20,6 +20,24 @@ export default function StoriesOfConnection() {
       quote: "Grandpa recorded 365 bedtime stories before he passed. Every night, my daughter hears his voice saying 'Sweet dreams, little sailor.' She's never met him, but she knows him.",
       attribution: 'Jennifer',
       role: '34'
+    },
+    {
+      title: 'Questions Finally Answered',
+      quote: "I uploaded Dad's old voicemails and work presentations. Now when I need guidance, I ask him questions we never got to discuss. Yesterday, his voice helped me through my first board meeting: 'Remember, confidence is quiet. Let your work speak.'",
+      attribution: 'Michael',
+      role: '32'
+    },
+    {
+      title: 'Grandmother's Lullabies',
+      quote: "Mom had videos of Grandma from the 90s. We uploaded them, and now my baby falls asleep to the same lullabies Grandma sang to me. Her voice bridges three generations—it's like she's still here, loving us.",
+      attribution: 'Sarah',
+      role: '29'
+    },
+    {
+      title: 'The Recipe Continued',
+      quote: "Found Mom's cooking show audition tape in the attic. Through Memory Grove, she now 'teaches' me new recipes every Sunday. 'Today we're making your favorite, honey'—words she never said, but exactly how she would have said them.",
+      attribution: 'Elena',
+      role: '45'
     }
   ]
 
@@ -32,7 +50,7 @@ export default function StoriesOfConnection() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {stories.map((story, index) => (
             <div key={index}>
               <h3 className="font-serif text-h3 text-sage-primary mb-4 animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
@@ -50,7 +68,7 @@ export default function StoriesOfConnection() {
 
         <div className="text-center mt-16 animate-fade-in animation-delay-800">
           <Button href="/start" size="lg">
-            Create Your First Message
+            Start Your Voice Legacy
           </Button>
         </div>
       </div>

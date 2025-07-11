@@ -8,8 +8,12 @@ export const faqs = [
     answer: 'Our Conversation Guides help with gentle prompts. Start simple: "What I love about you," "My favorite memory," or "Always remember."'
   },
   {
-    question: 'How does voice cloning work?',
-    answer: 'With your explicit consent, we create an AI model that can deliver new messages in your voice pattern. It\'s optional and requires extensive verification.'
+    question: 'Can their voice speak new words of love?',
+    answer: 'Yes. Upload existing recordings—voicemails, videos, voice memos—and let their voice continue offering comfort. They can wish happy birthdays, give advice, and share love for moments they couldn\'t predict. It\'s their authentic voice pattern speaking from the heart.'
+  },
+  {
+    question: 'What if they\'ve already passed?',
+    answer: 'It\'s never too late. If you have recordings of their voice, we can help it bloom again. Many families find deep comfort hearing dad answer questions they never got to ask, or grandma reading bedtime stories to grandchildren she never met.'
   },
   {
     question: 'Who can access my recordings?',

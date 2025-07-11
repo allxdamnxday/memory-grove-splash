@@ -16,7 +16,7 @@ export default function AboutPage() {
     },
     {
       title: 'Authenticity', 
-      description: 'We preserve genuine human essence, not artificial recreations.',
+      description: 'We preserve your genuine voice essence, letting love speak in your authentic patterns.',
       icon: '💚'
     },
     {

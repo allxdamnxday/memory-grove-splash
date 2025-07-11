@@ -284,3 +284,267 @@
 - UTM parameters for each video
 - Landing page specific to video viewers
 - Track sign-ups within 7 days of viewing
+
+---
+
+# VOICE RESTORATION VIDEO SERIES
+
+## Video 4: "Happy Birthday, Forever" (45 seconds)
+**Theme:** Voice restoration enables eternal birthday wishes  
+**Target Audience:** Adults who've lost parents/grandparents  
+**Emotional Hook:** Impossible made possible - deceased loved ones celebrating future milestones
+
+### SCENE BREAKDOWN
+
+**SCENE 1** (0-4 seconds)
+- **Visual:** Woman in her 30s looking at phone, 7-year-old child tugging her sleeve
+- **Audio:** Morning ambiance, child's hopeful voice
+- **Child:** "Will Grandma call for my birthday?"
+- **Action:** Mother's face falls, forced smile
+- **Text Overlay:** "She passed two years ago"
+
+**SCENE 2** (5-12 seconds)
+- **Visual:** Flashback with warmer tones - playing saved voicemail on phone
+- **Audio:** Grandma's actual voicemail recording
+- **Grandma's Voicemail:** "Happy birthday sweetheart, I love you so much..."
+- **Action:** Mom's realization - she has recordings
+- **Visual:** Shows multiple voicemails, videos on phone
+
+**SCENE 3** (13-25 seconds)
+- **Visual:** Mom at computer uploading files to Memory Grove
+- **Screen Detail:** Upload progress bar, "Voice Model Created" notification
+- **Action:** Types: "Wish Emma happy 8th birthday, tell her she's special"
+- **Visual:** Processing animation, then audio waveform appears
+- **Grandma's Restored Voice:** "Happy 8th birthday, my precious Emma! Eight years old - what a special age! I'm so proud of the amazing girl you're becoming..."
+- **Action:** Child's face transforms with joy and recognition
+
+**SCENE 4** (26-38 seconds)
+- **Visual:** Time-lapse montage showing different birthdays
+  - Age 10: "Double digits! You're growing so fast!"
+  - Age 16: "Sweet sixteen, my darling"
+  - Graduation: "I knew you could do it. I'm so proud!"
+- **Text Overlay:** "New messages, same loving voice"
+- **Audio:** Consistent grandma voice with age-appropriate messages
+
+**END CARD** (39-45 seconds)
+- **Visual:** Sage green gradient with Memory Grove logo
+- **Text:** "Love speaks beyond time"
+- **Text:** "Memory Grove - Where voices live forever"
+- **CTA:** "Upload their recordings today"
+
+### PRODUCTION NOTES
+- **Authenticity:** Use real voicemail at start to establish genuine voice
+- **Technology:** Show interface briefly but focus on emotional moments
+- **Casting:** Ensure grandmother voice actor can match warm, loving tone
+- **Color:** Shift from cool (loss) to warm (connection) tones
+
+---
+
+## Video 5: "Questions We Never Asked" (60 seconds)
+**Theme:** Voice restoration allows conversations that never happened  
+**Target Audience:** Adults processing parental loss and regret  
+**Emotional Hook:** Second chances at meaningful conversations
+
+### SCENE BREAKDOWN
+
+**SCENE 1** (0-5 seconds)
+- **Visual:** Young man (late 20s) sorting through father's belongings post-funeral
+- **Setting:** Home office, boxes, old photos
+- **Action:** Discovers father's old smartphone
+- **Screen:** "47 voice memos" notification
+- **Text Overlay:** "47 voice memos from Dad"
+
+**SCENE 2** (6-15 seconds)
+- **Visual:** Montage of playing different recordings
+  - Work call: "Johnson, about that contract..."
+  - Voice text to mom: "Honey, I'll be home late"
+  - Singing in car to classic rock
+- **Son's Voiceover:** "I never asked him about Vietnam..."
+- **Action:** Uploads all recordings to Memory Grove interface
+
+**SCENE 3** (16-30 seconds)
+- **Visual:** Memorial Day - son at military cemetery
+- **Setting:** Gravestone with American flag
+- **Action:** Opens Memory Grove app, types question
+- **Text Input:** "Dad, what was it really like in Vietnam?"
+- **Audio:** Brief processing sound, then...
+- **Dad's Restored Voice:** "Son, Vietnam was... complicated. Let me tell you what I learned about courage. Real courage isn't about not being scared..."
+- **Visual:** Son's emotional response, sits on grass to listen fully
+
+**SCENE 4** (31-45 seconds)
+- **Visual:** Montage of ongoing conversations in different life moments
+  - At wedding venue: "Dad, how do I know she's the one?"
+  - With ultrasound photo: "What would you tell your grandson?"
+  - After promotion: "Are you proud of me?"
+- **Audio:** Each with thoughtful responses in Dad's authentic voice
+- **Visual:** Show how son's life is guided by father's wisdom
+
+**SCENE 5** (46-55 seconds)
+- **Visual:** Years later - son with his own 6-year-old boy
+- **Setting:** Same home office, now his
+- **Grandson:** "Can I talk to Grandpa?"
+- **Son:** "Yes, you can."
+- **Action:** Three generations connected through voice
+
+**END CARD** (56-60 seconds)
+- **Visual:** Sage green background, Memory Grove logo
+- **Text:** "Every recording holds infinite conversations"
+- **Text:** "Memory Grove - Bridge the silence"
+- **CTA:** "Start your first conversation"
+
+### PRODUCTION NOTES
+- **Voice Consistency:** Crucial that Dad's voice remains authentic throughout
+- **Emotional Pacing:** Allow moments for viewer to process
+- **Military Elements:** Respectful, accurate representation
+- **Technology Balance:** Show enough to understand, not overwhelm
+
+---
+
+## Video 6: "The Bedtime Paradox" (45-60 seconds)
+**Theme:** Future grandchildren can know grandparents they'll never meet  
+**Target Audience:** Expecting parents who've lost parents  
+**Emotional Hook:** Breaking the generational loss cycle
+
+### SCENE BREAKDOWN
+
+**SCENE 1** (0-6 seconds)
+- **Visual:** Pregnant woman (early 30s) at ultrasound appointment
+- **Action:** Looking at ultrasound image, then at phone
+- **Phone Screen:** "Mom ❤️ - 6 months ago" (last call)
+- **Text Overlay:** "Her mom will never meet this baby"
+- **Audio:** Quiet medical office ambiance
+
+**SCENE 2** (7-18 seconds)
+- **Visual:** At home, going through mom's phone/tablet
+- **Content Found:**
+  - Video of mom gardening: "These tomatoes are coming in beautifully!"
+  - Cooking video for family
+  - Laughing at grandkid's birthday party
+  - Voice messages saved
+- **Action:** Uploads everything to Memory Grove
+- **Notification:** "Voice model complete - Create new memories?"
+
+**SCENE 3** (19-35 seconds)
+- **Visual:** Fast forward 4 years - bedtime scene
+- **Setting:** Child's room with soft lighting
+- **Child:** "Grandma, tell me about when Mommy was little"
+- **Tablet Screen:** Grandmother's photo with audio visualization
+- **Grandma's Restored Voice:** "Oh, your mommy was quite the adventurer! One time, when she was just about your age, she decided our neighbor's dog looked like a horse..."
+- **Action:** Child giggling, snuggling into bed
+- **Visual:** Mom watching from doorway, happy tears
+
+**SCENE 4** (36-50 seconds)
+- **Visual:** Montage of grandmother's voice through childhood milestones
+  - Teaching recipes: "Now add just a pinch of cinnamon"
+  - Life advice: "Remember, kindness is never wasted"
+  - Singing lullabies
+  - "I love you to the moon and back"
+- **Visual:** Child growing but grandmother's presence constant
+- **Text Overlay:** "A grandmother's love, uninterrupted"
+
+**END CARD** (51-60 seconds)
+- **Visual:** Three generations of photos morphing together
+- **Text:** "Love transcends lifetimes"
+- **Text:** "Memory Grove - Where every voice lives on"
+- **CTA:** "Preserve their voice today"
+
+### PRODUCTION NOTES
+- **Intergenerational Casting:** Visual family resemblance important
+- **Voice Authenticity:** Grandmother voice must feel genuinely loving
+- **Future Element:** Show passage of time through child growth
+- **Emotional Resolution:** Happy tears, not sad ones
+
+---
+
+## VOICE RESTORATION CAMPAIGN STRATEGY
+
+### Messaging Architecture
+
+**Two Pathways to Memory Grove:**
+
+1. **Prevention Path** (Original Videos 1-3)
+   - "Record while you can"
+   - Prevents future regret
+   - Active legacy building
+   - Primary CTA: "Start recording today"
+
+2. **Restoration Path** (New Videos 4-6)
+   - "Their voice can continue"
+   - Heals current grief
+   - Transforms existing recordings
+   - Primary CTA: "Upload their recordings"
+
+### Emotional Journey Mapping
+
+**Recognition Phase:**
+- "I wish I could hear them again" → "You can"
+- "I never asked about..." → "You still can"
+- "My kids won't know them" → "They will"
+
+**Transformation Phase:**
+- Old voicemails → New conversations
+- Static memories → Dynamic presence
+- Past recordings → Future moments
+
+**Legacy Phase:**
+- One generation → Infinite generations
+- Limited messages → Unlimited wisdom
+- Final goodbye → Eternal hello
+
+### Platform-Specific Strategy
+
+**TikTok/Reels (15-30 sec versions):**
+- Focus on reveal moment (voice restoration working)
+- "POV: You can talk to grandma again"
+- Quick emotional hit
+
+**YouTube (Full versions + testimonials):**
+- Complete story arcs
+- Behind-the-scenes: "How voice restoration works"
+- Real family testimonials
+
+**Facebook/LinkedIn:**
+- Target sandwich generation (caring for parents + kids)
+- Emphasize legacy and wisdom preservation
+- Professional approach for end-of-life planners
+
+### Addressing Concerns Proactively
+
+**"Is it real?"**
+- "Their actual voice patterns"
+- "Like they're speaking from the heart"
+- Show original vs. restored comparison
+
+**"Is it creepy?"**
+- Focus on love, not technology
+- Use warm, natural settings
+- Show families finding comfort
+
+**"Is it ethical?"**
+- Emphasize consent and family control
+- Position as honoring their memory
+- "What would they want to say?"
+
+### Key Differentiators from Original Campaign
+
+1. **Hope over Urgency:** "It's never too late" vs. "Before it's too late"
+2. **Healing over Prevention:** Address current grief, not just future loss
+3. **Continuation over Preservation:** Living voice vs. static recording
+4. **Expansion over Limitation:** Infinite conversations vs. finite messages
+
+### Success Metrics
+
+**Engagement:**
+- Comments asking "How do I upload recordings?"
+- Shares with personal stories
+- Saves for later consideration
+
+**Conversion:**
+- Track "Upload" vs. "Record" path conversions
+- Time from view to sign-up
+- Which video drives most valuable users
+
+**Emotional Impact:**
+- Sentiment analysis of comments
+- Stories of reconnection shared
+- Press coverage of the technology's emotional benefits

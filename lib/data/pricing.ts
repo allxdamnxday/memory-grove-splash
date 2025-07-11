@@ -23,7 +23,7 @@ export const pricingTiers = [
       'Unlimited recordings',
       'Advanced scheduling',
       'Unlimited recipients',
-      'Voice cloning (beta)',
+      'Voice Restoration - Let their voice speak new words',
       'Priority support'
     ],
     cta: 'Grow Your Garden',
