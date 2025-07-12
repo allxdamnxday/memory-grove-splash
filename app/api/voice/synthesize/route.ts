@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { z } from 'zod'
-import { synthesizeSpeech, downloadAudioFile, MiniMaxError, SynthesisOptions } from '@/lib/services/minimax'
+import { synthesizeSpeech, hexToBuffer, MiniMaxError, SynthesisOptions } from '@/lib/services/minimax'
 import { v4 as uuidv4 } from 'uuid'
 
 // POST /api/voice/synthesize - Generate speech from text using cloned voice
@@ -83,19 +83,19 @@ export async function POST(request: NextRequest) {
       const synthesisOptions: SynthesisOptions = {
         text: validatedData.text,
         voiceId: voiceProfile.minimax_voice_id,
-        emotion: validatedData.emotion,
         model: voiceProfile.model_type as 'speech-02-hd' | 'speech-02-turbo',
         speed: validatedData.speed,
         volume: validatedData.volume,
         pitch: validatedData.pitch,
+        emotion: validatedData.emotion as 'happy' | 'sad' | 'angry' | 'fearful' | 'disgusted' | 'surprised' | 'neutral' | undefined,
         outputFormat: 'mp3'
       }
       
       // Call MiniMax synthesis API
       const synthesisResult = await synthesizeSpeech(synthesisOptions)
       
-      // Download the generated audio
-      const audioBuffer = await downloadAudioFile(synthesisResult.audio_url)
+      // Convert hex-encoded audio data to Buffer
+      const audioBuffer = hexToBuffer(synthesisResult.data.audio)
       
       // Generate unique filename
       const filename = `synthesis_${synthesisJob.id}_${Date.now()}.mp3`
@@ -126,9 +126,9 @@ export async function POST(request: NextRequest) {
         .update({
           status: 'completed',
           audio_url: storagePath,
-          duration: synthesisResult.duration,
+          duration: Math.ceil(audioBuffer.length / (128000 / 8)), // Estimate duration from bitrate
           file_size: audioBuffer.length,
-          minimax_request_id: synthesisResult.request_id,
+          minimax_request_id: synthesisResult.trace_id,
           completed_at: new Date().toISOString()
         })
         .eq('id', synthesisJob.id)
@@ -142,7 +142,7 @@ export async function POST(request: NextRequest) {
             title: validatedData.memory_title || `Synthesized: ${validatedData.text.substring(0, 50)}...`,
             description: validatedData.memory_description || `Created using ${voiceProfile.name} voice profile`,
             audio_url: storagePath,
-            duration: synthesisResult.duration,
+            duration: Math.ceil(audioBuffer.length / (128000 / 8)), // Estimate duration from bitrate
             file_size: audioBuffer.length,
             file_type: 'audio/mpeg',
             is_cloned: true,
@@ -157,7 +157,7 @@ export async function POST(request: NextRequest) {
           return NextResponse.json({
             synthesis_job_id: synthesisJob.id,
             audio_url: publicUrl,
-            duration: synthesisResult.duration,
+            duration: Math.ceil(audioBuffer.length / (128000 / 8)),
             memory_id: newMemory.id,
             saved_as_memory: true
           })
@@ -167,7 +167,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         synthesis_job_id: synthesisJob.id,
         audio_url: publicUrl,
-        duration: synthesisResult.duration,
+        duration: Math.ceil(audioBuffer.length / (128000 / 8)),
         saved_as_memory: false
       })
       
@@ -193,7 +193,12 @@ export async function POST(request: NextRequest) {
     }
     
     if (error instanceof MiniMaxError) {
-      console.error('MiniMax synthesis error:', error)
+      console.error('MiniMax synthesis error:', {
+        message: error.message,
+        code: error.code,
+        statusCode: error.statusCode,
+        stack: error.stack
+      })
       
       // Handle specific error codes
       if (error.code === '1002' || error.code === '1039') {
@@ -203,18 +208,47 @@ export async function POST(request: NextRequest) {
         )
       }
       
+      if (error.code === 'CONFIG_ERROR') {
+        return NextResponse.json(
+          { 
+            error: 'Voice synthesis service is not configured. Please contact support.',
+            details: error.message
+          },
+          { status: 503 }
+        )
+      }
+      
+      if (error.code === 'AUTH_ERROR') {
+        return NextResponse.json(
+          { 
+            error: 'Authentication failed with voice synthesis service.',
+            details: error.message
+          },
+          { status: 401 }
+        )
+      }
+      
       return NextResponse.json(
         { 
           error: error.message,
-          code: error.code
+          code: error.code,
+          details: 'Check server logs for more information'
         },
         { status: error.statusCode || 500 }
       )
     }
     
-    console.error('Unexpected error:', error)
+    console.error('Unexpected synthesis error:', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      type: error?.constructor?.name
+    })
+    
     return NextResponse.json(
-      { error: 'Failed to synthesize speech' },
+      { 
+        error: 'Failed to synthesize speech. Please check server logs for details.',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     )
   }

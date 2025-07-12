@@ -34,6 +34,7 @@ function isValidJWT(token: string): boolean {
 const envSchema = z.object({
   MINIMAX_API_KEY: z.string().min(1),
   MINIMAX_API_HOST: z.string().url(),
+  MINIMAX_TTS_API_HOST: z.string().url().optional(),
   MINIMAX_GROUP_ID: z.string().min(1)
 })
 
@@ -48,6 +49,7 @@ function getEnv() {
   const envVars = {
     MINIMAX_API_KEY: process.env.MINIMAX_API_KEY,
     MINIMAX_API_HOST: process.env.MINIMAX_API_HOST,
+    MINIMAX_TTS_API_HOST: process.env.MINIMAX_TTS_API_HOST,
     MINIMAX_GROUP_ID: process.env.MINIMAX_GROUP_ID
   }
   
@@ -57,6 +59,8 @@ function getEnv() {
     apiKeyLength: envVars.MINIMAX_API_KEY?.length || 0,
     hasApiHost: !!envVars.MINIMAX_API_HOST,
     apiHost: envVars.MINIMAX_API_HOST || 'NOT SET',
+    hasTtsApiHost: !!envVars.MINIMAX_TTS_API_HOST,
+    ttsApiHost: envVars.MINIMAX_TTS_API_HOST || 'NOT SET',
     hasGroupId: !!envVars.MINIMAX_GROUP_ID,
     groupId: envVars.MINIMAX_GROUP_ID || 'NOT SET'
   })
@@ -111,9 +115,26 @@ export interface MiniMaxVoiceCloneResponse {
 }
 
 export interface MiniMaxSynthesisResponse {
-  audio_url: string
-  duration: number
-  request_id: string
+  data: {
+    audio: string // hex-encoded audio data
+    status?: number
+    subtitle_file?: string
+  }
+  extra_info: {
+    audio_length?: number
+    audio_sample_rate?: number
+    audio_size?: number
+    audio_bitrate?: number
+    word_count?: number
+    invisible_character_ratio?: number
+    audio_format?: string
+    usage_characters: number
+  }
+  base_resp: {
+    status_code: number
+    status_msg: string
+  }
+  trace_id: string
 }
 
 // Error types
@@ -387,12 +408,15 @@ export async function cloneVoice(
 export interface SynthesisOptions {
   text: string
   voiceId: string
-  emotion?: 'happy' | 'sad' | 'angry' | 'fearful' | 'disgusted' | 'surprised' | 'neutral'
   model?: 'speech-02-hd' | 'speech-02-turbo' | 'speech-01-hd' | 'speech-01-turbo'
   speed?: number // 0.5 to 2.0
-  volume?: number // 0.1 to 10.0
+  volume?: number // 0.1 to 5.0  // T2A v2 max is 5.0
   pitch?: number // -12 to 12
+  emotion?: 'happy' | 'sad' | 'angry' | 'fearful' | 'disgusted' | 'surprised' | 'neutral'
   outputFormat?: 'mp3' | 'pcm' | 'flac' | 'wav'
+  sampleRate?: number // 8000, 16000, 22050, 24000, 32000, 44100, 48000
+  bitrate?: number // 64000, 128000, 256000
+  channel?: 1 | 2 // mono or stereo
 }
 
 export async function synthesizeSpeech(
@@ -401,17 +425,20 @@ export async function synthesizeSpeech(
   const {
     text,
     voiceId,
-    emotion = 'neutral',
     model = 'speech-02-hd',
     speed = 1.0,
     volume = 1.0,
     pitch = 0,
-    outputFormat = 'mp3'
+    emotion,
+    outputFormat = 'mp3',
+    sampleRate = 32000,
+    bitrate = 128000,
+    channel = 1
   } = options
   
-  // Validate text length (10 million chars max)
-  if (text.length > 10_000_000) {
-    throw new MiniMaxError('Text exceeds maximum length of 10 million characters', 'TEXT_TOO_LONG')
+  // Validate text length (5000 chars max for UI, though API supports 10M)
+  if (text.length > 5000) {
+    throw new MiniMaxError('Text exceeds maximum length of 5000 characters', 'TEXT_TOO_LONG')
   }
   
   // Validate parameters
@@ -419,8 +446,8 @@ export async function synthesizeSpeech(
     throw new MiniMaxError('Speed must be between 0.5 and 2.0', 'INVALID_SPEED')
   }
   
-  if (volume < 0.1 || volume > 10.0) {
-    throw new MiniMaxError('Volume must be between 0.1 and 10.0', 'INVALID_VOLUME')
+  if (volume < 0.1 || volume > 5.0) {
+    throw new MiniMaxError('Volume must be between 0.1 and 5.0', 'INVALID_VOLUME')
   }
   
   if (pitch < -12 || pitch > 12) {
@@ -428,29 +455,132 @@ export async function synthesizeSpeech(
   }
   
   return retryWithBackoff(async () => {
-    return makeRequest<MiniMaxSynthesisResponse>('/v1/text_to_speech', {
-      method: 'POST',
-      body: JSON.stringify({
+    const env = getEnv()
+    const ttsHost = env.MINIMAX_TTS_API_HOST || env.MINIMAX_API_HOST
+    
+    const requestBody = {
+      model,
+      text,
+      stream: false,
+      voice_setting: {
         voice_id: voiceId,
-        text,
-        model,
-        emotion,
         speed,
-        volume,
+        vol: volume,
         pitch,
-        output_format: outputFormat,
-        noise_reduction: true,
-        need_volume_normalization: true,
-        accuracy: 0.8 // Text validation threshold
-      })
+        ...(emotion && { emotion })
+      },
+      audio_setting: {
+        sample_rate: sampleRate,
+        bitrate,
+        format: outputFormat,
+        channel
+      }
+    }
+    
+    console.log('[MiniMax] Synthesis request:', JSON.stringify({
+      ...requestBody,
+      text: text.substring(0, 50) + '...' // Log only first 50 chars for privacy
+    }, null, 2))
+    
+    // Use TTS-specific host if available
+    const url = `${ttsHost}/v1/t2a_v2?GroupId=${env.MINIMAX_GROUP_ID}`
+    console.log(`[MiniMax] Using TTS host: ${ttsHost}`)
+    
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.MINIMAX_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
     })
+    
+    const responseText = await response.text()
+    let data: MiniMaxSynthesisResponse
+    
+    try {
+      data = JSON.parse(responseText)
+    } catch (e) {
+      console.error('[MiniMax] Failed to parse TTS response:', responseText)
+      throw new MiniMaxError(
+        `Invalid JSON response from TTS API: ${responseText}`,
+        'INVALID_RESPONSE',
+        response.status
+      )
+    }
+    
+    if (!response.ok) {
+      console.error('[MiniMax] TTS request failed:', {
+        status: response.status,
+        statusText: response.statusText,
+        error: data
+      })
+      
+      if (response.status === 401 || response.status === 403) {
+        throw new MiniMaxError(
+          `TTS authentication failed: ${(data as any).message || 'Invalid API key'}`,
+          'AUTH_ERROR',
+          response.status
+        )
+      }
+      
+      throw new MiniMaxError(
+        (data as any).message || `TTS request failed: ${response.statusText}`,
+        (data as any).code,
+        response.status
+      )
+    }
+    
+    console.log('[MiniMax] Synthesis response structure:', {
+      hasData: !!data.data,
+      hasAudio: !!data.data?.audio,
+      audioLength: data.data?.audio?.length || 0,
+      status: data.data?.status,
+      baseRespCode: data.base_resp?.status_code,
+      baseRespMsg: data.base_resp?.status_msg,
+      traceId: data.trace_id
+    })
+    
+    // Check if synthesis was successful
+    if (data.base_resp?.status_code !== 0) {
+      throw new MiniMaxError(
+        `Speech synthesis failed: ${data.base_resp?.status_msg || 'Unknown error'}`,
+        'SYNTHESIS_FAILED',
+        500
+      )
+    }
+    
+    // Validate audio data exists
+    if (!data.data?.audio) {
+      throw new MiniMaxError(
+        'No audio data in synthesis response',
+        'NO_AUDIO_DATA',
+        500
+      )
+    }
+    
+    return data
   })
 }
 
 // Note: Voice cloning is synchronous - there's no status check endpoint
 // The clone operation completes immediately with success or failure
 
-// Helper to download audio file
+// Helper to convert hex string to Buffer
+export function hexToBuffer(hex: string): Buffer {
+  // Remove any whitespace
+  const cleanHex = hex.replace(/\s/g, '')
+  
+  // Validate hex string
+  if (!/^[0-9a-fA-F]*$/.test(cleanHex)) {
+    throw new MiniMaxError('Invalid hex string in audio data')
+  }
+  
+  // Convert to Buffer
+  return Buffer.from(cleanHex, 'hex')
+}
+
+// Helper to download audio file (for legacy use)
 export async function downloadAudioFile(url: string): Promise<Buffer> {
   const response = await fetch(url)
   

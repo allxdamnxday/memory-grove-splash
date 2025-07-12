@@ -11,9 +11,15 @@ You need to add these three environment variables to your Vercel project:
 - **Important**: Copy the entire token without any line breaks or extra spaces
 
 ### 2. MINIMAX_API_HOST
-- **Description**: The MiniMax API base URL
+- **Description**: The MiniMax API base URL for voice cloning operations
 - **Value**: `https://api.minimaxi.chat`
 - **Important**: Must include `https://` and no trailing slash
+
+### 2a. MINIMAX_TTS_API_HOST (Optional)
+- **Description**: The MiniMax API base URL for text-to-speech (T2A v2) operations
+- **Value**: `https://api.minimax.io`
+- **Default**: Falls back to MINIMAX_API_HOST if not specified
+- **Note**: Some regions may use different endpoints for TTS vs voice cloning
 
 ### 3. MINIMAX_GROUP_ID  
 - **Description**: Your MiniMax group identifier
@@ -52,8 +58,14 @@ This error from the MiniMax API usually means:
 - Ensure no spaces or line breaks were added
 - Verify the Group ID matches your MiniMax account
 
+### Voice Synthesis (TTS) Not Working
+- Check that MINIMAX_TTS_API_HOST is set to `https://api.minimax.io`
+- If not set, the system will use MINIMAX_API_HOST which may not support TTS
+- Different regions may require different endpoints
+
 ### Invalid JSON Response
-- Check that MINIMAX_API_HOST is exactly `https://api.minimaxi.chat`
+- Check that MINIMAX_API_HOST is exactly `https://api.minimaxi.chat` for voice cloning
+- Check that MINIMAX_TTS_API_HOST is exactly `https://api.minimax.io` for TTS
 - Ensure your MiniMax account is active and has API access
 
 ## Debugging Steps
