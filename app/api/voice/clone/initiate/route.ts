@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { z } from 'zod'
 import { uploadAudioFile, cloneVoice, MiniMaxError } from '@/lib/services/minimax'
+import { convertAudio, getExtensionFromMimeType, isMiniMaxSupportedFormat, getTargetFormatForMiniMax } from '@/lib/utils/audio'
 
 // POST /api/voice/clone/initiate - Start voice cloning process
 const initiateCloneSchema = z.object({
@@ -102,13 +103,37 @@ export async function POST(request: NextRequest) {
       
       // Convert blob to buffer
       const arrayBuffer = await fileData.arrayBuffer()
-      const buffer = Buffer.from(arrayBuffer)
+      let audioBuffer = Buffer.from(arrayBuffer)
+      let mimeType = memory.file_type
+      let filename = `memory_${memory_id}`
+      
+      // Check if audio format needs conversion for MiniMax
+      if (!isMiniMaxSupportedFormat(mimeType)) {
+        console.log(`[Voice Clone] Converting audio from ${mimeType} to MP3 for MiniMax compatibility`)
+        
+        // Get the original extension for ffmpeg input format
+        const inputFormat = getExtensionFromMimeType(mimeType)
+        
+        // Convert to MP3
+        const conversionOptions = getTargetFormatForMiniMax(mimeType)
+        audioBuffer = await convertAudio(audioBuffer, inputFormat, conversionOptions)
+        
+        // Update mime type and filename
+        mimeType = `audio/${conversionOptions.format}`
+        filename = `${filename}.${conversionOptions.format}`
+      } else {
+        // Keep original format
+        const ext = getExtensionFromMimeType(mimeType)
+        filename = `${filename}.${ext}`
+      }
+      
+      console.log(`[Voice Clone] Uploading audio file: ${filename} (${mimeType})`)
       
       // Upload to MiniMax
       const uploadResult = await uploadAudioFile(
-        buffer,
-        `memory_${memory_id}.${memory.file_type.split('/')[1]}`,
-        memory.file_type
+        audioBuffer,
+        filename,
+        mimeType
       )
       
       // Create training sample record
