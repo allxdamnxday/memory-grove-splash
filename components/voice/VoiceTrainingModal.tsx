@@ -83,6 +83,7 @@ export default function VoiceTrainingModal({ profile, onClose, onSuccess }: Voic
       // Voice cloning is synchronous - response indicates immediate success or failure
       if (data.status === 'completed') {
         setTrainingStatus('completed')
+        // Show success for 2 seconds before closing
         setTimeout(() => {
           onSuccess()
         }, 2000)
@@ -247,9 +248,17 @@ export default function VoiceTrainingModal({ profile, onClose, onSuccess }: Voic
             <p className="text-text-secondary mb-6">
               Your voice profile has been successfully trained and is ready to use.
             </p>
-            <button onClick={onSuccess} className="btn-primary">
-              Continue
-            </button>
+            <div className="space-y-3">
+              <a 
+                href={`/memories/voice-synthesis?voice=${profile.id}`}
+                className="btn-primary block w-full"
+              >
+                Use Voice Now
+              </a>
+              <button onClick={onSuccess} className="btn-secondary block w-full">
+                Back to Profiles
+              </button>
+            </div>
           </div>
         )}
         

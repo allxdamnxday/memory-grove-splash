@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Volume2, Download, Save, AlertCircle, Sparkles, Loader2 } from 'lucide-react'
 import AudioPlayer from '@/components/audio/AudioPlayer'
+import { useSearchParams } from 'next/navigation'
 
 const synthesisSchema = z.object({
   text: z.string().min(1, 'Text is required').max(5000, 'Text must be less than 5000 characters'),
@@ -29,6 +30,9 @@ interface VoiceProfile {
 }
 
 export default function VoiceSynthesizer() {
+  const searchParams = useSearchParams()
+  const preselectedVoiceId = searchParams.get('voice')
+  
   const [voiceProfiles, setVoiceProfiles] = useState<VoiceProfile[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isSynthesizing, setIsSynthesizing] = useState(false)
@@ -42,6 +46,7 @@ export default function VoiceSynthesizer() {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors }
   } = useForm<SynthesisFormData>({
     resolver: zodResolver(synthesisSchema),
@@ -50,7 +55,8 @@ export default function VoiceSynthesizer() {
       speed: 1.0,
       volume: 1.0,
       pitch: 0,
-      save_as_memory: false
+      save_as_memory: false,
+      voice_profile_id: preselectedVoiceId || ''
     }
   })
   
@@ -81,7 +87,7 @@ export default function VoiceSynthesizer() {
   
   useEffect(() => {
     fetchVoiceProfiles()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
   
   const fetchVoiceProfiles = async () => {
     try {
@@ -98,6 +104,11 @@ export default function VoiceSynthesizer() {
       )
       
       setVoiceProfiles(activeProfiles)
+      
+      // If we have a preselected voice ID and it's valid, set it
+      if (preselectedVoiceId && activeProfiles.some((p: VoiceProfile) => p.id === preselectedVoiceId)) {
+        setValue('voice_profile_id', preselectedVoiceId)
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load voice profiles')
     } finally {

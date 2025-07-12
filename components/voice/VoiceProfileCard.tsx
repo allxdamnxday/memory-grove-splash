@@ -186,6 +186,18 @@ export default function VoiceProfileCard({
           </p>
         </div>
       )}
+      
+      {profile.training_status === 'completed' && profile.is_active && (
+        <div className="mt-4">
+          <a
+            href={`/memories/voice-synthesis?voice=${profile.id}`}
+            className="btn-primary w-full text-center flex items-center justify-center space-x-2"
+          >
+            <Mic className="w-4 h-4" />
+            <span>Use This Voice</span>
+          </a>
+        </div>
+      )}
     </div>
   )
 }

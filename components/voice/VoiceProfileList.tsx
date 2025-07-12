@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Plus, AlertCircle, Loader2 } from 'lucide-react'
+import { Plus, AlertCircle, Loader2, Mic } from 'lucide-react'
 import VoiceProfileCard from './VoiceProfileCard'
 import VoiceProfileCreator from './VoiceProfileCreator'
 import VoiceTrainingModal from './VoiceTrainingModal'
@@ -137,18 +137,31 @@ export default function VoiceProfileList() {
     )
   }
   
+  const hasTrainedVoices = profiles.some(p => p.training_status === 'completed' && p.is_active)
+  
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="font-serif text-h3 text-sage-deep">Voice Profiles</h2>
-        <button
-          onClick={() => setShowCreator(true)}
-          className="btn-primary flex items-center space-x-2"
-          disabled={profiles.length >= 5}
-        >
-          <Plus className="w-5 h-5" />
-          <span>Create Profile</span>
-        </button>
+        <div className="flex items-center space-x-3">
+          {hasTrainedVoices && (
+            <a
+              href="/memories/voice-synthesis"
+              className="btn-secondary flex items-center space-x-2"
+            >
+              <Mic className="w-5 h-5" />
+              <span>Create Voice Memory</span>
+            </a>
+          )}
+          <button
+            onClick={() => setShowCreator(true)}
+            className="btn-primary flex items-center space-x-2"
+            disabled={profiles.length >= 5}
+          >
+            <Plus className="w-5 h-5" />
+            <span>Create Profile</span>
+          </button>
+        </div>
       </div>
       
       {profiles.length === 0 ? (
