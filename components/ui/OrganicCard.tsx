@@ -18,7 +18,7 @@ const OrganicCard = forwardRef<HTMLDivElement, OrganicCardProps>(
     withBlob = false,
     blobPosition = 'top-right',
     variant = 'nature',
-    animate = 'fade-in',
+    animate = false,
     children,
     ...props 
   }, ref) => {

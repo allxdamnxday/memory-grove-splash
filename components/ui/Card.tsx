@@ -25,8 +25,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     const baseStyles = cn(
       'transition-all duration-300 ease-out',
       shape === 'organic' ? 'rounded-organic' : 'rounded-xl',
-      interactive && 'transform hover:scale-[1.02]',
-      animate && 'animate-on-scroll'
+      interactive && 'transform hover:scale-[1.02]'
     )
     
     const variants = {

@@ -53,7 +53,6 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
     <>
       <MemoryOrganicCard 
         className="hover:shadow-soft transition-all duration-300"
-        animationDelay={100}
       >
         <CardContent>
           <div className="flex items-start justify-between mb-4">
@@ -117,7 +116,6 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
             shape="organic" 
             variant="elevated" 
             className="max-w-md w-full"
-            animate="scale-in"
           >
             <h3 className="text-heading-sm font-medium mb-2">Delete Memory?</h3>
             <p className="text-body-sm text-text-secondary mb-6">

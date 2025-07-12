@@ -48,7 +48,6 @@ export default async function AccountPage() {
                 colorScheme="sage"
                 withBlob
                 className="group cursor-pointer"
-                animationDelay={0}
               >
                 <CardContent>
                   <div className="flex items-center justify-between">
@@ -80,7 +79,6 @@ export default async function AccountPage() {
                 withBlob
                 blobPosition="center"
                 className="group cursor-pointer"
-                animationDelay={100}
               >
                 <CardContent>
                   <div className="flex items-center justify-between">
@@ -112,7 +110,6 @@ export default async function AccountPage() {
                 withBlob
                 blobPosition="bottom-left"
                 className="group cursor-pointer"
-                animationDelay={200}
               >
                 <CardContent>
                   <div className="flex items-center justify-between">
@@ -141,7 +138,6 @@ export default async function AccountPage() {
             <OrganicCard 
               variant="bordered"
               className="opacity-50 cursor-not-allowed"
-              animationDelay={300}
               interactive={false}
             >
               <CardContent>
@@ -168,7 +164,7 @@ export default async function AccountPage() {
             </OrganicCard>
           </div>
 
-          <Card shape="organic" variant="nature" padding="lg" animate="fade-in" animationDelay={400}>
+          <Card shape="organic" variant="nature" padding="lg">
             <h2 className="text-heading-md font-serif text-sage-deep mb-6">Account Settings</h2>
             <AccountForm user={user} />
           </Card>
