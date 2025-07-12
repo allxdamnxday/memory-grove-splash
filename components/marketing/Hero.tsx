@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
+import { OptimizedImage } from '@/components/ui/OptimizedImage'
+import heroMetadata from '@/public/images/hero/Hero_Image_Raw.meta.json'
 
 export default function Hero() {
   const [email, setEmail] = useState('')
@@ -38,12 +40,27 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-warm-sand via-warm-white to-sage-mist/20" />
+      {/* Hero Background Image */}
+      <div className="absolute inset-0">
+        <OptimizedImage
+          src="/images/hero/Hero_Image_Raw-original.webp"
+          alt="Peaceful grove with morning light filtering through trees"
+          width={heroMetadata.width}
+          height={heroMetadata.height}
+          priority
+          className="object-cover w-full h-full"
+          containerClassName="w-full h-full"
+          sizes="100vw"
+          blurDataURL={heroMetadata.blurDataURL}
+        />
+        {/* Gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-sage-deep/20 via-warm-white/60 to-warm-sand/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-warm-white/40 to-transparent" />
+      </div>
       
       {/* Organic shape overlays */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-sage-mist/30 rounded-organic blur-3xl animate-pulse" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-dawn/20 rounded-organic blur-3xl animate-pulse animation-delay-400" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-sage-mist/20 rounded-organic blur-3xl animate-pulse" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-dawn/10 rounded-organic blur-3xl animate-pulse animation-delay-400" />
       
       <div className="container-grove relative z-10">
         <div className="max-w-4xl mx-auto text-center">
