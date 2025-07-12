@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Plus, Loader2, FileAudio, Sparkles } from 'lucide-react'
 import Link from 'next/link'
-import MemoryCard from './MemoryCard'
+import SwipeableMemoryCard from './SwipeableMemoryCard'
 
 interface Memory {
   id: string
@@ -139,37 +139,39 @@ export default function MemoriesList() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 relative">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h2 className="text-heading-lg font-serif">Your Memories</h2>
-          <p className="text-body-md text-text-secondary mt-1">
+          <h2 className="text-mobile-heading sm:text-heading-lg font-serif">Your Memories</h2>
+          <p className="text-mobile-sm sm:text-body-md text-text-secondary mt-1">
             {pagination?.total || 0} {pagination?.total === 1 ? 'memory' : 'memories'} preserved
           </p>
         </div>
-        <div className="flex space-x-3">
+        <div className="flex gap-3">
           <Link
             href="/memories/voice-synthesis"
-            className="inline-flex items-center px-4 py-2 bg-warm-primary text-white rounded-lg hover:bg-warm-deep transition-colors"
+            className="inline-flex items-center justify-center min-h-touch px-4 py-2 bg-warm-primary text-white rounded-lg hover:bg-warm-deep transition-all transform active:scale-95 text-mobile-sm sm:text-body-sm flex-1 sm:flex-initial"
           >
-            <Sparkles className="w-4 h-4 mr-2" />
-            Create with AI
+            <Sparkles className="w-5 h-5 sm:w-4 sm:h-4 mr-2" />
+            <span className="hidden sm:inline">Create with AI</span>
+            <span className="sm:hidden">AI Create</span>
           </Link>
           <Link
             href="/account/memories/new"
-            className="inline-flex items-center px-4 py-2 bg-sage-primary text-white rounded-lg hover:bg-sage-deep transition-colors"
+            className="inline-flex items-center justify-center min-h-touch px-4 py-2 bg-sage-primary text-white rounded-lg hover:bg-sage-deep transition-all transform active:scale-95 text-mobile-sm sm:text-body-sm flex-1 sm:flex-initial"
           >
-            <Plus className="w-4 h-4 mr-2" />
-            Record New
+            <Plus className="w-5 h-5 sm:w-4 sm:h-4 mr-2" />
+            <span className="hidden sm:inline">Record New</span>
+            <span className="sm:hidden">Record</span>
           </Link>
         </div>
       </div>
 
-      {/* Memories Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* Memories Grid - Single column on mobile */}
+      <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {memories.map((memory) => (
-          <MemoryCard
+          <SwipeableMemoryCard
             key={memory.id}
             memory={memory}
             onDelete={handleDelete}
@@ -183,9 +185,10 @@ export default function MemoriesList() {
           <button
             onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
-            className="px-4 py-2 border border-border-primary rounded-lg hover:bg-background-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="min-h-touch px-4 py-2 border border-border-primary rounded-lg hover:bg-background-secondary transition-all transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-mobile-sm sm:text-body-sm"
           >
-            Previous
+            <span className="hidden sm:inline">Previous</span>
+            <span className="sm:hidden">Prev</span>
           </button>
           
           <div className="flex items-center space-x-2">
@@ -201,7 +204,7 @@ export default function MemoriesList() {
                   )}
                   <button
                     onClick={() => setCurrentPage(page)}
-                    className={`w-10 h-10 rounded-lg transition-colors ${
+                    className={`min-w-touch min-h-touch sm:w-10 sm:h-10 rounded-lg transition-all transform active:scale-95 text-mobile-sm sm:text-body-sm ${
                       page === currentPage
                         ? 'bg-sage-primary text-white'
                         : 'hover:bg-background-secondary'
@@ -216,12 +219,21 @@ export default function MemoriesList() {
           <button
             onClick={() => setCurrentPage(prev => Math.min(pagination.totalPages, prev + 1))}
             disabled={currentPage === pagination.totalPages}
-            className="px-4 py-2 border border-border-primary rounded-lg hover:bg-background-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="min-h-touch px-4 py-2 border border-border-primary rounded-lg hover:bg-background-secondary transition-all transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-mobile-sm sm:text-body-sm"
           >
             Next
           </button>
         </div>
       )}
+      
+      {/* Floating Action Button - Mobile only */}
+      <Link
+        href="/account/memories/new"
+        className="fixed bottom-6 right-6 sm:hidden w-14 h-14 bg-sage-primary text-white rounded-full shadow-xl flex items-center justify-center hover:bg-sage-deep transition-all transform active:scale-95 z-10"
+        aria-label="Create new memory"
+      >
+        <Plus className="w-6 h-6" />
+      </Link>
     </div>
   )
 }

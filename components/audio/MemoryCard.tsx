@@ -57,11 +57,11 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
       <MemoryOrganicCard 
         className="hover:shadow-soft transition-all duration-300"
       >
-        <CardContent className="p-4 sm:p-6 md:p-8">
-          <div className="flex items-start justify-between gap-3 mb-4">
+        <CardContent className="p-5 sm:p-6 md:p-8">
+          <div className="flex items-start justify-between gap-3 mb-5">
           <div className="flex-1 min-w-0">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
-              <h3 className="text-heading-sm font-medium text-text-primary leading-snug">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+              <h3 className="text-mobile-lg sm:text-heading-sm font-medium sm:font-normal text-text-primary leading-snug">
                 {memory.title}
               </h3>
               {memory.is_cloned && (
@@ -72,7 +72,7 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
               )}
             </div>
             {memory.description && (
-              <p className="text-body-sm text-text-secondary line-clamp-2 leading-relaxed">
+              <p className="text-mobile-sm sm:text-body-sm text-text-secondary line-clamp-2 leading-relaxed">
                 {memory.description}
               </p>
             )}
@@ -80,23 +80,23 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
           <button
             onClick={() => setShowConfirmDelete(true)}
             disabled={isDeleting}
-            className="flex-shrink-0 p-2 hover:bg-sage-mist/30 rounded-full transition-colors text-text-secondary hover:text-accent-earth disabled:opacity-50"
+            className="flex-shrink-0 min-w-touch-primary min-h-touch-primary flex items-center justify-center -m-2 hover:bg-sage-mist/30 rounded-full transition-colors text-text-secondary hover:text-accent-earth disabled:opacity-50"
           >
-            <Trash2 className="w-4 h-4" />
+            <Trash2 className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-body-xs text-text-tertiary mb-4">
+        <div className="flex flex-col gap-3 mb-5 sm:flex-row sm:items-center sm:gap-4 text-mobile-xs sm:text-body-xs text-text-tertiary">
           <span className="flex items-center">
-            <Clock className="w-3 h-3 mr-1 flex-shrink-0" />
+            <Clock className="w-4 h-4 sm:w-3 sm:h-3 mr-2 sm:mr-1 flex-shrink-0 text-sage-primary" />
             <span className="min-w-0">{formatDuration(memory.duration)}</span>
           </span>
           <span className="flex items-center">
-            <FileAudio className="w-3 h-3 mr-1 flex-shrink-0" />
+            <FileAudio className="w-4 h-4 sm:w-3 sm:h-3 mr-2 sm:mr-1 flex-shrink-0 text-sage-primary" />
             <span className="min-w-0">{formatFileSize(memory.file_size)}</span>
           </span>
           <span className="flex items-center">
-            <Calendar className="w-3 h-3 mr-1 flex-shrink-0" />
+            <Calendar className="w-4 h-4 sm:w-3 sm:h-3 mr-2 sm:mr-1 flex-shrink-0 text-sage-primary" />
             <span className="min-w-0 truncate">{formatDistanceToNow(new Date(memory.created_at), { addSuffix: true })}</span>
           </span>
         </div>

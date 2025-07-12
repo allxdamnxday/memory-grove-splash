@@ -73,6 +73,12 @@ const config: Config = {
         body: ["18px", { lineHeight: "30px", fontWeight: "300" }],
         "body-sm": ["16px", { lineHeight: "26px", fontWeight: "400" }],
         caption: ["14px", { lineHeight: "22px", fontWeight: "400" }],
+        // Mobile-specific sizes (1.2x scale)
+        "mobile-xs": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+        "mobile-sm": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+        "mobile-base": ["20px", { lineHeight: "32px", fontWeight: "300" }],
+        "mobile-lg": ["24px", { lineHeight: "36px", fontWeight: "400" }],
+        "mobile-heading": ["28px", { lineHeight: "36px", fontWeight: "500" }],
         // Special
         handwritten: ["28px", { lineHeight: "36px", fontWeight: "700" }],
         quote: ["32px", { lineHeight: "40px", fontWeight: "700" }],
@@ -117,6 +123,17 @@ const config: Config = {
       boxShadow: {
         gentle: "0 2px 20px rgba(58, 63, 54, 0.06)",
         soft: "0 4px 30px rgba(58, 63, 54, 0.08)",
+      },
+      borderRadius: {
+        organic: "30% 70% 70% 30% / 30% 30% 70% 70%",
+      },
+      minHeight: {
+        touch: "44px",
+        "touch-primary": "48px",
+      },
+      minWidth: {
+        touch: "44px",
+        "touch-primary": "48px",
       },
     },
   },

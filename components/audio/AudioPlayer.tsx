@@ -160,7 +160,7 @@ export default function AudioPlayer({
         <div 
           ref={progressRef}
           onClick={handleProgressClick}
-          className="relative h-2 bg-background-secondary rounded-full cursor-pointer group"
+          className="relative h-3 sm:h-2 bg-background-secondary rounded-full cursor-pointer group py-2 -my-2"
         >
           <div 
             className="absolute h-full bg-sage-primary rounded-full transition-all duration-100"
@@ -173,9 +173,9 @@ export default function AudioPlayer({
         </div>
 
         {/* Time Display */}
-        <div className="flex justify-between text-body-xs text-text-secondary px-1">
-          <span className="min-w-0">{formatTime(currentTime)}</span>
-          <span className="min-w-0 text-right">{formatTime(duration)}</span>
+        <div className="flex justify-between text-mobile-xs sm:text-body-xs text-text-secondary px-1">
+          <span className="min-w-0 font-medium">{formatTime(currentTime)}</span>
+          <span className="min-w-0 text-right font-medium">{formatTime(duration)}</span>
         </div>
 
         {/* Controls */}
@@ -185,7 +185,7 @@ export default function AudioPlayer({
             <button
               onClick={togglePlayPause}
               disabled={isLoading}
-              className="w-10 h-10 bg-sage-primary text-white rounded-full flex items-center justify-center hover:bg-sage-deep transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-12 h-12 sm:w-10 sm:h-10 bg-sage-primary text-white rounded-full flex items-center justify-center hover:bg-sage-deep transition-all transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -196,8 +196,8 @@ export default function AudioPlayer({
               )}
             </button>
 
-            {/* Volume Controls */}
-            <div className="flex items-center space-x-2">
+            {/* Volume Controls - Hidden on mobile */}
+            <div className="hidden sm:flex items-center space-x-2">
               <button
                 onClick={toggleMute}
                 className="p-1.5 hover:bg-background-secondary rounded-full transition-colors"
@@ -225,10 +225,10 @@ export default function AudioPlayer({
             <a
               href={downloadUrl}
               download={downloadFilename}
-              className="p-1.5 hover:bg-background-secondary rounded-full transition-colors"
+              className="min-w-touch min-h-touch sm:min-w-0 sm:min-h-0 sm:p-1.5 flex items-center justify-center hover:bg-background-secondary rounded-full transition-colors"
               title="Download"
             >
-              <Download className="w-4 h-4 text-text-secondary" />
+              <Download className="w-5 h-5 sm:w-4 sm:h-4 text-text-secondary" />
             </a>
           )}
         </div>
