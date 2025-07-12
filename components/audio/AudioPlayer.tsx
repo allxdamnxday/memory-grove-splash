@@ -13,6 +13,7 @@ interface AudioPlayerProps {
   showDownload?: boolean
   downloadUrl?: string
   downloadFilename?: string
+  compact?: boolean
 }
 
 export default function AudioPlayer({
@@ -24,7 +25,8 @@ export default function AudioPlayer({
   onEnded,
   showDownload = false,
   downloadUrl,
-  downloadFilename = 'memory.mp3'
+  downloadFilename = 'memory.mp3',
+  compact = false
 }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [duration, setDuration] = useState(0)
@@ -127,7 +129,7 @@ export default function AudioPlayer({
   }, [])
 
   const formatTime = (seconds: number) => {
-    if (isNaN(seconds)) return '0:00'
+    if (isNaN(seconds) || !isFinite(seconds) || seconds < 0) return '0:00'
     const mins = Math.floor(seconds / 60)
     const secs = Math.floor(seconds % 60)
     return `${mins}:${secs.toString().padStart(2, '0')}`
@@ -144,16 +146,16 @@ export default function AudioPlayer({
   }
 
   return (
-    <div className={`bg-white rounded-lg shadow-sm border border-border-primary p-4 ${className}`}>
+    <div className={`bg-white rounded-lg shadow-sm border border-border-primary ${compact ? 'p-3' : 'p-4'} ${className}`}>
       <audio ref={audioRef} src={src} preload="metadata" />
       
       {title && (
-        <div className="mb-3">
+        <div className={compact ? 'mb-2' : 'mb-3'}>
           <h3 className="text-body-md font-medium text-text-primary truncate">{title}</h3>
         </div>
       )}
 
-      <div className="space-y-3">
+      <div className={compact ? 'space-y-2' : 'space-y-3'}>
         {/* Progress Bar */}
         <div 
           ref={progressRef}
@@ -171,14 +173,14 @@ export default function AudioPlayer({
         </div>
 
         {/* Time Display */}
-        <div className="flex justify-between text-body-xs text-text-secondary">
-          <span>{formatTime(currentTime)}</span>
-          <span>{formatTime(duration)}</span>
+        <div className="flex justify-between text-body-xs text-text-secondary px-1">
+          <span className="min-w-0">{formatTime(currentTime)}</span>
+          <span className="min-w-0 text-right">{formatTime(duration)}</span>
         </div>
 
         {/* Controls */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-center justify-between px-1">
+          <div className={`flex items-center ${compact ? 'space-x-2' : 'space-x-3'}`}>
             {/* Play/Pause Button */}
             <button
               onClick={togglePlayPause}
