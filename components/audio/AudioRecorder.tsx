@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useRef, useCallback, useEffect } from 'react'
-import { Mic, Square, Pause, Play, Upload } from 'lucide-react'
+import { Mic, Square, Pause, Play, Upload, Loader2 } from 'lucide-react'
+import { convertForVoicePreservation, isMiniMaxCompatible } from '@/lib/utils/audio-converter'
 
 interface AudioRecorderProps {
   onRecordingComplete: (blob: Blob, duration: number) => void
@@ -21,6 +22,8 @@ export default function AudioRecorder({
   const [audioUrl, setAudioUrl] = useState<string | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [showEarlyStopWarning, setShowEarlyStopWarning] = useState(false)
+  const [isConverting, setIsConverting] = useState(false)
+  const [conversionProgress, setConversionProgress] = useState(0)
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
@@ -152,9 +155,34 @@ export default function AudioRecorder({
     }
   }, [isRecording, isPaused, maxDuration, stopRecording])
 
-  const handleSave = useCallback(() => {
+  const handleSave = useCallback(async () => {
     if (audioBlob && recordingTime >= minDuration) {
-      onRecordingComplete(audioBlob, recordingTime)
+      // Check if conversion is needed
+      if (!isMiniMaxCompatible(audioBlob.type)) {
+        setIsConverting(true)
+        setConversionProgress(0)
+        
+        try {
+          // Convert to MP3 with voice-optimized settings
+          const mp3Blob = await convertForVoicePreservation(
+            audioBlob,
+            'standard',
+            (progress) => setConversionProgress(progress)
+          )
+          
+          // Call the completion handler with the converted MP3
+          onRecordingComplete(mp3Blob, recordingTime)
+        } catch (error) {
+          console.error('Audio conversion failed:', error)
+          alert('Failed to convert audio. Please try recording again.')
+        } finally {
+          setIsConverting(false)
+          setConversionProgress(0)
+        }
+      } else {
+        // Audio is already in a compatible format
+        onRecordingComplete(audioBlob, recordingTime)
+      }
     }
   }, [audioBlob, recordingTime, minDuration, onRecordingComplete])
 
@@ -292,15 +320,42 @@ export default function AudioRecorder({
               </button>
               <button
                 onClick={handleSave}
-                disabled={recordingTime < minDuration}
+                disabled={recordingTime < minDuration || isConverting}
                 className="inline-flex items-center px-6 py-3 bg-sage-primary text-white rounded-full hover:bg-sage-deep transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Upload className="w-5 h-5 mr-2" />
-                Save Recording
+                {isConverting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    Converting...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="w-5 h-5 mr-2" />
+                    Save Recording
+                  </>
+                )}
               </button>
             </>
           )}
         </div>
+
+        {/* Conversion Progress */}
+        {isConverting && (
+          <div className="mt-4">
+            <div className="text-center text-body-sm text-text-secondary mb-2">
+              Converting to MP3 for voice preservation...
+            </div>
+            <div className="w-full bg-background-secondary rounded-full h-2">
+              <div 
+                className="bg-sage-primary h-2 rounded-full transition-all duration-300"
+                style={{ width: `${conversionProgress}%` }}
+              />
+            </div>
+            <div className="text-center text-body-xs text-text-secondary mt-1">
+              {conversionProgress}%
+            </div>
+          </div>
+        )}
 
         {/* Audio Player */}
         {audioUrl && (

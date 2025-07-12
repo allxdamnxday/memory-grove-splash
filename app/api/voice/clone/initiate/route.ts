@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { z } from 'zod'
 import { uploadAudioFile, cloneVoice, MiniMaxError } from '@/lib/services/minimax'
-import { convertAudio, getExtensionFromMimeType, isMiniMaxSupportedFormat, getTargetFormatForMiniMax } from '@/lib/utils/audio'
 
 // POST /api/voice/clone/initiate - Start voice cloning process
 const initiateCloneSchema = z.object({
@@ -103,37 +102,37 @@ export async function POST(request: NextRequest) {
       
       // Convert blob to buffer
       const arrayBuffer = await fileData.arrayBuffer()
-      let audioBuffer = Buffer.from(arrayBuffer)
-      let mimeType = memory.file_type
-      let filename = `memory_${memory_id}`
+      const audioBuffer = Buffer.from(arrayBuffer)
       
-      // Check if audio format needs conversion for MiniMax
-      if (!isMiniMaxSupportedFormat(mimeType)) {
-        console.log(`[Voice Clone] Converting audio from ${mimeType} to MP3 for MiniMax compatibility`)
-        
-        // Get the original extension for ffmpeg input format
-        const inputFormat = getExtensionFromMimeType(mimeType)
-        
-        // Convert to MP3
-        const conversionOptions = getTargetFormatForMiniMax(mimeType)
-        audioBuffer = await convertAudio(audioBuffer, inputFormat, conversionOptions)
-        
-        // Update mime type and filename
-        mimeType = `audio/${conversionOptions.format}`
-        filename = `${filename}.${conversionOptions.format}`
-      } else {
-        // Keep original format
-        const ext = getExtensionFromMimeType(mimeType)
-        filename = `${filename}.${ext}`
+      // Extract file extension from mime type
+      const mimeToExt: Record<string, string> = {
+        'audio/mpeg': 'mp3',
+        'audio/mp3': 'mp3',
+        'audio/wav': 'wav',
+        'audio/x-wav': 'wav',
+        'audio/x-m4a': 'm4a',
+        'audio/mp4': 'm4a',
+        'audio/webm': 'webm',
+        'audio/ogg': 'ogg'
       }
       
-      console.log(`[Voice Clone] Uploading audio file: ${filename} (${mimeType})`)
+      const ext = mimeToExt[memory.file_type] || 'mp3'
+      const filename = `memory_${memory_id}.${ext}`
+      
+      console.log(`[Voice Clone] Uploading audio file: ${filename} (${memory.file_type})`)
+      
+      // Note: Audio should be pre-converted to MP3/WAV/M4A on client-side
+      // MiniMax only accepts these formats
+      const supportedFormats = ['audio/mpeg', 'audio/mp3', 'audio/wav', 'audio/x-wav', 'audio/x-m4a', 'audio/mp4']
+      if (!supportedFormats.includes(memory.file_type)) {
+        throw new Error(`Unsupported audio format: ${memory.file_type}. Please upload MP3, WAV, or M4A files.`)
+      }
       
       // Upload to MiniMax
       const uploadResult = await uploadAudioFile(
         audioBuffer,
         filename,
-        mimeType
+        memory.file_type
       )
       
       // Create training sample record
