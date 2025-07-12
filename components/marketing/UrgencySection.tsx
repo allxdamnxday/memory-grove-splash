@@ -71,7 +71,7 @@ export default function UrgencySection() {
               animationDuration: '20s'
             }}
           >
-            "{message.text}"
+            &ldquo;{message.text}&rdquo;
           </div>
         ))}
       </div>

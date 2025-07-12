@@ -47,7 +47,7 @@ export default function UseCases() {
           </h2>
           <p className="text-body-lg text-text-secondary max-w-3xl mx-auto">
             Not just recordings - your actual voice speaking new words of love, forever. 
-            Because love doesn't end when life does.
+            Because love doesn&apos;t end when life does.
           </p>
         </div>
 
@@ -95,7 +95,7 @@ export default function UseCases() {
                 {useCase.testimonial && (
                   <div className="border-t border-warm-pebble/20 pt-4 mt-4">
                     <p className="text-body-xs italic text-text-tertiary">
-                      "{useCase.testimonial.quote}"
+                      &ldquo;{useCase.testimonial.quote}&rdquo;
                     </p>
                     <p className="text-body-xs text-sage-primary mt-1">
                       — {useCase.testimonial.author}
