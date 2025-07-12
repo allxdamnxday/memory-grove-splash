@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function MemoriesPage() {
   return (
-    <div className="container mx-auto py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+    <div className="w-full max-w-7xl mx-auto py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
       <MemoriesList />
     </div>
   )

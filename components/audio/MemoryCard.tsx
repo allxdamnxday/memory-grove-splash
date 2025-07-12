@@ -55,13 +55,13 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
   return (
     <>
       <MemoryOrganicCard 
-        className="hover:shadow-soft transition-all duration-300"
+        className="shadow-gentle hover:shadow-soft transition-all duration-300"
       >
         <CardContent className="p-5 sm:p-6 md:p-8">
           <div className="flex items-start justify-between gap-3 mb-5">
           <div className="flex-1 min-w-0">
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-              <h3 className="text-mobile-lg sm:text-heading-sm font-medium sm:font-normal text-text-primary leading-snug">
+              <h3 className="text-mobile-lg sm:text-heading-sm font-serif text-sage-deep leading-snug">
                 {memory.title}
               </h3>
               {memory.is_cloned && (
@@ -80,7 +80,7 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
           <button
             onClick={() => setShowConfirmDelete(true)}
             disabled={isDeleting}
-            className="flex-shrink-0 min-w-touch-primary min-h-touch-primary flex items-center justify-center -m-2 hover:bg-sage-mist/30 rounded-full transition-colors text-text-secondary hover:text-accent-earth disabled:opacity-50"
+            className="flex-shrink-0 min-w-touch-primary min-h-touch-primary flex items-center justify-center -m-2 hover:bg-error-light/20 rounded-full transition-colors text-text-tertiary hover:text-error-primary disabled:opacity-50"
           >
             <Trash2 className="w-5 h-5" />
           </button>
@@ -102,14 +102,14 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
         </div>
 
         {memory.signedUrl && (
-          <div className="mt-4">
+          <div className="mt-4 -mx-1 sm:mx-0">
             <AudioPlayer
               src={memory.signedUrl}
               showDownload
               downloadUrl={memory.signedUrl}
               downloadFilename={`${memory.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.mp3`}
               compact
-              className="mx-1"
+              className=""
             />
           </div>
         )}

@@ -72,13 +72,9 @@ export default function SwipeableMemoryCard({ memory, onDelete }: SwipeableMemor
     }
   }
 
-  // Only enable swipe gestures on touch devices
-  const isTouchDevice = typeof window !== 'undefined' && 'ontouchstart' in window
-
-  if (!isTouchDevice) {
-    // Return regular card for non-touch devices
-    return <MemoryCard memory={memory} onDelete={onDelete} />
-  }
+  // Disable swipe gestures for now - just return regular card
+  // This can be re-enabled in the future with proper UX testing
+  return <MemoryCard memory={memory} onDelete={onDelete} />
 
   return (
     <motion.div

@@ -146,7 +146,7 @@ export default function AudioPlayer({
   }
 
   return (
-    <div className={`bg-white rounded-lg shadow-sm border border-border-primary ${compact ? 'p-3' : 'p-4'} ${className}`}>
+    <div className={`bg-gradient-to-br from-warm-white to-sage-mist/10 rounded-xl shadow-gentle border border-sage-light/20 ${compact ? 'p-4' : 'p-5'} ${className}`}>
       <audio ref={audioRef} src={src} preload="metadata" />
       
       {title && (
@@ -160,14 +160,14 @@ export default function AudioPlayer({
         <div 
           ref={progressRef}
           onClick={handleProgressClick}
-          className="relative h-3 sm:h-2 bg-background-secondary rounded-full cursor-pointer group py-2 -my-2"
+          className="relative h-2 bg-warm-sand/50 rounded-full cursor-pointer group py-3 -my-3"
         >
           <div 
-            className="absolute h-full bg-sage-primary rounded-full transition-all duration-100"
+            className="absolute h-full bg-gradient-to-r from-sage-primary to-sage-light rounded-full transition-all duration-100 shadow-sm"
             style={{ width: `${progressPercentage}%` }}
           />
           <div 
-            className="absolute w-4 h-4 bg-sage-primary rounded-full -top-1 transition-all duration-100 opacity-0 group-hover:opacity-100"
+            className="absolute w-4 h-4 bg-sage-primary rounded-full -top-1 transition-all duration-100 opacity-0 group-hover:opacity-100 shadow-sm"
             style={{ left: `calc(${progressPercentage}% - 8px)` }}
           />
         </div>
@@ -225,10 +225,10 @@ export default function AudioPlayer({
             <a
               href={downloadUrl}
               download={downloadFilename}
-              className="min-w-touch min-h-touch sm:min-w-0 sm:min-h-0 sm:p-1.5 flex items-center justify-center hover:bg-background-secondary rounded-full transition-colors"
+              className="min-w-touch min-h-touch sm:min-w-0 sm:min-h-0 sm:p-2 flex items-center justify-center bg-sage-light/20 hover:bg-sage-light/30 rounded-full transition-all transform active:scale-95"
               title="Download"
             >
-              <Download className="w-5 h-5 sm:w-4 sm:h-4 text-text-secondary" />
+              <Download className="w-5 h-5 sm:w-4 sm:h-4 text-sage-primary" />
             </a>
           )}
         </div>

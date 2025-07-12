@@ -30,9 +30,9 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     
     const variants = {
       default: 'bg-warm-white border border-warm-pebble shadow-gentle hover:shadow-soft',
-      elevated: 'bg-warm-white shadow-soft hover:shadow-xl',
+      elevated: 'bg-warm-white shadow-soft hover:shadow-elevated',
       bordered: 'bg-transparent border-2 border-warm-pebble hover:border-sage-light',
-      nature: 'bg-gradient-to-br from-sage-mist/20 via-warm-white to-warm-sand/10 shadow-gentle hover:shadow-soft border border-sage-light/20',
+      nature: 'bg-gradient-to-br from-sage-mist/20 via-warm-white to-warm-sand/10 shadow-gentle hover:shadow-soft border border-sage-light/30',
       glass: 'bg-warm-white/80 backdrop-blur-sm border border-warm-pebble/40 shadow-gentle hover:shadow-soft'
     }
     

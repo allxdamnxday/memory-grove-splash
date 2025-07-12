@@ -121,8 +121,9 @@ const config: Config = {
         },
       },
       boxShadow: {
-        gentle: "0 2px 20px rgba(58, 63, 54, 0.06)",
-        soft: "0 4px 30px rgba(58, 63, 54, 0.08)",
+        gentle: "0 2px 20px rgba(58, 63, 54, 0.10)",
+        soft: "0 4px 30px rgba(58, 63, 54, 0.15)",
+        elevated: "0 8px 40px rgba(58, 63, 54, 0.12)",
       },
       borderRadius: {
         organic: "30% 70% 70% 30% / 30% 30% 70% 70%",

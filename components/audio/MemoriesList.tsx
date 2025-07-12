@@ -151,25 +151,23 @@ export default function MemoriesList() {
         <div className="flex gap-3">
           <Link
             href="/memories/voice-synthesis"
-            className="inline-flex items-center justify-center min-h-touch px-4 py-2 bg-warm-primary text-white rounded-lg hover:bg-warm-deep transition-all transform active:scale-95 text-mobile-sm sm:text-body-sm flex-1 sm:flex-initial"
+            className="inline-flex items-center justify-center min-h-touch px-4 sm:px-5 py-2 bg-gradient-to-r from-warm-primary to-accent-dawn text-white rounded-full hover:shadow-soft transition-all transform active:scale-95 text-mobile-sm sm:text-body-sm flex-1 sm:flex-initial"
           >
             <Sparkles className="w-5 h-5 sm:w-4 sm:h-4 mr-2" />
-            <span className="hidden sm:inline">Create with AI</span>
-            <span className="sm:hidden">AI Create</span>
+            <span className="font-medium">Create with AI</span>
           </Link>
           <Link
             href="/account/memories/new"
-            className="inline-flex items-center justify-center min-h-touch px-4 py-2 bg-sage-primary text-white rounded-lg hover:bg-sage-deep transition-all transform active:scale-95 text-mobile-sm sm:text-body-sm flex-1 sm:flex-initial"
+            className="inline-flex items-center justify-center min-h-touch px-4 sm:px-5 py-2 bg-gradient-to-r from-sage-primary to-sage-light text-white rounded-full hover:shadow-soft transition-all transform active:scale-95 text-mobile-sm sm:text-body-sm flex-1 sm:flex-initial"
           >
             <Plus className="w-5 h-5 sm:w-4 sm:h-4 mr-2" />
-            <span className="hidden sm:inline">Record New</span>
-            <span className="sm:hidden">Record</span>
+            <span className="font-medium">Record New</span>
           </Link>
         </div>
       </div>
 
       {/* Memories Grid - Single column on mobile */}
-      <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {memories.map((memory) => (
           <SwipeableMemoryCard
             key={memory.id}
@@ -225,15 +223,6 @@ export default function MemoriesList() {
           </button>
         </div>
       )}
-      
-      {/* Floating Action Button - Mobile only */}
-      <Link
-        href="/account/memories/new"
-        className="fixed bottom-6 right-6 sm:hidden w-14 h-14 bg-sage-primary text-white rounded-full shadow-xl flex items-center justify-center hover:bg-sage-deep transition-all transform active:scale-95 z-10"
-        aria-label="Create new memory"
-      >
-        <Plus className="w-6 h-6" />
-      </Link>
     </div>
   )
 }
