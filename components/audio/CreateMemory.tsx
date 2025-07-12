@@ -9,6 +9,8 @@ import VoiceCloneGenerator from '@/components/voice/VoiceCloneGenerator'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { uploadMemoryAudio } from '@/lib/utils/supabase-upload'
+import { createClient } from '@/lib/supabase/client'
 
 const memorySchema = z.object({
   title: z.string().min(3, 'Title must be at least 3 characters').max(100),
@@ -71,58 +73,73 @@ export default function CreateMemory({ voiceProfileId }: CreateMemoryProps) {
     setUploadProgress(0)
 
     try {
-      const formData = new FormData()
+      // Get current user
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
       
+      if (!user) {
+        throw new Error('Not authenticated')
+      }
+
       // Convert blob to file if needed
       const file = audioFile.blob instanceof File 
         ? audioFile.blob 
-        : new File([audioFile.blob], 'recording.webm', { type: 'audio/webm' })
-      
-      formData.append('file', file)
-      formData.append('title', data.title)
-      if (data.description) {
-        formData.append('description', data.description)
+        : new File([audioFile.blob], 'recording.mp3', { 
+            type: audioFile.blob.type || 'audio/mp3' 
+          })
+
+      // Upload audio directly to Supabase Storage
+      setUploadProgress(10) // Show initial progress
+      const uploadResult = await uploadMemoryAudio(
+        file,
+        user.id,
+        (progress) => {
+          // Simulate progress since Supabase doesn't provide upload progress
+          setUploadProgress(10 + Math.min(progress, 80))
+        }
+      )
+
+      setUploadProgress(90) // Almost done
+
+      // Save memory metadata via API
+      const response = await fetch('/api/memories/upload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: data.title,
+          description: data.description,
+          duration: audioFile.duration,
+          audio_url: uploadResult.path,
+          file_type: file.type,
+          file_size: file.size
+        })
+      })
+
+      if (!response.ok) {
+        // If metadata save fails, try to clean up the uploaded file
+        try {
+          await supabase.storage
+            .from('voice-memories')
+            .remove([uploadResult.path])
+        } catch (cleanupError) {
+          console.error('Failed to cleanup uploaded file:', cleanupError)
+        }
+        
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to save memory')
       }
-      formData.append('duration', audioFile.duration.toString())
 
-      // Create XMLHttpRequest for progress tracking
-      const xhr = new XMLHttpRequest()
-
-      // Track upload progress
-      xhr.upload.addEventListener('progress', (event) => {
-        if (event.lengthComputable) {
-          const progress = Math.round((event.loaded / event.total) * 100)
-          setUploadProgress(progress)
-        }
-      })
-
-      // Handle completion
-      xhr.addEventListener('load', () => {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          const response = JSON.parse(xhr.responseText)
-          router.push('/account/memories')
-          router.refresh()
-        } else {
-          const errorData = JSON.parse(xhr.responseText)
-          setError(errorData.error || 'Failed to upload memory')
-          setIsUploading(false)
-        }
-      })
-
-      // Handle errors
-      xhr.addEventListener('error', () => {
-        setError('Network error occurred. Please try again.')
-        setIsUploading(false)
-      })
-
-      // Send request
-      xhr.open('POST', '/api/memories/upload')
-      xhr.send(formData)
+      setUploadProgress(100)
+      
+      // Success - redirect to memories list
+      router.push('/account/memories')
+      router.refresh()
 
     } catch (err) {
       console.error('Upload error:', err)
-      setError('Failed to upload memory. Please try again.')
+      setError(err instanceof Error ? err.message : 'Failed to upload memory. Please try again.')
       setIsUploading(false)
+      setUploadProgress(0)
     }
   }
 

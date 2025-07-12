@@ -1,10 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { z } from 'zod'
 
-const ALLOWED_AUDIO_TYPES = ['audio/mpeg', 'audio/mp3', 'audio/wav', 'audio/x-m4a', 'audio/m4a', 'audio/webm']
+const ALLOWED_AUDIO_TYPES = ['audio/mpeg', 'audio/mp3', 'audio/wav', 'audio/x-m4a', 'audio/m4a', 'audio/webm', 'audio/ogg']
 const MAX_FILE_SIZE = 50 * 1024 * 1024 // 50MB
 const MIN_DURATION = 10 // 10 seconds
 const MAX_DURATION = 300 // 5 minutes
+
+// Schema for metadata-only upload
+const uploadMetadataSchema = z.object({
+  title: z.string().min(3).max(100),
+  description: z.string().max(500).optional(),
+  duration: z.number().min(MIN_DURATION).max(MAX_DURATION),
+  audio_url: z.string(), // Path in Supabase storage
+  file_type: z.string(),
+  file_size: z.number().max(MAX_FILE_SIZE)
+})
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,59 +27,43 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Parse form data
-    const formData = await request.formData()
-    const file = formData.get('file') as File
-    const title = formData.get('title') as string
-    const description = formData.get('description') as string | null
-    const duration = parseInt(formData.get('duration') as string || '0')
-
-    // Validate inputs
-    if (!file || !title) {
-      return NextResponse.json({ error: 'File and title are required' }, { status: 400 })
+    // Parse JSON body (no longer FormData)
+    const body = await request.json()
+    
+    // Validate request body
+    const validationResult = uploadMetadataSchema.safeParse(body)
+    if (!validationResult.success) {
+      return NextResponse.json({ 
+        error: 'Invalid request data',
+        details: validationResult.error.errors 
+      }, { status: 400 })
     }
+    
+    const { title, description, duration, audio_url, file_type, file_size } = validationResult.data
 
     // Validate file type
-    if (!ALLOWED_AUDIO_TYPES.includes(file.type)) {
+    if (!ALLOWED_AUDIO_TYPES.includes(file_type)) {
       return NextResponse.json({ 
-        error: 'Invalid file type. Please upload MP3, WAV, M4A, or WebM files.' 
+        error: 'Invalid file type. Please upload MP3, WAV, M4A, WebM, or OGG files.' 
       }, { status: 400 })
     }
 
-    // Validate file size
-    if (file.size > MAX_FILE_SIZE) {
-      return NextResponse.json({ 
-        error: 'File too large. Maximum size is 50MB.' 
-      }, { status: 400 })
-    }
-
-    // Validate duration
-    if (duration < MIN_DURATION || duration > MAX_DURATION) {
-      return NextResponse.json({ 
-        error: `Audio duration must be between ${MIN_DURATION} seconds and ${MAX_DURATION / 60} minutes.` 
-      }, { status: 400 })
-    }
-
-    // Generate unique filename
-    const fileExt = file.name.split('.').pop()
-    const memoryId = crypto.randomUUID()
-    const fileName = `${memoryId}.${fileExt}`
-    const filePath = `${user.id}/${memoryId}/${fileName}`
-
-    // Upload file to storage
-    const { error: uploadError } = await supabase.storage
+    // Verify the file exists in storage and belongs to the user
+    const expectedPath = audio_url.startsWith(user.id) ? audio_url : `${user.id}/${audio_url}`
+    const { data: fileData, error: fileError } = await supabase.storage
       .from('voice-memories')
-      .upload(filePath, file, {
-        contentType: file.type,
-        upsert: false
+      .list(user.id, {
+        search: audio_url.split('/').pop() // Search for filename
       })
 
-    if (uploadError) {
-      console.error('Upload error:', uploadError)
+    if (fileError || !fileData || fileData.length === 0) {
       return NextResponse.json({ 
-        error: 'Failed to upload audio file. Please try again.' 
-      }, { status: 500 })
+        error: 'Audio file not found in storage. Please upload the file first.' 
+      }, { status: 400 })
     }
+
+    // Generate memory ID
+    const memoryId = crypto.randomUUID()
 
     // Create memory record in database
     const { data: memory, error: dbError } = await supabase
@@ -78,27 +73,27 @@ export async function POST(request: NextRequest) {
         user_id: user.id,
         title,
         description,
-        audio_url: filePath,
+        audio_url: audio_url, // Use the provided storage path
         duration,
-        file_size: file.size,
-        file_type: file.type
+        file_size,
+        file_type
       })
       .select()
       .single()
 
     if (dbError) {
-      // Clean up uploaded file if database insert fails
-      await supabase.storage.from('voice-memories').remove([filePath])
       console.error('Database error:', dbError)
+      // Note: We don't delete the file here since it was uploaded separately
+      // The user can retry saving the metadata without re-uploading
       return NextResponse.json({ 
-        error: 'Failed to save memory. Please try again.' 
+        error: 'Failed to save memory metadata. Your audio file is safe. Please try again.' 
       }, { status: 500 })
     }
 
     // Get signed URL for playback
     const { data: signedUrlData } = await supabase.storage
       .from('voice-memories')
-      .createSignedUrl(filePath, 3600) // 1 hour expiry
+      .createSignedUrl(audio_url, 3600) // 1 hour expiry
 
     return NextResponse.json({
       memory: {

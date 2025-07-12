@@ -1,4 +1,4 @@
-import lamejs from 'lamejs'
+import lamejs from '@breezystack/lamejs'
 
 export interface ConversionOptions {
   bitrate?: number
@@ -84,7 +84,7 @@ export async function convertToMp3(
     const mp3encoder = new lamejs.Mp3Encoder(channels, sampleRate, bitrate)
     
     // Convert and encode samples
-    const mp3Data: Int8Array[] = []
+    const mp3Data: Uint8Array[] = []
     const sampleBlockSize = 1152 // Must be multiple of 576 for encoder
     let totalSamples = samples.length
     let samplesProcessed = 0
