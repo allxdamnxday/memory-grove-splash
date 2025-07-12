@@ -20,7 +20,7 @@ export default function RealityCheck() {
   ]
 
   return (
-    <section className="section-padding bg-warm-white">
+    <section className="section-spacing bg-warm-white">
       <div className="container-grove">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="font-serif text-h1 md:text-display-sm text-sage-deep mb-4">

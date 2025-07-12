@@ -39,7 +39,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[80vh] flex items-center overflow-hidden section-spacing">
       {/* Hero Background Image */}
       <div className="absolute inset-0">
         <OptimizedImage
@@ -104,7 +104,7 @@ export default function Hero() {
                   aria-label="Email address"
                   disabled={isSubmitting}
                 />
-                <Button type="submit" disabled={isSubmitting}>
+                <Button type="submit" size="sm" disabled={isSubmitting}>
                   {isSubmitting ? 'Starting...' : 'Get Started'}
                 </Button>
               </div>

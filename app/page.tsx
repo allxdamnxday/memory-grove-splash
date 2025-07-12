@@ -11,7 +11,7 @@ import FloatingElements from '@/components/marketing/FloatingElements'
 
 export default function Home() {
   return (
-    <>
+    <div className="space-y-2">
       <Hero />
       <RealityCheck />
       <HowItWorks />
@@ -22,6 +22,6 @@ export default function Home() {
       <FAQ />
       <FooterCTA />
       <FloatingElements />
-    </>
+    </div>
   )
 }

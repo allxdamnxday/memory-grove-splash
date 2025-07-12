@@ -57,6 +57,28 @@ export default function VoiceSynthesizer() {
   const saveAsMemory = watch('save_as_memory')
   const textLength = watch('text')?.length || 0
   
+  // Cost estimation based on character count
+  const estimateCost = (characters: number) => {
+    // Rough estimate: $0.02 per 1000 characters (based on TTS plan)
+    return (characters / 1000) * 0.02
+  }
+  
+  const estimatedCost = estimateCost(textLength)
+  
+  // Text preprocessing for pause markers
+  const preprocessText = (text: string) => {
+    // Validate and normalize pause markers
+    // MiniMax supports <#x#> where x = seconds (0.01-99.99)
+    return text.replace(/<#(\d+(?:\.\d{1,2})?)#>/g, (match, seconds) => {
+      const pauseTime = parseFloat(seconds)
+      if (pauseTime < 0.01 || pauseTime > 99.99) {
+        // Invalid pause time, remove the marker
+        return ''
+      }
+      return match // Valid pause marker, keep it
+    })
+  }
+  
   useEffect(() => {
     fetchVoiceProfiles()
   }, [])
@@ -89,10 +111,16 @@ export default function VoiceSynthesizer() {
     setSynthesizedAudio(null)
     
     try {
+      // Preprocess text to handle pause markers
+      const processedData = {
+        ...data,
+        text: preprocessText(data.text)
+      }
+      
       const response = await fetch('/api/voice/synthesize', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(processedData)
       })
       
       const result = await response.json()
@@ -193,7 +221,20 @@ export default function VoiceSynthesizer() {
               <span className={textLength > 4500 ? 'text-error-primary' : 'text-text-light'}>
                 {textLength} / 5000 characters
               </span>
+              {textLength > 0 && (
+                <span className="text-sage-primary">
+                  Est. cost: ${estimatedCost.toFixed(3)}
+                </span>
+              )}
             </div>
+            
+            <div className="mt-2 p-3 bg-sage-mist/20 rounded-lg">
+              <p className="text-caption text-text-secondary">
+                💡 <strong>Tip:</strong> Add pauses to your speech using <code className="bg-white px-1 rounded text-sage-deep">&lt;#2.5#&gt;</code> where the number is seconds (0.01-99.99). 
+                Example: &ldquo;Hello there. &lt;#1.5#&gt; How are you today?&rdquo;
+              </p>
+            </div>
+            
             {errors.text && (
               <p className="mt-1 text-error-primary text-body-sm">{errors.text.message}</p>
             )}
@@ -232,6 +273,48 @@ export default function VoiceSynthesizer() {
                 step="0.1"
                 className="w-full"
               />
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="volume" className="block text-text-primary font-medium mb-2">
+                Volume: {watch('volume')}
+              </label>
+              <input
+                {...register('volume', { valueAsNumber: true })}
+                type="range"
+                id="volume"
+                min="0.1"
+                max="2.0"
+                step="0.1"
+                className="w-full"
+              />
+              <div className="flex justify-between text-caption text-text-light mt-1">
+                <span>Quiet</span>
+                <span>Normal</span>
+                <span>Loud</span>
+              </div>
+            </div>
+            
+            <div>
+              <label htmlFor="pitch" className="block text-text-primary font-medium mb-2">
+                Pitch: {watch('pitch') > 0 ? '+' : ''}{watch('pitch')}
+              </label>
+              <input
+                {...register('pitch', { valueAsNumber: true })}
+                type="range"
+                id="pitch"
+                min="-12"
+                max="12"
+                step="1"
+                className="w-full"
+              />
+              <div className="flex justify-between text-caption text-text-light mt-1">
+                <span>Lower</span>
+                <span>Natural</span>
+                <span>Higher</span>
+              </div>
             </div>
           </div>
           
