@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { Mic, MoreVertical, Check, AlertCircle, Loader2, Trash2, Edit } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
+import { FeatureOrganicCard, CardContent, CardFooter } from '@/components/ui/OrganicCard'
+import Card from '@/components/ui/Card'
 
 interface VoiceProfile {
   id: string
@@ -107,7 +109,7 @@ export default function VoiceProfileCard({
                     onTrain(profile)
                     setShowMenu(false)
                   }}
-                  className="w-full text-left px-4 py-2 text-body-sm text-text-secondary hover:bg-warm-sand/20 hover:text-sage-primary transition-colors"
+                  className="w-full text-left px-4 py-2 text-body-sm text-text-secondary hover:bg-sage-mist/20 hover:text-sage-primary transition-colors rounded-organic"
                 >
                   Train Voice
                 </button>
@@ -132,7 +134,7 @@ export default function VoiceProfileCard({
                     onToggleActive(profile)
                     setShowMenu(false)
                   }}
-                  className="w-full text-left px-4 py-2 text-body-sm text-text-secondary hover:bg-warm-sand/20 hover:text-sage-primary transition-colors"
+                  className="w-full text-left px-4 py-2 text-body-sm text-text-secondary hover:bg-sage-mist/20 hover:text-sage-primary transition-colors rounded-organic"
                 >
                   {profile.is_active ? 'Deactivate' : 'Activate'}
                 </button>

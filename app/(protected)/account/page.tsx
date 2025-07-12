@@ -4,6 +4,8 @@ import AccountForm from '@/components/auth/AccountForm'
 import VoiceCloneConsent from '@/components/voice/VoiceCloneConsent'
 import Link from 'next/link'
 import { FileAudio, User, Mic, Sparkles } from 'lucide-react'
+import OrganicCard, { CardContent } from '@/components/ui/OrganicCard'
+import Card from '@/components/ui/Card'
 
 export const metadata: Metadata = {
   title: 'My Account - Memory Grove',
@@ -41,108 +43,135 @@ export default async function AccountPage() {
 
           {/* Navigation Cards */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <Link
-              href="/account/memories"
-              className="group bg-white shadow-soft rounded-lg p-6 hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="flex items-center mb-2">
-                    <FileAudio className="w-5 h-5 mr-2 text-sage-primary" />
-                    <h3 className="text-heading-sm font-medium">Voice Memories</h3>
+            <Link href="/account/memories">
+              <OrganicCard 
+                colorScheme="sage"
+                withBlob
+                className="group cursor-pointer"
+                animationDelay={0}
+              >
+                <CardContent>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center mb-2">
+                        <FileAudio className="w-5 h-5 mr-2 text-sage-primary" />
+                        <h3 className="text-heading-sm font-serif text-sage-deep">Voice Memories</h3>
+                      </div>
+                      <p className="text-body-sm text-text-secondary">
+                        Record and manage your preserved memories
+                      </p>
+                    </div>
+                    <svg
+                      className="w-5 h-5 text-text-tertiary group-hover:text-sage-primary transition-colors"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </div>
-                  <p className="text-body-sm text-text-secondary">
-                    Record and manage your preserved memories
-                  </p>
-                </div>
-                <svg
-                  className="w-5 h-5 text-text-tertiary group-hover:text-sage-primary transition-colors"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
+                </CardContent>
+              </OrganicCard>
             </Link>
 
-            <Link
-              href="/memories/voice-profiles"
-              className="group bg-white shadow-soft rounded-lg p-6 hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="flex items-center mb-2">
-                    <Mic className="w-5 h-5 mr-2 text-sage-primary" />
-                    <h3 className="text-heading-sm font-medium">Voice Profiles</h3>
+            <Link href="/memories/voice-profiles">
+              <OrganicCard 
+                colorScheme="dawn"
+                withBlob
+                blobPosition="center"
+                className="group cursor-pointer"
+                animationDelay={100}
+              >
+                <CardContent>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center mb-2">
+                        <Mic className="w-5 h-5 mr-2 text-accent-dawn" />
+                        <h3 className="text-heading-sm font-serif text-sage-deep">Voice Profiles</h3>
+                      </div>
+                      <p className="text-body-sm text-text-secondary">
+                        Create and manage voice clones
+                      </p>
+                    </div>
+                    <svg
+                      className="w-5 h-5 text-text-tertiary group-hover:text-accent-dawn transition-colors"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </div>
-                  <p className="text-body-sm text-text-secondary">
-                    Create and manage voice clones
-                  </p>
-                </div>
-                <svg
-                  className="w-5 h-5 text-text-tertiary group-hover:text-sage-primary transition-colors"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
+                </CardContent>
+              </OrganicCard>
             </Link>
 
-            <Link
-              href="/memories/voice-synthesis"
-              className="group bg-white shadow-soft rounded-lg p-6 hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="flex items-center mb-2">
-                    <Sparkles className="w-5 h-5 mr-2 text-sage-primary" />
-                    <h3 className="text-heading-sm font-medium">Voice Synthesis</h3>
+            <Link href="/memories/voice-synthesis">
+              <OrganicCard 
+                colorScheme="earth"
+                withBlob
+                blobPosition="bottom-left"
+                className="group cursor-pointer"
+                animationDelay={200}
+              >
+                <CardContent>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center mb-2">
+                        <Sparkles className="w-5 h-5 mr-2 text-accent-earth" />
+                        <h3 className="text-heading-sm font-serif text-sage-deep">Voice Synthesis</h3>
+                      </div>
+                      <p className="text-body-sm text-text-secondary">
+                        Create speech with your cloned voices
+                      </p>
+                    </div>
+                    <svg
+                      className="w-5 h-5 text-text-tertiary group-hover:text-accent-earth transition-colors"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </div>
-                  <p className="text-body-sm text-text-secondary">
-                    Create speech with your cloned voices
-                  </p>
-                </div>
-                <svg
-                  className="w-5 h-5 text-text-tertiary group-hover:text-sage-primary transition-colors"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
+                </CardContent>
+              </OrganicCard>
             </Link>
 
-            <div className="group bg-white shadow-soft rounded-lg p-6 opacity-75 cursor-not-allowed">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="flex items-center mb-2">
-                    <User className="w-5 h-5 mr-2 text-text-tertiary" />
-                    <h3 className="text-heading-sm font-medium text-text-tertiary">Profile Settings</h3>
+            <OrganicCard 
+              variant="bordered"
+              className="opacity-50 cursor-not-allowed"
+              animationDelay={300}
+              interactive={false}
+            >
+              <CardContent>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="flex items-center mb-2">
+                      <User className="w-5 h-5 mr-2 text-text-tertiary" />
+                      <h3 className="text-heading-sm font-serif text-text-tertiary">Profile Settings</h3>
+                    </div>
+                    <p className="text-body-sm text-text-tertiary">
+                      Update your account information
+                    </p>
                   </div>
-                  <p className="text-body-sm text-text-tertiary">
-                    Update your account information
-                  </p>
+                  <svg
+                    className="w-5 h-5 text-text-tertiary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </div>
-                <svg
-                  className="w-5 h-5 text-text-tertiary"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </div>
+              </CardContent>
+            </OrganicCard>
           </div>
 
-          <div className="bg-white shadow-soft rounded-lg p-8">
-            <h2 className="text-heading-md font-serif mb-6">Account Settings</h2>
+          <Card shape="organic" variant="nature" padding="lg" animate="fade-in" animationDelay={400}>
+            <h2 className="text-heading-md font-serif text-sage-deep mb-6">Account Settings</h2>
             <AccountForm user={user} />
-          </div>
+          </Card>
 
           <div className="mt-6">
             <VoiceCloneConsent />

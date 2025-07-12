@@ -186,4 +186,24 @@
     --tw-prose-pre-code: #E8EDE5;
     --tw-prose-pre-bg: #3A3F36;
   }
+
+  /* Floating animation for blobs */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) translateX(0) scale(1);
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px) scale(1.05);
+    }
+    50% {
+      transform: translateY(10px) translateX(-10px) scale(0.95);
+    }
+    75% {
+      transform: translateY(-10px) translateX(20px) scale(1.02);
+    }
+  }
+
+  .animate-float {
+    animation: float 20s ease-in-out infinite;
+  }
 }

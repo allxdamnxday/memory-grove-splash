@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import { Trash2, Calendar, Clock, FileAudio, Zap } from 'lucide-react'
 import AudioPlayer from './AudioPlayer'
+import { MemoryOrganicCard, CardContent } from '@/components/ui/OrganicCard'
+import Card from '@/components/ui/Card'
 
 interface Memory {
   id: string
@@ -48,9 +50,13 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-border-primary overflow-hidden hover:shadow-md transition-shadow">
-      <div className="p-6">
-        <div className="flex items-start justify-between mb-4">
+    <>
+      <MemoryOrganicCard 
+        className="hover:shadow-soft transition-all duration-300"
+        animationDelay={100}
+      >
+        <CardContent>
+          <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-center space-x-2 mb-1">
               <h3 className="text-heading-sm font-medium text-text-primary">
@@ -72,7 +78,7 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
           <button
             onClick={() => setShowConfirmDelete(true)}
             disabled={isDeleting}
-            className="ml-4 p-2 hover:bg-background-secondary rounded-full transition-colors text-text-secondary hover:text-error-primary disabled:opacity-50"
+            className="ml-4 p-2 hover:bg-sage-mist/30 rounded-full transition-colors text-text-secondary hover:text-accent-earth disabled:opacity-50"
           >
             <Trash2 className="w-4 h-4" />
           </button>
@@ -101,12 +107,18 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
             downloadFilename={`${memory.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.mp3`}
           />
         )}
-      </div>
+        </CardContent>
+      </MemoryOrganicCard>
 
       {/* Delete Confirmation Modal */}
       {showConfirmDelete && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
+          <Card 
+            shape="organic" 
+            variant="elevated" 
+            className="max-w-md w-full"
+            animate="scale-in"
+          >
             <h3 className="text-heading-sm font-medium mb-2">Delete Memory?</h3>
             <p className="text-body-sm text-text-secondary mb-6">
               This will permanently remove &quot;{memory.title}&quot; from your grove. This action cannot be undone.
@@ -127,9 +139,9 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
                 {isDeleting ? 'Deleting...' : 'Delete'}
               </button>
             </div>
-          </div>
+          </Card>
         </div>
       )}
-    </div>
+    </>
   )
 }
