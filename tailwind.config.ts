@@ -136,11 +136,46 @@ const config: Config = {
         touch: "44px",
         "touch-primary": "48px",
       },
+      textShadow: {
+        sm: "0 1px 2px rgba(0, 0, 0, 0.2)",
+        DEFAULT: "0 2px 4px rgba(0, 0, 0, 0.3)",
+        md: "0 2px 4px rgba(0, 0, 0, 0.3)",
+        lg: "0 4px 8px rgba(0, 0, 0, 0.4)",
+        xl: "0 8px 16px rgba(0, 0, 0, 0.5)",
+        "2xl": "0 16px 32px rgba(0, 0, 0, 0.6)",
+        none: "none",
+      },
     },
   },
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
+    function ({ addUtilities }) {
+      const textShadows = {
+        '.text-shadow-sm': {
+          textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
+        },
+        '.text-shadow': {
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+        },
+        '.text-shadow-md': {
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+        },
+        '.text-shadow-lg': {
+          textShadow: '0 4px 8px rgba(0, 0, 0, 0.4)',
+        },
+        '.text-shadow-xl': {
+          textShadow: '0 8px 16px rgba(0, 0, 0, 0.5)',
+        },
+        '.text-shadow-2xl': {
+          textShadow: '0 16px 32px rgba(0, 0, 0, 0.6)',
+        },
+        '.text-shadow-none': {
+          textShadow: 'none',
+        },
+      }
+      addUtilities(textShadows)
+    },
   ],
 };
 export default config;

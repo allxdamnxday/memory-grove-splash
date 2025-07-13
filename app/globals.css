@@ -71,14 +71,14 @@
 @layer components {
   /* Button styles */
   .btn-primary {
-    @apply bg-sage-primary text-warm-white px-8 py-4 rounded-full font-sans text-body-sm font-normal
-           hover:bg-sage-deep transition-all duration-300 ease-out
+    @apply bg-sage-primary text-warm-white px-8 py-4 rounded-xl font-sans text-body-sm font-medium
+           hover:bg-sage-deep hover:shadow-lg transition-all duration-300 ease-out transform hover:scale-105
            focus-visible:ring-2 focus-visible:ring-sage-primary focus-visible:ring-offset-2;
   }
 
   .btn-secondary {
-    @apply bg-transparent border-2 border-sage-primary text-sage-primary px-8 py-4 rounded-full 
-           font-sans text-body-sm font-normal hover:bg-sage-mist transition-all duration-300 ease-out
+    @apply bg-transparent border-2 border-sage-primary text-sage-primary px-8 py-4 rounded-xl 
+           font-sans text-body-sm font-medium hover:bg-sage-mist hover:shadow-md transition-all duration-300 ease-out transform hover:scale-105
            focus-visible:ring-2 focus-visible:ring-sage-primary focus-visible:ring-offset-2;
   }
 
@@ -90,9 +90,10 @@
 
   /* Form styles */
   .input-field {
-    @apply w-full min-h-[52px] px-4 py-3 border border-warm-pebble rounded-lg bg-warm-white
-           text-text-primary placeholder-text-light
-           focus:border-sage-primary focus:ring-1 focus:ring-sage-primary
+    @apply w-full min-h-[52px] px-5 py-3 border-2 border-warm-pebble rounded-xl bg-warm-white
+           text-text-primary placeholder-text-light font-medium
+           focus:border-sage-primary focus:ring-2 focus:ring-sage-primary/20
+           hover:border-sage-light
            transition-all duration-200 ease-out;
   }
 
@@ -130,6 +131,11 @@
   /* Text gradient for special headings */
   .text-gradient {
     @apply bg-gradient-to-r from-sage-deep to-accent-moss bg-clip-text text-transparent;
+  }
+
+  /* Radial gradient for vignette effect */
+  .bg-radial-gradient {
+    background: radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(0, 0, 0, 0.4) 100%);
   }
 
   /* Animate on scroll */

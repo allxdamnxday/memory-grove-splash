@@ -1,4 +1,5 @@
 import Hero from '@/components/marketing/Hero'
+import EmailCapture from '@/components/marketing/EmailCapture'
 import RealityCheck from '@/components/marketing/RealityCheck'
 import HowItWorks from '@/components/marketing/HowItWorks'
 import StoriesOfConnection from '@/components/marketing/StoriesOfConnection'
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <div className="space-y-2">
       <Hero />
+      <EmailCapture />
       <RealityCheck />
       <HowItWorks />
       <StoriesOfConnection />
