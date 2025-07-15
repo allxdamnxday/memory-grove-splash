@@ -48,6 +48,8 @@ export default function Hero() {
               href="/start" 
               variant="white" 
               size="lg"
+              organic="seed"
+              living
               className="text-lg shadow-2xl"
             >
               Start Your Legacy
@@ -56,6 +58,7 @@ export default function Hero() {
               href="/stories/emma" 
               variant="white-outline" 
               size="lg"
+              organic="pebble"
               className="text-lg"
             >
               Listen to Emma&apos;s Story

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { Play, Pause, Volume2, VolumeX, Download } from 'lucide-react'
+import Button from '@/components/ui/Button'
 
 interface AudioPlayerProps {
   src: string
@@ -182,32 +183,26 @@ export default function AudioPlayer({
         <div className="flex items-center justify-between px-1">
           <div className={`flex items-center ${compact ? 'space-x-2' : 'space-x-3'}`}>
             {/* Play/Pause Button */}
-            <button
+            <Button
               onClick={togglePlayPause}
-              disabled={isLoading}
-              className="w-12 h-12 sm:w-10 sm:h-10 bg-sage-primary text-white rounded-full flex items-center justify-center hover:bg-sage-deep transition-all transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? (
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              ) : isPlaying ? (
-                <Pause className="w-5 h-5" />
-              ) : (
-                <Play className="w-5 h-5 ml-0.5" />
-              )}
-            </button>
+              variant="primary"
+              size="icon-md"
+              loading={isLoading}
+              icon={isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
+              className="!rounded-full"
+              aria-label={isPlaying ? 'Pause' : 'Play'}
+            />
 
             {/* Volume Controls - Hidden on mobile */}
             <div className="hidden sm:flex items-center space-x-2">
-              <button
+              <Button
                 onClick={toggleMute}
-                className="p-1.5 hover:bg-background-secondary rounded-full transition-colors"
-              >
-                {isMuted || volume === 0 ? (
-                  <VolumeX className="w-4 h-4 text-text-secondary" />
-                ) : (
-                  <Volume2 className="w-4 h-4 text-text-secondary" />
-                )}
-              </button>
+                variant="ghost"
+                size="icon-sm"
+                icon={isMuted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                className="!p-1.5"
+                aria-label={isMuted ? 'Unmute' : 'Mute'}
+              />
               <input
                 type="range"
                 min="0"

@@ -69,19 +69,6 @@
 }
 
 @layer components {
-  /* Button styles */
-  .btn-primary {
-    @apply bg-sage-primary text-warm-white px-8 py-4 rounded-xl font-sans text-body-sm font-medium
-           hover:bg-sage-deep hover:shadow-lg transition-all duration-300 ease-out transform hover:scale-105
-           focus-visible:ring-2 focus-visible:ring-sage-primary focus-visible:ring-offset-2;
-  }
-
-  .btn-secondary {
-    @apply bg-transparent border-2 border-sage-primary text-sage-primary px-8 py-4 rounded-xl 
-           font-sans text-body-sm font-medium hover:bg-sage-mist hover:shadow-md transition-all duration-300 ease-out transform hover:scale-105
-           focus-visible:ring-2 focus-visible:ring-sage-primary focus-visible:ring-offset-2;
-  }
-
   /* Card styles */
   .card {
     @apply bg-warm-white border border-warm-pebble rounded-xl p-8 shadow-gentle

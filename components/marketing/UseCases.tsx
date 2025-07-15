@@ -115,7 +115,9 @@ export default function UseCases() {
           <Button 
             href="/start" 
             size="lg"
-            className="bg-gradient-to-r from-sage-primary to-sage-light hover:shadow-soft"
+            variant="primary"
+            organic="seed"
+            living
           >
             Preserve Your Voice Forever
           </Button>

@@ -84,7 +84,10 @@ export default function RealityCheck() {
             <Button 
               href="/start" 
               size="lg"
-              className="bg-gradient-to-r from-sage-primary to-sage-light hover:shadow-soft animate-pulse-subtle"
+              variant="primary"
+              organic="seed"
+              living
+              className="animate-pulse-subtle"
             >
               Start Recording Now
             </Button>

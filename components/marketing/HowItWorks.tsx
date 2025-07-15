@@ -137,7 +137,7 @@ export default function HowItWorks() {
         </div>
 
         <div className="text-center mt-16 animate-fade-in animation-delay-800">
-          <Button href="/start" size="lg">
+          <Button href="/start" size="lg" organic="seed" living>
             Begin Recording Today
           </Button>
         </div>

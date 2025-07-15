@@ -62,6 +62,8 @@ export default function PricingCard({
         href="/start" 
         variant={variant} 
         size="md" 
+        organic={popular ? "seed" : "pebble"}
+        living={popular}
         className="w-full"
       >
         {cta}

@@ -150,7 +150,7 @@ const config: Config = {
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
-    function ({ addUtilities }) {
+    function ({ addUtilities }: { addUtilities: any }) {
       const textShadows = {
         '.text-shadow-sm': {
           textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
@@ -175,6 +175,41 @@ const config: Config = {
         },
       }
       addUtilities(textShadows)
+    },
+    function ({ addUtilities }: { addUtilities: any }) {
+      const organicShapes = {
+        // Pebble shapes
+        '.rounded-\\[30\\%_70\\%_70\\%_30\\%\\/30\\%_30\\%_70\\%_70\\%\\]': {
+          borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+        },
+        '.rounded-\\[40\\%_60\\%_60\\%_40\\%\\/50\\%_50\\%_50\\%_50\\%\\]': {
+          borderRadius: '40% 60% 60% 40% / 50% 50% 50% 50%',
+        },
+        '.rounded-\\[35\\%_65\\%_65\\%_35\\%\\/40\\%_40\\%_60\\%_60\\%\\]': {
+          borderRadius: '35% 65% 65% 35% / 40% 40% 60% 60%',
+        },
+        // Leaf shapes
+        '.rounded-\\[0\\%_100\\%_100\\%_0\\%\\/50\\%_50\\%_50\\%_50\\%\\]': {
+          borderRadius: '0% 100% 100% 0% / 50% 50% 50% 50%',
+        },
+        '.rounded-\\[80\\%_20\\%_80\\%_20\\%\\/20\\%_80\\%_20\\%_80\\%\\]': {
+          borderRadius: '80% 20% 80% 20% / 20% 80% 20% 80%',
+        },
+        '.rounded-\\[70\\%_30\\%_70\\%_30\\%\\/30\\%_70\\%_30\\%_70\\%\\]': {
+          borderRadius: '70% 30% 70% 30% / 30% 70% 30% 70%',
+        },
+        // Seed shapes
+        '.rounded-\\[50\\%_50\\%_50\\%_50\\%\\/60\\%_60\\%_40\\%_40\\%\\]': {
+          borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%',
+        },
+        '.rounded-\\[45\\%_55\\%_55\\%_45\\%\\/65\\%_65\\%_35\\%_35\\%\\]': {
+          borderRadius: '45% 55% 55% 45% / 65% 65% 35% 35%',
+        },
+        '.rounded-\\[55\\%_45\\%_45\\%_55\\%\\/55\\%_55\\%_45\\%_45\\%\\]': {
+          borderRadius: '55% 45% 45% 55% / 55% 55% 45% 45%',
+        },
+      }
+      addUtilities(organicShapes)
     },
   ],
 };

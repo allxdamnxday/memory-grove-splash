@@ -4,6 +4,32 @@ import { z } from 'zod'
 import { synthesizeSpeech, hexToBuffer, MiniMaxError, SynthesisOptions } from '@/lib/services/minimax'
 import { v4 as uuidv4 } from 'uuid'
 
+// Validate MP3 buffer
+function validateMP3Buffer(buffer: Buffer): boolean {
+  if (buffer.length < 4) return false
+  
+  // Check for ID3v2 header (ID3)
+  if (buffer[0] === 0x49 && buffer[1] === 0x44 && buffer[2] === 0x33) {
+    return true
+  }
+  
+  // Check for MP3 sync word (FF FB, FF FA, or FF F3)
+  if (buffer[0] === 0xFF && (buffer[1] & 0xF0) === 0xF0) {
+    return true
+  }
+  
+  // Check if it might be ID3v1 (starts with TAG at the end)
+  // But also check for MP3 data somewhere in the first 1KB
+  const searchLength = Math.min(1024, buffer.length)
+  for (let i = 0; i < searchLength - 1; i++) {
+    if (buffer[i] === 0xFF && (buffer[i + 1] & 0xF0) === 0xF0) {
+      return true
+    }
+  }
+  
+  return false
+}
+
 // POST /api/voice/synthesize - Generate speech from text using cloned voice
 const synthesizeSchema = z.object({
   voice_profile_id: z.string().uuid(),
@@ -92,33 +118,78 @@ export async function POST(request: NextRequest) {
       }
       
       // Call MiniMax synthesis API
+      console.log('[Synthesis] Calling MiniMax with options:', {
+        voiceId: synthesisOptions.voiceId,
+        model: synthesisOptions.model,
+        textLength: synthesisOptions.text.length,
+        emotion: synthesisOptions.emotion
+      })
+      
       const synthesisResult = await synthesizeSpeech(synthesisOptions)
+      
+      // Log audio data details
+      console.log('[Synthesis] MiniMax response:', {
+        hasAudio: !!synthesisResult.data?.audio,
+        audioLength: synthesisResult.data?.audio?.length || 0,
+        first100Chars: synthesisResult.data?.audio?.substring(0, 100),
+        traceId: synthesisResult.trace_id,
+        extraInfo: synthesisResult.extra_info
+      })
       
       // Convert hex-encoded audio data to Buffer
       const audioBuffer = hexToBuffer(synthesisResult.data.audio)
+      
+      // Validate MP3 header
+      const isValidMP3 = validateMP3Buffer(audioBuffer)
+      console.log('[Synthesis] Audio validation:', {
+        bufferSize: audioBuffer.length,
+        isValidMP3,
+        firstBytes: audioBuffer.slice(0, 10).toString('hex')
+      })
+      
+      if (!isValidMP3) {
+        console.error('[Synthesis] Invalid MP3 data detected')
+        throw new Error('Generated audio does not appear to be valid MP3 format')
+      }
       
       // Generate unique filename
       const filename = `synthesis_${synthesisJob.id}_${Date.now()}.mp3`
       const storagePath = `${user.id}/synthesis/${filename}`
       
       // Upload to Supabase storage
+      console.log('[Synthesis] Uploading audio to storage:', {
+        path: storagePath,
+        size: audioBuffer.length,
+        contentType: 'audio/mpeg'
+      })
+      
       const { error: uploadError } = await supabase
         .storage
         .from('voice-memories')
         .upload(storagePath, audioBuffer, {
           contentType: 'audio/mpeg',
-          cacheControl: '3600'
+          cacheControl: '3600',
+          upsert: false
         })
       
       if (uploadError) {
-        throw new Error('Failed to upload synthesized audio')
+        console.error('[Synthesis] Upload error:', uploadError)
+        throw new Error(`Failed to upload synthesized audio: ${uploadError.message}`)
       }
       
-      // Get public URL
-      const { data: { publicUrl } } = supabase
+      // Create signed URL for private bucket (valid for 1 hour)
+      const { data: signedUrlData, error: signedUrlError } = await supabase
         .storage
         .from('voice-memories')
-        .getPublicUrl(storagePath)
+        .createSignedUrl(storagePath, 3600) // 1 hour expiry
+      
+      if (signedUrlError || !signedUrlData?.signedUrl) {
+        console.error('[Synthesis] Signed URL error:', signedUrlError)
+        throw new Error('Failed to create access URL for synthesized audio')
+      }
+      
+      const audioUrl = signedUrlData.signedUrl
+      console.log('[Synthesis] Generated signed URL for audio access')
       
       // Update synthesis job
       await supabase
@@ -156,7 +227,7 @@ export async function POST(request: NextRequest) {
         if (!memoryError && newMemory) {
           return NextResponse.json({
             synthesis_job_id: synthesisJob.id,
-            audio_url: publicUrl,
+            audio_url: audioUrl,
             duration: Math.ceil(audioBuffer.length / (128000 / 8)),
             memory_id: newMemory.id,
             saved_as_memory: true
@@ -166,7 +237,7 @@ export async function POST(request: NextRequest) {
       
       return NextResponse.json({
         synthesis_job_id: synthesisJob.id,
-        audio_url: publicUrl,
+        audio_url: audioUrl,
         duration: Math.ceil(audioBuffer.length / (128000 / 8)),
         saved_as_memory: false
       })

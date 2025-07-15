@@ -62,6 +62,8 @@ export default function EmailCapture() {
               <Button 
                 type="submit" 
                 size="lg" 
+                organic="seed"
+                living
                 disabled={isSubmitting}
                 className="min-w-[140px]"
               >
