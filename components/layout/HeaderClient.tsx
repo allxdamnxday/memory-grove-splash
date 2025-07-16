@@ -22,7 +22,7 @@ export default function HeaderClient({ user }: { user: User | null }) {
     if (!user) return ''
     if (user.user_metadata?.name) {
       const names = user.user_metadata.name.split(' ')
-      return names.map(n => n[0]).join('').toUpperCase().slice(0, 2)
+      return names.map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)
     }
     return user.email?.slice(0, 2).toUpperCase() || 'U'
   }
