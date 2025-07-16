@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Volume2, Download, Save, AlertCircle, Sparkles, Loader2, Heart, Flower2, TreePine, Wind } from 'lucide-react'
+import { Volume2, Download, Save, AlertCircle, Sparkles, Loader2, Heart, Flower2, TreePine, Wind, X } from 'lucide-react'
 import { MemoryOrganicCard, CardContent, CardHeader, CardTitle } from '@/components/ui/OrganicCard'
 import AudioPlayer from '@/components/audio/AudioPlayer'
 import { useSearchParams } from 'next/navigation'
@@ -15,10 +15,7 @@ const synthesisSchema = z.object({
   emotion: z.enum(['happy', 'sad', 'angry', 'fearful', 'disgusted', 'surprised', 'neutral']).default('neutral'),
   speed: z.number().min(0.5).max(2.0).default(1.0),
   volume: z.number().min(0.1).max(10.0).default(1.0),
-  pitch: z.number().min(-12).max(12).default(0),
-  save_as_memory: z.boolean().default(false),
-  memory_title: z.string().optional(),
-  memory_description: z.string().optional()
+  pitch: z.number().min(-12).max(12).default(0)
 })
 
 type SynthesisFormData = z.infer<typeof synthesisSchema>
@@ -40,8 +37,11 @@ export default function VoiceSynthesizer() {
   const [synthesizedAudio, setSynthesizedAudio] = useState<{
     url: string
     duration: number
+    jobId?: string
   } | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [showSaveModal, setShowSaveModal] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   
   const {
     register,
@@ -56,12 +56,11 @@ export default function VoiceSynthesizer() {
       speed: 1.0,
       volume: 1.0,
       pitch: 0,
-      save_as_memory: false,
       voice_profile_id: preselectedVoiceId || ''
     }
   })
   
-  const saveAsMemory = watch('save_as_memory')
+  // Removed save_as_memory - now handled after generation
   const textLength = watch('text')?.length || 0
   
   // Cost estimation based on character count
@@ -137,7 +136,8 @@ export default function VoiceSynthesizer() {
       // Preprocess text to handle pause markers
       const processedData = {
         ...data,
-        text: preprocessText(data.text)
+        text: preprocessText(data.text),
+        save_as_memory: false // Never save during initial synthesis
       }
       
       const response = await fetch('/api/voice/synthesize', {
@@ -154,7 +154,8 @@ export default function VoiceSynthesizer() {
       
       setSynthesizedAudio({
         url: result.audio_url,
-        duration: result.duration
+        duration: result.duration,
+        jobId: result.synthesis_job_id
       })
       
       if (result.saved_as_memory) {
@@ -177,6 +178,40 @@ export default function VoiceSynthesizer() {
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
+  }
+  
+  const handleSaveAsMemory = async (title: string, description: string) => {
+    if (!synthesizedAudio?.jobId) return
+    
+    setIsSaving(true)
+    setError(null)
+    
+    try {
+      const response = await fetch('/api/voice/synthesize/save-as-memory', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          synthesis_job_id: synthesizedAudio.jobId,
+          title,
+          description
+        })
+      })
+      
+      const result = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to save as memory')
+      }
+      
+      // Close modal and show success
+      setShowSaveModal(false)
+      // Optionally redirect to memories page or show success message
+      alert('Voice memory saved successfully!')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to save memory')
+    } finally {
+      setIsSaving(false)
+    }
   }
   
   if (isLoading) {
@@ -350,54 +385,6 @@ export default function VoiceSynthesizer() {
             </div>
           </div>
           
-          <div className="bg-gradient-to-br from-sage-mist/30 to-warm-sand/20 rounded-organic p-6">
-            <label className="flex items-start space-x-3 cursor-pointer group">
-              <input
-                {...register('save_as_memory')}
-                type="checkbox"
-                className="mt-0.5 rounded-organic"
-              />
-              <div className="flex-1">
-                <div className="font-medium text-sage-deep flex items-center space-x-2">
-                  <span>Preserve in Memory Collection</span>
-                  <Heart className="w-4 h-4 text-sage-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <p className="text-body-sm text-text-secondary mt-1">
-                  Keep this voice memory safe in your eternal garden
-                </p>
-              </div>
-            </label>
-            
-            {saveAsMemory && (
-              <div className="mt-4 space-y-4 pl-6">
-                <div>
-                  <label htmlFor="memory_title" className="block text-text-primary font-medium mb-2">
-                    Memory Title
-                  </label>
-                  <input
-                    {...register('memory_title')}
-                    type="text"
-                    id="memory_title"
-                    className="input-field"
-                    placeholder="Name this precious moment..."
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="memory_description" className="block text-text-primary font-medium mb-2">
-                    Memory Description
-                  </label>
-                  <textarea
-                    {...register('memory_description')}
-                    id="memory_description"
-                    rows={2}
-                    className="input-field resize-none"
-                    placeholder="What makes this memory special?..."
-                  />
-                </div>
-              </div>
-            )}
-          </div>
           
           {error && (
             <div className="bg-gradient-to-r from-error-light/20 to-warm-sand/20 rounded-organic p-5 flex items-start space-x-3">
@@ -452,18 +439,118 @@ export default function VoiceSynthesizer() {
               <span>Download</span>
             </button>
             
-            {!saveAsMemory && (
-              <button
-                onClick={() => window.location.href = '/memories'}
-                className="btn-primary flex items-center space-x-2"
-              >
-                <Heart className="w-5 h-5" />
-                <span>Visit Memory Garden</span>
-              </button>
-            )}
+            <button
+              onClick={() => setShowSaveModal(true)}
+              className="btn-primary flex items-center space-x-2"
+            >
+              <Heart className="w-5 h-5" />
+              <span>Save to Memory Collection</span>
+            </button>
           </div>
           </CardContent>
         </MemoryOrganicCard>
+      )}
+      
+      {/* Save as Memory Modal */}
+      {showSaveModal && synthesizedAudio && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 animate-fade-in">
+          <MemoryOrganicCard className="w-full max-w-lg animate-scale-in">
+            <CardHeader className="relative">
+              <button
+                onClick={() => setShowSaveModal(false)}
+                className="absolute right-4 top-4 text-text-secondary hover:text-text-primary transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <CardTitle className="font-serif text-h3 text-sage-deep flex items-center space-x-3">
+                <Heart className="w-6 h-6 text-sage-primary" />
+                <span>Save to Memory Collection</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  const formData = new FormData(e.currentTarget)
+                  const title = formData.get('title') as string
+                  const description = formData.get('description') as string
+                  handleSaveAsMemory(title, description)
+                }}
+                className="space-y-4"
+              >
+                <div>
+                  <label htmlFor="memory-title" className="block text-text-primary font-medium mb-2">
+                    Memory Title <span className="text-error-primary">*</span>
+                  </label>
+                  <input
+                    id="memory-title"
+                    name="title"
+                    type="text"
+                    required
+                    className="input-field"
+                    placeholder="Name this precious moment..."
+                    defaultValue={`Voice Memory - ${new Date().toLocaleDateString()}`}
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="memory-description" className="block text-text-primary font-medium mb-2">
+                    Memory Description
+                  </label>
+                  <textarea
+                    id="memory-description"
+                    name="description"
+                    rows={3}
+                    className="input-field resize-none"
+                    placeholder="What makes this memory special?..."
+                  />
+                </div>
+                
+                <div className="bg-gradient-to-r from-sage-mist/30 to-warm-sand/20 rounded-organic p-4">
+                  <p className="text-caption text-text-secondary flex items-start">
+                    <Flower2 className="w-4 h-4 text-sage-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <span>This voice memory will be preserved in your eternal garden, ready to bloom whenever you need it.</span>
+                  </p>
+                </div>
+                
+                {error && (
+                  <div className="bg-gradient-to-r from-error-light/20 to-warm-sand/20 rounded-organic p-4 flex items-start space-x-3">
+                    <AlertCircle className="w-5 h-5 text-error-primary flex-shrink-0 mt-0.5" />
+                    <p className="text-error-deep text-body-sm">{error}</p>
+                  </div>
+                )}
+                
+                <div className="flex space-x-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowSaveModal(false)}
+                    className="btn-secondary flex-1"
+                    disabled={isSaving}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn-primary flex-1 flex items-center justify-center space-x-2"
+                    disabled={isSaving}
+                  >
+                    {isSaving ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>Saving...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Heart className="w-5 h-5" />
+                        <span>Save Memory</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </CardContent>
+          </MemoryOrganicCard>
+        </div>
       )}
     </div>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Search, Trash2, Download, Calendar, Volume2, Filter, RefreshCw, Eye, Flower2, TreePine, Heart, Wind } from 'lucide-react'
+import { Search, Trash2, Download, Calendar, Volume2, Filter, RefreshCw, Eye, Flower2, TreePine, Heart, Wind, Save, X, Loader2, AlertCircle } from 'lucide-react'
 import OrganicCard, { CardContent, CardHeader, CardTitle } from '@/components/ui/OrganicCard'
 import AudioPlayer from '@/components/audio/AudioPlayer'
 
@@ -60,6 +60,9 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
   // UI state
   const [expandedEntry, setExpandedEntry] = useState<string | null>(null)
   const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [showSaveModal, setShowSaveModal] = useState(false)
+  const [savingSynthesis, setSavingSynthesis] = useState<SynthesisEntry | null>(null)
+  const [isSaving, setIsSaving] = useState(false)
 
   // Fetch synthesis history
   const fetchHistory = async (page: number = 1) => {
@@ -135,6 +138,43 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
+  }
+  
+  const handleSaveAsMemory = async (title: string, description: string) => {
+    if (!savingSynthesis) return
+    
+    setIsSaving(true)
+    setError(null)
+    
+    try {
+      const response = await fetch('/api/voice/synthesize/save-as-memory', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          synthesis_job_id: savingSynthesis.id,
+          title,
+          description
+        })
+      })
+      
+      const result = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to save as memory')
+      }
+      
+      // Close modal and refresh
+      setShowSaveModal(false)
+      setSavingSynthesis(null)
+      alert('Voice memory saved successfully!')
+      
+      // Refresh the list
+      fetchHistory(pagination.page)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to save memory')
+    } finally {
+      setIsSaving(false)
+    }
   }
 
   // Format duration
@@ -343,13 +383,25 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
 
                   <div className="flex items-center space-x-2 ml-4">
                     {synthesis.status === 'completed' && synthesis.audio_url && (
-                      <button
-                        onClick={() => downloadAudio(synthesis)}
-                        className="p-2 text-text-secondary hover:text-sage-primary rounded-lg hover:bg-sage-mist/20 transition-colors"
-                        title="Download audio"
-                      >
-                        <Download className="w-4 h-4" />
-                      </button>
+                      <>
+                        <button
+                          onClick={() => {
+                            setSavingSynthesis(synthesis)
+                            setShowSaveModal(true)
+                          }}
+                          className="p-2 text-text-secondary hover:text-sage-primary rounded-lg hover:bg-sage-mist/20 transition-colors"
+                          title="Save as memory"
+                        >
+                          <Heart className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => downloadAudio(synthesis)}
+                          className="p-2 text-text-secondary hover:text-sage-primary rounded-lg hover:bg-sage-mist/20 transition-colors"
+                          title="Download audio"
+                        >
+                          <Download className="w-4 h-4" />
+                        </button>
+                      </>
                     )}
                     
                     <button
@@ -448,6 +500,123 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
           </div>
           </CardContent>
         </OrganicCard>
+      )}
+      
+      {/* Save as Memory Modal */}
+      {showSaveModal && savingSynthesis && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 animate-fade-in">
+          <OrganicCard className="w-full max-w-lg animate-scale-in">
+            <CardHeader className="relative">
+              <button
+                onClick={() => {
+                  setShowSaveModal(false)
+                  setSavingSynthesis(null)
+                }}
+                className="absolute right-4 top-4 text-text-secondary hover:text-text-primary transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <CardTitle className="font-serif text-h3 text-sage-deep flex items-center space-x-3">
+                <Heart className="w-6 h-6 text-sage-primary" />
+                <span>Save to Memory Collection</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  const formData = new FormData(e.currentTarget)
+                  const title = formData.get('title') as string
+                  const description = formData.get('description') as string
+                  handleSaveAsMemory(title, description)
+                }}
+                className="space-y-4"
+              >
+                <div className="bg-gradient-to-r from-sage-mist/30 to-warm-sand/20 rounded-organic p-4 mb-4">
+                  <p className="text-caption text-text-secondary">
+                    <strong>Voice:</strong> {savingSynthesis.voice_profile.name}<br />
+                    <strong>Text:</strong> {savingSynthesis.textPreview}
+                    {savingSynthesis.textPreview !== savingSynthesis.text && '...'}
+                  </p>
+                </div>
+                
+                <div>
+                  <label htmlFor="memory-title" className="block text-text-primary font-medium mb-2">
+                    Memory Title <span className="text-error-primary">*</span>
+                  </label>
+                  <input
+                    id="memory-title"
+                    name="title"
+                    type="text"
+                    required
+                    className="input-field"
+                    placeholder="Name this precious moment..."
+                    defaultValue={`${savingSynthesis.voice_profile.name} - ${new Date(savingSynthesis.created_at).toLocaleDateString()}`}
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="memory-description" className="block text-text-primary font-medium mb-2">
+                    Memory Description
+                  </label>
+                  <textarea
+                    id="memory-description"
+                    name="description"
+                    rows={3}
+                    className="input-field resize-none"
+                    placeholder="What makes this memory special?..."
+                    defaultValue={`Created on ${new Date(savingSynthesis.created_at).toLocaleString()}`}
+                  />
+                </div>
+                
+                <div className="bg-gradient-to-r from-sage-mist/30 to-warm-sand/20 rounded-organic p-4">
+                  <p className="text-caption text-text-secondary flex items-start">
+                    <Flower2 className="w-4 h-4 text-sage-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <span>This voice memory will be preserved in your eternal garden, ready to bloom whenever you need it.</span>
+                  </p>
+                </div>
+                
+                {error && (
+                  <div className="bg-gradient-to-r from-error-light/20 to-warm-sand/20 rounded-organic p-4 flex items-start space-x-3">
+                    <AlertCircle className="w-5 h-5 text-error-primary flex-shrink-0 mt-0.5" />
+                    <p className="text-error-deep text-body-sm">{error}</p>
+                  </div>
+                )}
+                
+                <div className="flex space-x-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowSaveModal(false)
+                      setSavingSynthesis(null)
+                    }}
+                    className="btn-secondary flex-1"
+                    disabled={isSaving}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn-primary flex-1 flex items-center justify-center space-x-2"
+                    disabled={isSaving}
+                  >
+                    {isSaving ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>Saving...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Heart className="w-5 h-5" />
+                        <span>Save Memory</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </CardContent>
+          </OrganicCard>
+        </div>
       )}
     </div>
   )
