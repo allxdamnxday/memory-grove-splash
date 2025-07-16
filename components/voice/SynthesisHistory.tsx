@@ -327,7 +327,7 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
           {syntheses.map((synthesis, index) => (
             <OrganicCard 
               key={synthesis.id} 
-              className="overflow-hidden animate-scale-in"
+              className="animate-scale-in"
               style={{ animationDelay: `${index * 100}ms` }}
               colorScheme={synthesis.status === 'completed' ? 'sage' : 'earth'}
               withBlob={synthesis.status === 'completed'}

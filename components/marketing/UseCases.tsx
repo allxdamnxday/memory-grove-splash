@@ -13,9 +13,39 @@ import {
 import Waveform from '@/components/ui/Waveform'
 import Button from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
+import { OptimizedImage } from '@/components/ui/OptimizedImage'
+import featureDaughterMetadata from '@/public/images/features/feature_daughter_showing_grandma.meta.json'
+import featureGrandmaMetadata from '@/public/images/features/feature_grandma_recording.meta.json'
+import featureAudioWaveMetadata from '@/public/images/features/feature_audio_wave_forest.meta.json'
 
 export default function UseCases() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
+
+  // Map feature images to specific use cases
+  const getFeatureImage = (useCaseId: string) => {
+    switch (useCaseId) {
+      case 'birthday':
+        return {
+          src: '/images/features/feature_daughter_showing_grandma-original.webp',
+          metadata: featureDaughterMetadata,
+          alt: 'Daughter sharing precious memories with grandmother on her birthday'
+        }
+      case 'comfort':
+        return {
+          src: '/images/features/feature_grandma_recording-original.webp',
+          metadata: featureGrandmaMetadata,
+          alt: 'Grandmother recording comforting messages for her family'
+        }
+      case 'wedding':
+        return {
+          src: '/images/features/feature_audio_wave_forest-original.webp',
+          metadata: featureAudioWaveMetadata,
+          alt: 'Voice waves creating a forest of memories for special occasions'
+        }
+      default:
+        return null
+    }
+  }
 
   const getIcon = (iconName: string) => {
     const iconProps = { className: "w-10 h-10 md:w-12 md:h-12" }
@@ -52,28 +82,48 @@ export default function UseCases() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {useCases.map((useCase, index) => (
-            <div
-              key={useCase.id}
-              className={cn(
-                "group relative rounded-organic p-6 md:p-8 transition-all duration-500 transform hover:-translate-y-1 animate-fade-in cursor-pointer",
-                index % 2 === 0 ? "bg-warm-white" : "bg-sage-mist/10",
-                "hover:shadow-elevated"
-              )}
-              style={{ animationDelay: `${index * 100}ms` }}
-              onMouseEnter={() => setHoveredCard(useCase.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              {/* Heartbeat effect on hover */}
-              <div className={cn(
-                "absolute inset-0 rounded-organic bg-gradient-to-br from-sage-primary/5 to-warm-primary/5 opacity-0 transition-opacity duration-500",
-                hoveredCard === useCase.id && "opacity-100 animate-pulse"
-              )} />
+          {useCases.map((useCase, index) => {
+            const featureImage = getFeatureImage(useCase.id)
+            
+            return (
+              <div
+                key={useCase.id}
+                className={cn(
+                  "group relative rounded-organic overflow-hidden transition-all duration-500 transform hover:-translate-y-1 animate-fade-in cursor-pointer",
+                  index % 2 === 0 ? "bg-warm-white" : "bg-sage-mist/10",
+                  "hover:shadow-elevated"
+                )}
+                style={{ animationDelay: `${index * 100}ms` }}
+                onMouseEnter={() => setHoveredCard(useCase.id)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                {/* Feature Image for first three cards */}
+                {featureImage && index < 3 && (
+                  <div className="relative h-48 md:h-56 overflow-hidden">
+                    <OptimizedImage
+                      src={featureImage.src}
+                      alt={featureImage.alt}
+                      width={featureImage.metadata.width}
+                      height={featureImage.metadata.height}
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
+                      containerClassName="w-full h-full"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      blurDataURL={featureImage.metadata.blurDataURL}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  </div>
+                )}
 
-              <div className="relative z-10">
-                <div className="text-sage-primary mb-4 transition-transform duration-300 group-hover:scale-110">
-                  {getIcon(useCase.icon)}
-                </div>
+                {/* Heartbeat effect on hover */}
+                <div className={cn(
+                  "absolute inset-0 rounded-organic bg-gradient-to-br from-sage-primary/5 to-warm-primary/5 opacity-0 transition-opacity duration-500",
+                  hoveredCard === useCase.id && "opacity-100 animate-pulse"
+                )} />
+
+                <div className="relative z-10 p-6 md:p-8">
+                  <div className="text-sage-primary mb-4 transition-transform duration-300 group-hover:scale-110">
+                    {getIcon(useCase.icon)}
+                  </div>
                 
                 <h3 className="font-serif text-h3 md:text-h2 text-sage-deep mb-3 leading-tight">
                   {useCase.title}
@@ -102,9 +152,10 @@ export default function UseCases() {
                     </p>
                   </div>
                 )}
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Call to action */}

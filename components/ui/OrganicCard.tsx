@@ -8,6 +8,7 @@ export interface OrganicCardProps extends Omit<CardProps, 'shape'> {
   colorScheme?: 'sage' | 'dawn' | 'earth' | 'default'
   withBlob?: boolean
   blobPosition?: 'top-right' | 'bottom-left' | 'center'
+  safePadding?: boolean
   children: ReactNode
 }
 
@@ -17,6 +18,7 @@ const OrganicCard = forwardRef<HTMLDivElement, OrganicCardProps>(
     colorScheme = 'default',
     withBlob = false,
     blobPosition = 'top-right',
+    safePadding = false,
     variant = 'nature',
     animate = false,
     children,
@@ -49,23 +51,28 @@ const OrganicCard = forwardRef<HTMLDivElement, OrganicCardProps>(
         variant={variant}
         animate={animate}
         className={cn(
-          'relative overflow-hidden',
+          'relative',
           colorScheme !== 'default' && `bg-gradient-to-br ${colorSchemes[colorScheme]}`,
           className
         )}
         {...props}
       >
         {withBlob && (
-          <div 
-            className={cn(
-              'absolute w-64 h-64 rounded-organic blur-3xl animate-pulse pointer-events-none',
-              blobPositions[blobPosition],
-              blobColors[colorScheme]
-            )}
-            style={{ animationDuration: '4s' }}
-          />
+          <div className="absolute inset-0 overflow-hidden rounded-organic pointer-events-none">
+            <div 
+              className={cn(
+                'absolute w-64 h-64 rounded-organic blur-3xl animate-pulse',
+                blobPositions[blobPosition],
+                blobColors[colorScheme]
+              )}
+              style={{ animationDuration: '4s' }}
+            />
+          </div>
         )}
-        <div className="relative z-10">
+        <div className={cn(
+          "relative z-10",
+          safePadding && "p-4 sm:p-6 lg:p-8"
+        )}>
           {children}
         </div>
       </Card>

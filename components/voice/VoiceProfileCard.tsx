@@ -90,7 +90,7 @@ export default function VoiceProfileCard({
 
   return (
     <OrganicCard 
-      className={`p-6 transition-all duration-500 hover:shadow-elevated ${!profile.is_active ? 'opacity-60' : ''} ${
+      className={`p-6 transition-all duration-500 hover:shadow-elevated overflow-visible ${!profile.is_active ? 'opacity-60' : ''} ${
         profile.training_status === 'processing' ? 'animate-pulse' : ''
       }`}
       colorScheme={getCardColorScheme()}

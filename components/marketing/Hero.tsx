@@ -1,6 +1,7 @@
 import Button from '@/components/ui/Button'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import heroMetadata from '@/public/images/hero/Hero_Image_Raw.meta.json'
+import treeRingMetadata from '@/public/images/hero/hero_tree_ring_texture.meta.json'
 
 export default function Hero() {
   return (
@@ -23,6 +24,20 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
         {/* Vignette effect */}
         <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/40" />
+      </div>
+      
+      {/* Subtle tree ring texture overlay */}
+      <div className="absolute inset-0 opacity-5 mix-blend-overlay">
+        <OptimizedImage
+          src="/images/hero/hero_tree_ring_texture-original.webp"
+          alt=""
+          width={treeRingMetadata.width}
+          height={treeRingMetadata.height}
+          className="object-cover w-full h-full scale-150"
+          containerClassName="w-full h-full"
+          sizes="100vw"
+          blurDataURL={treeRingMetadata.blurDataURL}
+        />
       </div>
       
       {/* Subtle organic shape overlays */}
