@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -26,6 +26,7 @@ type SignupFormData = z.infer<typeof signupSchema>
 
 export default function SignupForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -34,10 +35,19 @@ export default function SignupForm() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
   })
+
+  // Pre-populate email from URL parameter if present
+  useEffect(() => {
+    const emailParam = searchParams.get('email')
+    if (emailParam) {
+      setValue('email', decodeURIComponent(emailParam))
+    }
+  }, [searchParams, setValue])
 
   const onSubmit = async (data: SignupFormData) => {
     setIsLoading(true)

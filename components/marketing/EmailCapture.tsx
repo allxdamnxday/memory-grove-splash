@@ -1,10 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 
 export default function EmailCapture() {
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
@@ -15,23 +17,11 @@ export default function EmailCapture() {
     setMessage(null)
 
     try {
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      })
-
-      if (response.ok) {
-        setMessage({ type: 'success', text: 'Your journey begins. Welcome to the grove!' })
-        setEmail('')
-      } else {
-        setMessage({ type: 'error', text: 'The path is unclear. Please try again.' })
-      }
+      // Instead of subscribing, redirect to signup with the email
+      const encodedEmail = encodeURIComponent(email)
+      router.push(`/signup?email=${encodedEmail}`)
     } catch (error) {
       setMessage({ type: 'error', text: 'The grove is resting. Please try again later.' })
-    } finally {
       setIsSubmitting(false)
     }
   }
