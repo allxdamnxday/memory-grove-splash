@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Mic, MoreVertical, Check, AlertCircle, Loader2, Trash2, Edit } from 'lucide-react'
+import { Mic, MoreVertical, Check, AlertCircle, Loader2, Trash2, Edit, Flower2, Sprout, TreePine, Sparkles, Droplets } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
-import { FeatureOrganicCard, CardContent, CardFooter } from '@/components/ui/OrganicCard'
+import OrganicCard, { CardContent, CardFooter } from '@/components/ui/OrganicCard'
 import Card from '@/components/ui/Card'
 
 interface VoiceProfile {
@@ -39,26 +39,26 @@ export default function VoiceProfileCard({
   const getStatusIcon = () => {
     switch (profile.training_status) {
       case 'completed':
-        return <Check className="w-5 h-5 text-sage-primary" />
+        return <Flower2 className="w-6 h-6 text-sage-primary" />
       case 'processing':
-        return <Loader2 className="w-5 h-5 text-warm-primary animate-spin" />
+        return <Sprout className="w-5 h-5 text-warm-primary animate-pulse" />
       case 'failed':
-        return <AlertCircle className="w-5 h-5 text-error-primary" />
+        return <Droplets className="w-5 h-5 text-error-primary" />
       default:
-        return <Mic className="w-5 h-5 text-text-light" />
+        return <TreePine className="w-5 h-5 text-text-light" />
     }
   }
   
   const getStatusText = () => {
     switch (profile.training_status) {
       case 'completed':
-        return 'Ready to use'
+        return 'Bloomed & Ready'
       case 'processing':
-        return 'Training in progress...'
+        return 'Growing...'
       case 'failed':
-        return 'Training failed'
+        return 'Needs nurturing'
       default:
-        return 'Not trained'
+        return 'Waiting to grow'
     }
   }
   
@@ -75,18 +75,44 @@ export default function VoiceProfileCard({
     }
   }
   
+  const getCardColorScheme = () => {
+    switch (profile.training_status) {
+      case 'completed':
+        return 'sage'
+      case 'processing':
+        return 'dawn'
+      case 'failed':
+        return 'earth'
+      default:
+        return 'default'
+    }
+  }
+
   return (
-    <div className={`bg-white rounded-lg shadow-soft p-6 ${!profile.is_active ? 'opacity-60' : ''}`}>
+    <OrganicCard 
+      className={`p-6 transition-all duration-500 hover:shadow-elevated ${!profile.is_active ? 'opacity-60' : ''} ${
+        profile.training_status === 'processing' ? 'animate-pulse' : ''
+      }`}
+      colorScheme={getCardColorScheme()}
+      withBlob={profile.training_status === 'completed'}
+      animate="scale-in"
+      variant="elevated"
+    >
       <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 rounded-full bg-sage-mist flex items-center justify-center">
+        <div className="flex items-center space-x-4">
+          <div className={`w-14 h-14 rounded-organic flex items-center justify-center transition-all ${
+            profile.training_status === 'completed' ? 'bg-gradient-to-br from-sage-light to-sage-mist shadow-soft' :
+            profile.training_status === 'processing' ? 'bg-gradient-to-br from-warm-sand to-accent-dawn' :
+            profile.training_status === 'failed' ? 'bg-gradient-to-br from-error-light/30 to-warm-sand' :
+            'bg-gradient-to-br from-warm-sand/50 to-sage-mist/30'
+          }`}>
             {getStatusIcon()}
           </div>
-          <div>
+          <div className="flex-1">
             <h3 className="font-serif text-h4 text-sage-deep">
               {profile.name}
             </h3>
-            <p className={`text-body-sm ${getStatusColor()}`}>
+            <p className={`text-body-sm font-medium ${getStatusColor()}`}>
               {getStatusText()}
             </p>
           </div>
@@ -109,9 +135,10 @@ export default function VoiceProfileCard({
                     onTrain(profile)
                     setShowMenu(false)
                   }}
-                  className="w-full text-left px-4 py-2 text-body-sm text-text-secondary hover:bg-sage-mist/20 hover:text-sage-primary transition-colors rounded-organic"
+                  className="w-full text-left px-4 py-2 text-body-sm text-text-secondary hover:bg-sage-mist/20 hover:text-sage-primary transition-colors flex items-center space-x-2"
                 >
-                  Train Voice
+                  <Sprout className="w-4 h-4" />
+                  <span>Nurture Voice</span>
                 </button>
               )}
               
@@ -172,19 +199,22 @@ export default function VoiceProfileCard({
       )}
       
       <div className="flex items-center justify-between text-caption text-text-light">
-        <span>Model: {profile.model_type === 'speech-02-hd' ? 'HD Quality' : 'Turbo'}</span>
+        <span className="flex items-center space-x-1">
+          <Sparkles className="w-3 h-3" />
+          <span>{profile.model_type === 'speech-02-hd' ? 'Crystal Clear' : 'Swift Growth'}</span>
+        </span>
         <span>
           {profile.training_completed_at 
-            ? `Trained ${formatDistanceToNow(new Date(profile.training_completed_at))} ago`
-            : `Created ${formatDistanceToNow(new Date(profile.created_at))} ago`
+            ? `Bloomed ${formatDistanceToNow(new Date(profile.training_completed_at))} ago`
+            : `Planted ${formatDistanceToNow(new Date(profile.created_at))} ago`
           }
         </span>
       </div>
       
       {profile.training_status === 'completed' && !profile.is_active && (
-        <div className="mt-4 bg-warm-sand/20 rounded-lg p-3">
-          <p className="text-warm-primary text-body-sm">
-            This voice profile is deactivated
+        <div className="mt-4 bg-gradient-to-r from-warm-sand/30 to-sage-mist/20 rounded-organic p-4">
+          <p className="text-warm-deep text-body-sm font-medium text-center">
+            This voice rests in peaceful slumber
           </p>
         </div>
       )}
@@ -193,13 +223,13 @@ export default function VoiceProfileCard({
         <div className="mt-4">
           <a
             href={`/memories/voice-synthesis?voice=${profile.id}`}
-            className="btn-primary w-full text-center flex items-center justify-center space-x-2"
+            className="btn-primary w-full text-center flex items-center justify-center space-x-2 group"
           >
-            <Mic className="w-4 h-4" />
-            <span>Use This Voice</span>
+            <Sparkles className="w-4 h-4 transition-transform group-hover:scale-110" />
+            <span>Speak With This Voice</span>
           </a>
         </div>
       )}
-    </div>
+    </OrganicCard>
   )
 }

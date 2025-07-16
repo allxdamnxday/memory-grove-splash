@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Search, Trash2, Download, Calendar, Volume2, Filter, RefreshCw, Eye } from 'lucide-react'
+import { Search, Trash2, Download, Calendar, Volume2, Filter, RefreshCw, Eye, Flower2, TreePine, Heart, Wind } from 'lucide-react'
+import OrganicCard, { CardContent, CardHeader, CardTitle } from '@/components/ui/OrganicCard'
 import AudioPlayer from '@/components/audio/AudioPlayer'
 
 interface VoiceProfile {
@@ -195,17 +196,23 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Header & Filters */}
-      <div className="bg-white rounded-lg shadow-soft p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="font-serif text-h3 text-sage-deep">Synthesis History</h2>
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className="btn-secondary flex items-center space-x-2"
-          >
-            <Filter className="w-4 h-4" />
-            <span>Filters</span>
-          </button>
-        </div>
+      <OrganicCard>
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <CardTitle className="font-serif text-h3 text-sage-deep flex items-center space-x-3">
+              <TreePine className="w-6 h-6 text-sage-primary" />
+              <span>Memory Collection</span>
+            </CardTitle>
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className="btn-secondary flex items-center space-x-2"
+            >
+              <Filter className="w-4 h-4" />
+              <span>Filter Memories</span>
+            </button>
+          </div>
+        </CardHeader>
+        <CardContent>
 
         {showFilters && (
           <div className="space-y-4 p-4 bg-sage-mist/20 rounded-lg">
@@ -220,7 +227,7 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
                     type="text"
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
-                    placeholder="Search synthesis text..."
+                    placeholder="Search your memories..."
                     className="input-field pl-10"
                     onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                   />
@@ -229,14 +236,14 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
               
               <div>
                 <label className="block text-body-sm font-medium text-text-primary mb-2">
-                  Voice Profile
+                  Voice Garden
                 </label>
                 <select
                   value={selectedVoiceProfile}
                   onChange={(e) => setSelectedVoiceProfile(e.target.value)}
                   className="input-field"
                 >
-                  <option value="">All Profiles</option>
+                  <option value="">All Voices</option>
                   {voiceProfiles.map(profile => (
                     <option key={profile.id} value={profile.id}>
                       {profile.name}
@@ -262,22 +269,31 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
             {error}
           </div>
         )}
-      </div>
+        </CardContent>
+      </OrganicCard>
 
       {/* Results */}
       {syntheses.length === 0 ? (
-        <div className="bg-white rounded-lg shadow-soft p-8 text-center">
-          <Volume2 className="w-16 h-16 text-text-light mx-auto mb-4" />
-          <h3 className="font-serif text-h4 text-sage-deep mb-2">No Synthesis History</h3>
-          <p className="text-text-secondary">
-            Your generated speech will appear here once you start creating voice memories.
+        <div className="bg-gradient-to-br from-sage-mist/30 to-warm-sand/20 rounded-organic p-12 text-center animate-scale-in">
+          <Wind className="w-16 h-16 text-sage-primary mx-auto mb-4 animate-pulse" />
+          <h3 className="font-serif text-h3 text-sage-deep mb-3">Your Memory Collection Awaits</h3>
+          <p className="text-text-secondary max-w-md mx-auto leading-relaxed">
+            When you breathe life into words, they&apos;ll gather here—a garden 
+            of voices ready to bloom when needed.
           </p>
         </div>
       ) : (
-        <div className="space-y-4">
-          {syntheses.map(synthesis => (
-            <div key={synthesis.id} className="bg-white rounded-lg shadow-soft overflow-hidden">
-              <div className="p-6">
+        <div className="space-y-6">
+          {syntheses.map((synthesis, index) => (
+            <OrganicCard 
+              key={synthesis.id} 
+              className="overflow-hidden animate-scale-in"
+              style={{ animationDelay: `${index * 100}ms` }}
+              colorScheme={synthesis.status === 'completed' ? 'sage' : 'earth'}
+              withBlob={synthesis.status === 'completed'}
+              blobPosition="center"
+            >
+              <CardContent className="p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-3 mb-2">
@@ -287,12 +303,13 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
                       <span className="text-body-sm text-text-secondary">
                         {synthesis.emotion}
                       </span>
-                      <span className={`px-2 py-1 rounded text-caption font-medium ${
-                        synthesis.status === 'completed' ? 'bg-sage-mist text-sage-deep' :
-                        synthesis.status === 'failed' ? 'bg-error-light text-error-primary' :
-                        'bg-warm-sand text-text-secondary'
+                      <span className={`px-3 py-1.5 rounded-organic text-caption font-medium flex items-center space-x-1 ${
+                        synthesis.status === 'completed' ? 'bg-sage-light/30 text-sage-deep' :
+                        synthesis.status === 'failed' ? 'bg-error-light/30 text-error-deep' :
+                        'bg-warm-sand/50 text-text-secondary'
                       }`}>
-                        {synthesis.status}
+                        {synthesis.status === 'completed' && <Flower2 className="w-3 h-3" />}
+                        <span>{synthesis.status === 'completed' ? 'Bloomed' : synthesis.status === 'failed' ? 'Needs Care' : 'Growing'}</span>
                       </span>
                     </div>
                     
@@ -348,8 +365,8 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
 
                 {/* Expanded text */}
                 {expandedEntry === synthesis.id && (
-                  <div className="mt-4 p-4 bg-sage-mist/20 rounded-lg">
-                    <p className="text-text-primary text-body-sm whitespace-pre-wrap">
+                  <div className="mt-4 p-5 bg-gradient-to-r from-sage-mist/30 to-warm-sand/20 rounded-organic">
+                    <p className="text-text-primary text-body-sm whitespace-pre-wrap leading-relaxed">
                       {synthesis.text}
                     </p>
                   </div>
@@ -367,15 +384,16 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
                     />
                   </div>
                 )}
-              </div>
-            </div>
+              </CardContent>
+            </OrganicCard>
           ))}
         </div>
       )}
 
       {/* Pagination */}
       {pagination.totalPages > 1 && (
-        <div className="bg-white rounded-lg shadow-soft p-6">
+        <OrganicCard>
+          <CardContent className="p-6">
           <div className="flex items-center justify-between">
             <div className="text-body-sm text-text-secondary">
               Showing {((pagination.page - 1) * pagination.limit) + 1} to{' '}
@@ -428,7 +446,8 @@ export default function SynthesisHistory({ voiceProfiles = [], className = '' }:
               </button>
             </div>
           </div>
-        </div>
+          </CardContent>
+        </OrganicCard>
       )}
     </div>
   )

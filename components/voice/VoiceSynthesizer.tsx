@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Volume2, Download, Save, AlertCircle, Sparkles, Loader2 } from 'lucide-react'
+import { Volume2, Download, Save, AlertCircle, Sparkles, Loader2, Heart, Flower2, TreePine, Wind } from 'lucide-react'
+import { MemoryOrganicCard, CardContent, CardHeader, CardTitle } from '@/components/ui/OrganicCard'
 import AudioPlayer from '@/components/audio/AudioPlayer'
 import { useSearchParams } from 'next/navigation'
 
@@ -70,6 +71,17 @@ export default function VoiceSynthesizer() {
   }
   
   const estimatedCost = estimateCost(textLength)
+  
+  // Nature-inspired emotion labels
+  const emotionLabels = {
+    neutral: 'Peaceful',
+    happy: 'Joyful',
+    sad: 'Melancholic',
+    angry: 'Stormy',
+    fearful: 'Trembling',
+    disgusted: 'Bitter',
+    surprised: 'Awakened'
+  }
   
   // Text preprocessing for pause markers
   const preprocessText = (text: string) => {
@@ -177,35 +189,43 @@ export default function VoiceSynthesizer() {
   
   if (voiceProfiles.length === 0) {
     return (
-      <div className="bg-sage-mist/30 rounded-lg p-8 text-center">
-        <Volume2 className="w-16 h-16 text-sage-primary mx-auto mb-4" />
-        <h3 className="font-serif text-h4 text-sage-deep mb-2">No Voice Profiles Available</h3>
-        <p className="text-text-secondary mb-6">
-          You need to create and train a voice profile before you can synthesize speech.
+      <div className="bg-gradient-to-br from-sage-mist/30 to-warm-sand/20 rounded-organic p-12 text-center animate-scale-in">
+        <TreePine className="w-16 h-16 text-sage-primary mx-auto mb-4" />
+        <h3 className="font-serif text-h3 text-sage-deep mb-3">Your Voice Garden Is Empty</h3>
+        <p className="text-text-secondary mb-8 max-w-md mx-auto leading-relaxed">
+          Before words can bloom into voice, you must first plant 
+          the seeds of your sound in the garden.
         </p>
-        <a href="/memories/voice-profiles" className="btn-primary">
-          Manage Voice Profiles
+        <a href="/memories/voice-profiles" className="btn-primary organic-seed">
+          <Sparkles className="w-5 h-5 mr-2" />
+          Visit Your Voice Garden
         </a>
       </div>
     )
   }
   
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <div className="bg-white rounded-lg shadow-soft p-6">
-        <h2 className="font-serif text-h3 text-sage-deep mb-6">Create Voice Memory</h2>
+    <div className="max-w-4xl mx-auto space-y-8">
+      <MemoryOrganicCard className="overflow-visible">
+        <CardHeader className="pb-8">
+          <CardTitle className="font-serif text-h2 text-sage-deep flex items-center justify-center space-x-3">
+            <Wind className="w-8 h-8 text-sage-primary" />
+            <span>Breathe Life Into Words</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
             <label htmlFor="voice_profile_id" className="block text-text-primary font-medium mb-2">
-              Voice Profile *
+              Choose Your Voice <Heart className="w-4 h-4 text-sage-primary inline ml-1" />
             </label>
             <select
               {...register('voice_profile_id')}
               id="voice_profile_id"
               className="input-field"
             >
-              <option value="">Select a voice profile</option>
+              <option value="">Select from your garden</option>
               {voiceProfiles.map(profile => (
                 <option key={profile.id} value={profile.id}>
                   {profile.name}
@@ -219,14 +239,14 @@ export default function VoiceSynthesizer() {
           
           <div>
             <label htmlFor="text" className="block text-text-primary font-medium mb-2">
-              Text to Speak *
+              Words to Bring to Life <Sparkles className="w-4 h-4 text-accent-dawn inline ml-1" />
             </label>
             <textarea
               {...register('text')}
               id="text"
               rows={6}
               className="input-field resize-none"
-              placeholder="Enter the text you want to convert to speech..."
+              placeholder="Write the words your voice will speak across time..."
             />
             <div className="mt-1 flex justify-between text-caption">
               <span className={textLength > 4500 ? 'text-error-primary' : 'text-text-light'}>
@@ -239,10 +259,11 @@ export default function VoiceSynthesizer() {
               )}
             </div>
             
-            <div className="mt-2 p-3 bg-sage-mist/20 rounded-lg">
-              <p className="text-caption text-text-secondary">
-                💡 <strong>Tip:</strong> Add pauses to your speech using <code className="bg-white px-1 rounded text-sage-deep">&lt;#2.5#&gt;</code> where the number is seconds (0.01-99.99). 
-                Example: &ldquo;Hello there. &lt;#1.5#&gt; How are you today?&rdquo;
+            <div className="mt-3 p-4 bg-gradient-to-r from-sage-mist/30 to-warm-sand/20 rounded-organic">
+              <p className="text-caption text-text-secondary flex items-start">
+                <Flower2 className="w-4 h-4 text-sage-primary mr-2 mt-0.5 flex-shrink-0" />
+                <span><strong>Garden Tip:</strong> Add moments of silence like nature&apos;s pauses. Use <code className="bg-white/60 px-1.5 py-0.5 rounded text-sage-deep font-mono text-xs">&lt;#2.5#&gt;</code> for seconds of quiet (0.01-99.99). 
+                Like: &ldquo;I love you... &lt;#1.5#&gt; always remember that.&rdquo;</span>
               </p>
             </div>
             
@@ -254,26 +275,26 @@ export default function VoiceSynthesizer() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="emotion" className="block text-text-primary font-medium mb-2">
-                Emotion
+                Feeling
               </label>
               <select
                 {...register('emotion')}
                 id="emotion"
                 className="input-field"
               >
-                <option value="neutral">Neutral</option>
-                <option value="happy">Happy</option>
-                <option value="sad">Sad</option>
-                <option value="angry">Angry</option>
-                <option value="fearful">Fearful</option>
-                <option value="disgusted">Disgusted</option>
-                <option value="surprised">Surprised</option>
+                <option value="neutral">Peaceful</option>
+                <option value="happy">Joyful</option>
+                <option value="sad">Melancholic</option>
+                <option value="angry">Stormy</option>
+                <option value="fearful">Trembling</option>
+                <option value="disgusted">Bitter</option>
+                <option value="surprised">Awakened</option>
               </select>
             </div>
             
             <div>
               <label htmlFor="speed" className="block text-text-primary font-medium mb-2">
-                Speed: {watch('speed')}x
+                Pace: {watch('speed') === 1 ? 'Natural' : watch('speed') < 1 ? 'Gentle' : 'Flowing'}
               </label>
               <input
                 {...register('speed', { valueAsNumber: true })}
@@ -290,7 +311,7 @@ export default function VoiceSynthesizer() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="volume" className="block text-text-primary font-medium mb-2">
-                Volume: {watch('volume')}
+                Presence: {watch('volume') <= 0.5 ? 'Whisper' : watch('volume') <= 1.5 ? 'Gentle' : 'Strong'}
               </label>
               <input
                 {...register('volume', { valueAsNumber: true })}
@@ -302,15 +323,15 @@ export default function VoiceSynthesizer() {
                 className="w-full"
               />
               <div className="flex justify-between text-caption text-text-light mt-1">
-                <span>Quiet</span>
-                <span>Normal</span>
-                <span>Loud</span>
+                <span>Whisper</span>
+                <span>Gentle</span>
+                <span>Strong</span>
               </div>
             </div>
             
             <div>
               <label htmlFor="pitch" className="block text-text-primary font-medium mb-2">
-                Pitch: {watch('pitch') > 0 ? '+' : ''}{watch('pitch')}
+                Tone: {watch('pitch') === 0 ? 'Natural' : watch('pitch') < 0 ? 'Deeper' : 'Higher'}
               </label>
               <input
                 {...register('pitch', { valueAsNumber: true })}
@@ -322,24 +343,27 @@ export default function VoiceSynthesizer() {
                 className="w-full"
               />
               <div className="flex justify-between text-caption text-text-light mt-1">
-                <span>Lower</span>
+                <span>Deep</span>
                 <span>Natural</span>
-                <span>Higher</span>
+                <span>Light</span>
               </div>
             </div>
           </div>
           
-          <div className="bg-sage-mist/30 rounded-lg p-4">
-            <label className="flex items-start space-x-3 cursor-pointer">
+          <div className="bg-gradient-to-br from-sage-mist/30 to-warm-sand/20 rounded-organic p-6">
+            <label className="flex items-start space-x-3 cursor-pointer group">
               <input
                 {...register('save_as_memory')}
                 type="checkbox"
-                className="mt-0.5"
+                className="mt-0.5 rounded-organic"
               />
               <div className="flex-1">
-                <div className="font-medium text-sage-deep">Save as Memory</div>
-                <p className="text-body-sm text-text-secondary">
-                  Save this synthesized audio to your memories collection
+                <div className="font-medium text-sage-deep flex items-center space-x-2">
+                  <span>Preserve in Memory Collection</span>
+                  <Heart className="w-4 h-4 text-sage-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <p className="text-body-sm text-text-secondary mt-1">
+                  Keep this voice memory safe in your eternal garden
                 </p>
               </div>
             </label>
@@ -355,7 +379,7 @@ export default function VoiceSynthesizer() {
                     type="text"
                     id="memory_title"
                     className="input-field"
-                    placeholder="Give this memory a title..."
+                    placeholder="Name this precious moment..."
                   />
                 </div>
                 
@@ -368,7 +392,7 @@ export default function VoiceSynthesizer() {
                     id="memory_description"
                     rows={2}
                     className="input-field resize-none"
-                    placeholder="Add a description..."
+                    placeholder="What makes this memory special?..."
                   />
                 </div>
               </div>
@@ -376,35 +400,40 @@ export default function VoiceSynthesizer() {
           </div>
           
           {error && (
-            <div className="bg-error-light/20 rounded-lg p-4 flex items-start space-x-3">
+            <div className="bg-gradient-to-r from-error-light/20 to-warm-sand/20 rounded-organic p-5 flex items-start space-x-3">
               <AlertCircle className="w-5 h-5 text-error-primary flex-shrink-0 mt-0.5" />
-              <p className="text-error-primary text-body-sm">{error}</p>
+              <p className="text-error-deep text-body-sm font-medium">{error}</p>
             </div>
           )}
           
           <button
             type="submit"
-            className="btn-primary w-full flex items-center justify-center space-x-2"
+            className="btn-primary w-full flex items-center justify-center space-x-2 organic-seed living"
             disabled={isSynthesizing}
           >
             {isSynthesizing ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" />
-                <span>Generating Speech...</span>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span>Breathing Life Into Words...</span>
               </>
             ) : (
               <>
-                <Sparkles className="w-5 h-5" />
-                <span>Generate Speech</span>
+                <Sparkles className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <span>Bring Words to Life</span>
               </>
             )}
           </button>
         </form>
-      </div>
+        </CardContent>
+      </MemoryOrganicCard>
       
       {synthesizedAudio && (
-        <div className="bg-white rounded-lg shadow-soft p-6">
-          <h3 className="font-serif text-h4 text-sage-deep mb-4">Generated Audio</h3>
+        <MemoryOrganicCard className="animate-scale-in">
+          <CardContent className="p-6">
+            <h3 className="font-serif text-h3 text-sage-deep mb-6 flex items-center justify-center space-x-3">
+              <Flower2 className="w-6 h-6 text-sage-primary" />
+              <span>Your Voice Has Spoken</span>
+            </h3>
           
           <AudioPlayer
             src={synthesizedAudio.url}
@@ -428,12 +457,13 @@ export default function VoiceSynthesizer() {
                 onClick={() => window.location.href = '/memories'}
                 className="btn-primary flex items-center space-x-2"
               >
-                <Save className="w-5 h-5" />
-                <span>View in Memories</span>
+                <Heart className="w-5 h-5" />
+                <span>Visit Memory Garden</span>
               </button>
             )}
           </div>
-        </div>
+          </CardContent>
+        </MemoryOrganicCard>
       )}
     </div>
   )

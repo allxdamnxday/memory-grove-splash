@@ -211,4 +211,29 @@
   .animate-float {
     animation: float 20s ease-in-out infinite;
   }
+
+  /* Organic button styles */
+  .btn-primary.organic-seed {
+    @apply rounded-[50%_50%_50%_50%/60%_60%_40%_40%] transition-all duration-300;
+  }
+
+  .btn-primary.organic-seed:hover {
+    @apply rounded-[45%_55%_55%_45%/65%_65%_35%_35%];
+  }
+
+  .btn-primary.organic-seed.living {
+    animation: morph 4s ease-in-out infinite;
+  }
+
+  @keyframes morph {
+    0%, 100% {
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    }
+    33% {
+      border-radius: 45% 55% 55% 45% / 65% 65% 35% 35%;
+    }
+    66% {
+      border-radius: 55% 45% 45% 55% / 55% 55% 45% 45%;
+    }
+  }
 }

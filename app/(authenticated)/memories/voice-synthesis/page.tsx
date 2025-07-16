@@ -5,8 +5,8 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
-  title: 'Voice Synthesis - Memory Groves',
-  description: 'Create new voice memories and view your synthesis history using your cloned voice'
+  title: 'Voice Memories - Memory Groves',
+  description: 'Breathe life into your words and create eternal voice memories from the garden of your preserved voice'
 }
 
 export default async function VoiceSynthesisPage() {
@@ -28,38 +28,47 @@ export default async function VoiceSynthesisPage() {
     .order('name')
 
   return (
-    <div className="container-grove py-12">
-      <div className="mb-8 text-center">
-        <h1 className="font-serif text-h1 text-sage-deep mb-4">
-          Voice Synthesis
+    <div className="min-h-screen bg-gradient-to-b from-warm-white via-sage-mist/20 to-warm-sand/30">
+      <div className="container-grove py-16">
+      <div className="mb-12 text-center animate-fade-in">
+        <h1 className="font-serif text-h1 md:text-display-sm text-sage-deep mb-6">
+          Voice Memories
         </h1>
-        <p className="text-text-secondary text-body-lg max-w-3xl mx-auto">
-          Transform your written thoughts into spoken memories using your cloned voice. 
-          Create new voice content and revisit your synthesis history.
+        <p className="text-text-secondary text-body-lg max-w-3xl mx-auto leading-relaxed mb-6">
+          Your voice lives on, ready to speak the words your heart holds. Transform 
+          written thoughts into living memories, each one a gift waiting to bloom 
+          in moments when your presence is needed most.
         </p>
-        <div className="mt-6">
+        <div className="flex items-center justify-center space-x-3 text-sage-primary mb-8">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span className="text-body-sm font-medium">Every word becomes a lasting embrace</span>
+        </div>
+        <div>
           <a 
             href="/memories/voice-profiles" 
-            className="inline-flex items-center text-sage-primary hover:text-sage-deep transition-colors text-body-sm"
+            className="inline-flex items-center text-sage-primary hover:text-sage-deep transition-all hover:translate-x-[-4px] text-body-sm font-medium"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 17l-5-5m0 0l5-5m-5 5h12" />
             </svg>
-            Back to Voice Profiles
+            Return to Voice Garden
           </a>
         </div>
       </div>
       
       <div className="space-y-12">
-        {/* Synthesis Form */}
-        <section>
+        {/* Voice Creation */}
+        <section className="animate-scale-in">
           <VoiceSynthesizer />
         </section>
         
-        {/* Synthesis History */}
-        <section>
+        {/* Memory Collection */}
+        <section className="animate-scale-in animation-delay-400">
           <SynthesisHistory voiceProfiles={voiceProfiles || []} />
         </section>
+      </div>
       </div>
     </div>
   )

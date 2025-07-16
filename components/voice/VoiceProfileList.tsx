@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Plus, AlertCircle, Loader2, Mic } from 'lucide-react'
+import { Plus, AlertCircle, Loader2, Mic, Sparkles, Flower2, TreePine } from 'lucide-react'
 import VoiceProfileCard from './VoiceProfileCard'
 import VoiceProfileCreator from './VoiceProfileCreator'
 import VoiceTrainingModal from './VoiceTrainingModal'
@@ -125,13 +125,15 @@ export default function VoiceProfileList() {
   
   if (!hasConsent) {
     return (
-      <div className="bg-warm-sand/20 rounded-lg p-6">
-        <h3 className="font-serif text-h4 text-sage-deep mb-2">Voice Cloning Consent Required</h3>
-        <p className="text-text-secondary mb-4">
-          To use voice cloning features, you need to grant consent in your account settings.
+      <div className="bg-gradient-to-br from-warm-sand/30 to-sage-mist/20 rounded-organic p-8 text-center">
+        <TreePine className="w-16 h-16 text-sage-primary mx-auto mb-4" />
+        <h3 className="font-serif text-h3 text-sage-deep mb-3">Your Voice Garden Awaits</h3>
+        <p className="text-text-secondary mb-6 max-w-lg mx-auto">
+          Before planting your voice in this sacred garden, we need your blessing 
+          to nurture and preserve its essence.
         </p>
         <a href="/account" className="btn-primary inline-block">
-          Go to Account Settings
+          Grant Your Blessing
         </a>
       </div>
     )
@@ -141,56 +143,68 @@ export default function VoiceProfileList() {
   
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="font-serif text-h3 text-sage-deep">Voice Profiles</h2>
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h2 className="font-serif text-h3 text-sage-deep flex items-center space-x-3">
+            <span>Your Voices</span>
+            <Flower2 className="w-6 h-6 text-sage-primary" />
+          </h2>
+          <p className="text-text-secondary text-body-sm mt-1">Each voice a seed of eternal connection</p>
+        </div>
         <div className="flex items-center space-x-3">
           {hasTrainedVoices && (
             <a
               href="/memories/voice-synthesis"
-              className="btn-secondary flex items-center space-x-2"
+              className="btn-secondary flex items-center space-x-2 group"
             >
-              <Mic className="w-5 h-5" />
-              <span>Create Voice Memory</span>
+              <Sparkles className="w-5 h-5 group-hover:animate-pulse" />
+              <span>Create Memory</span>
             </a>
           )}
           <button
             onClick={() => setShowCreator(true)}
-            className="btn-primary flex items-center space-x-2"
+            className="btn-primary flex items-center space-x-2 group"
             disabled={profiles.length >= 5}
           >
-            <Plus className="w-5 h-5" />
-            <span>Create Profile</span>
+            <Plus className="w-5 h-5 transition-transform group-hover:rotate-90" />
+            <span>Plant New Voice</span>
           </button>
         </div>
       </div>
       
       {profiles.length === 0 ? (
-        <div className="bg-sage-mist/30 rounded-lg p-8 text-center">
-          <div className="w-16 h-16 bg-sage-mist rounded-full flex items-center justify-center mx-auto mb-4">
-            <Plus className="w-8 h-8 text-sage-primary" />
+        <div className="bg-gradient-to-br from-sage-mist/30 to-warm-sand/20 rounded-organic p-12 text-center animate-scale-in">
+          <div className="relative inline-block mb-6">
+            <div className="w-20 h-20 bg-sage-light/30 rounded-organic flex items-center justify-center animate-pulse">
+              <TreePine className="w-10 h-10 text-sage-primary" />
+            </div>
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-accent-dawn rounded-full animate-bounce" />
           </div>
-          <h3 className="font-serif text-h4 text-sage-deep mb-2">No Voice Profiles Yet</h3>
-          <p className="text-text-secondary mb-6">
-            Create your first voice profile to start cloning your voice for eternal memories.
+          <h3 className="font-serif text-h3 text-sage-deep mb-3">Your Voice Garden Awaits</h3>
+          <p className="text-text-secondary mb-8 max-w-md mx-auto leading-relaxed">
+            Plant the first seed of your voice, and watch it grow into a living 
+            legacy that speaks across time.
           </p>
           <button
             onClick={() => setShowCreator(true)}
-            className="btn-primary"
+            className="btn-primary organic-seed living"
           >
-            Create Your First Profile
+            <Sparkles className="w-5 h-5 mr-2" />
+            Plant Your First Voice
           </button>
         </div>
       ) : (
         <>
           {profiles.length >= 5 && (
-            <div className="bg-warm-sand/20 rounded-lg p-4">
-              <p className="text-warm-primary text-body-sm">
-                You&apos;ve reached the maximum of 5 voice profiles. Delete an existing profile to create a new one.
+            <div className="bg-gradient-to-r from-warm-sand/30 to-accent-dawn/20 rounded-organic p-6 text-center mb-6">
+              <p className="text-warm-deep text-body-sm font-medium">
+                Your garden is full with 5 beautiful voices. To plant a new seed, 
+                you&apos;ll need to make space by removing one.
               </p>
             </div>
           )}
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {profiles.map(profile => (
               <VoiceProfileCard
                 key={profile.id}
