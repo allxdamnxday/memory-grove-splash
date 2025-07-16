@@ -16,3 +16,10 @@ export type { InputProps } from './Input'
 
 export { default as Textarea } from './Textarea'
 export type { TextareaProps } from './Textarea'
+
+export { 
+  Dropdown,
+  DropdownItem,
+  DropdownDivider,
+  DropdownHeader
+} from './Dropdown'

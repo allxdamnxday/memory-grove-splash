@@ -97,6 +97,7 @@ const config: Config = {
         "fade-in": "fadeIn 300ms ease-out",
         "scale-in": "scaleIn 500ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-up": "slideUp 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "slide-down": "slideDown 200ms cubic-bezier(0.4, 0, 0.2, 1)",
         "float": "float 20s ease-in-out infinite",
       },
       keyframes: {
@@ -110,6 +111,10 @@ const config: Config = {
         },
         slideUp: {
           "0%": { transform: "translateY(10px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        slideDown: {
+          "0%": { transform: "translateY(-10px)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" },
         },
         float: {
