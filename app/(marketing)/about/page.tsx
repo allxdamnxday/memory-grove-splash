@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Button from '@/components/ui/Button'
 import Card, { CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { BackNavigation } from '@/components/navigation'
 
 export const metadata: Metadata = {
   title: 'About Us - Memory Groves',
@@ -42,6 +43,12 @@ export default function AboutPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-warm-sand to-sage-mist/20 py-20 md:py-32">
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent-dawn/20 rounded-organic blur-3xl" />
         <div className="container-grove relative z-10">
+          <BackNavigation 
+            href="/" 
+            label="Return Home"
+            variant="subtle"
+            className="mb-8 animate-fade-in"
+          />
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-serif text-display-sm md:text-display text-sage-deep mb-6 animate-fade-in">
               Our Sacred Mission

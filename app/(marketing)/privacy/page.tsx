@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { BackNavigation } from '@/components/navigation'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy - Memory Grove',
@@ -12,6 +13,12 @@ export default function PrivacyPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-warm-sand to-sage-mist/20 py-16 md:py-24">
         <div className="container-grove">
+          <BackNavigation 
+            href="/" 
+            label="Return Home"
+            variant="subtle"
+            className="mb-8 animate-fade-in"
+          />
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-serif text-display-sm md:text-display text-sage-deep mb-6">
               Privacy Policy
