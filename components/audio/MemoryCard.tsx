@@ -75,7 +75,7 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
       <div className="relative bg-warm-sand/30 border border-warm-stone/30 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group">
         {/* AI Badge positioned absolutely */}
         {memory.is_cloned && (
-          <div className="absolute top-4 right-4 z-10">
+          <div className="absolute top-4 left-4 z-10">
             <div className="flex items-center px-2.5 py-1 bg-sage-mist/80 backdrop-blur-sm rounded-full">
               <Sparkles className="w-3 h-3 text-sage-primary mr-1" />
               <span className="text-caption text-sage-deep font-medium">AI Generated</span>
