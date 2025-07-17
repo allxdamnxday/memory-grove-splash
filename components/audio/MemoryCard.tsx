@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { formatDistanceToNow } from 'date-fns'
-import { Trash2, Calendar, Clock, FileAudio, Zap } from 'lucide-react'
+import { Trash2, Calendar, Clock, FileAudio, Sparkles, MoreVertical, Download, Share2, Edit } from 'lucide-react'
 import AudioPlayer from './AudioPlayer'
 import { MemoryOrganicCard, CardContent } from '@/components/ui/OrganicCard'
 import Card from '@/components/ui/Card'
@@ -27,6 +27,24 @@ interface MemoryCardProps {
 export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
   const [isDeleting, setIsDeleting] = useState(false)
   const [showConfirmDelete, setShowConfirmDelete] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setShowMenu(false)
+      }
+    }
+
+    if (showMenu) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showMenu])
 
   const handleDelete = async () => {
     setIsDeleting(true)
@@ -55,18 +73,18 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
   return (
     <>
       <MemoryOrganicCard 
-        className="shadow-gentle hover:shadow-soft transition-all duration-300"
+        className="bg-warm-stone shadow-gentle hover:shadow-elevated hover:scale-[1.02] transition-all duration-300 group"
       >
-        <CardContent className="p-5 sm:p-6 md:p-8">
+        <CardContent className="p-6 sm:p-7 md:p-8">
           <div className="flex items-start justify-between gap-3 mb-5">
           <div className="flex-1 min-w-0">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-              <h3 className="text-mobile-lg sm:text-heading-sm font-serif text-sage-deep leading-snug">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-2 mb-3">
+              <h3 className="text-mobile-lg sm:text-h3 font-serif text-sage-deep leading-snug">
                 {memory.title}
               </h3>
               {memory.is_cloned && (
-                <div className="flex items-center px-2 py-0.5 bg-sage-light/30 rounded-full self-start">
-                  <Zap className="w-3 h-3 text-sage-primary mr-1 flex-shrink-0" />
+                <div className="flex items-center px-3 py-1 bg-sage-mist rounded-full self-start">
+                  <Sparkles className="w-3.5 h-3.5 text-sage-primary mr-1.5 flex-shrink-0" />
                   <span className="text-body-xs text-sage-deep font-medium whitespace-nowrap">AI Generated</span>
                 </div>
               )}
@@ -77,39 +95,69 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
               </p>
             )}
           </div>
-          <button
-            onClick={() => setShowConfirmDelete(true)}
-            disabled={isDeleting}
-            className="flex-shrink-0 min-w-touch-primary min-h-touch-primary flex items-center justify-center -m-2 hover:bg-error-light/20 rounded-full transition-colors text-text-tertiary hover:text-error-primary disabled:opacity-50"
-          >
-            <Trash2 className="w-5 h-5" />
-          </button>
+          <div className="relative">
+            <button
+              onClick={() => setShowMenu(!showMenu)}
+              className="flex-shrink-0 min-w-touch-primary min-h-touch-primary flex items-center justify-center -m-2 hover:bg-sage-light/20 rounded-full transition-all text-text-tertiary hover:text-sage-deep opacity-0 group-hover:opacity-100"
+            >
+              <MoreVertical className="w-5 h-5" />
+            </button>
+            
+            {/* Dropdown Menu */}
+            {showMenu && (
+              <div ref={menuRef} className="absolute right-0 top-full mt-2 w-48 bg-warm-white rounded-xl shadow-elevated border border-warm-stone z-50">
+                <button className="w-full px-4 py-3 flex items-center gap-3 hover:bg-sage-mist/30 transition-colors text-text-primary">
+                  <Edit className="w-4 h-4 text-sage-primary" />
+                  <span className="text-body-sm">Edit Memory</span>
+                </button>
+                <button className="w-full px-4 py-3 flex items-center gap-3 hover:bg-sage-mist/30 transition-colors text-text-primary">
+                  <Share2 className="w-4 h-4 text-sage-primary" />
+                  <span className="text-body-sm">Share</span>
+                </button>
+                <button className="w-full px-4 py-3 flex items-center gap-3 hover:bg-sage-mist/30 transition-colors text-text-primary">
+                  <Download className="w-4 h-4 text-sage-primary" />
+                  <span className="text-body-sm">Download</span>
+                </button>
+                <div className="border-t border-warm-stone" />
+                <button 
+                  onClick={() => {
+                    setShowMenu(false)
+                    setShowConfirmDelete(true)
+                  }}
+                  className="w-full px-4 py-3 flex items-center gap-3 hover:bg-error-light/20 transition-colors text-error-primary"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  <span className="text-body-sm">Delete</span>
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
-        <div className="flex flex-col gap-3 mb-5 sm:flex-row sm:items-center sm:gap-4 text-mobile-xs sm:text-body-xs text-text-tertiary">
+        <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-center sm:gap-5 text-mobile-xs sm:text-body-sm text-text-secondary">
           <span className="flex items-center">
-            <Clock className="w-4 h-4 sm:w-3 sm:h-3 mr-2 sm:mr-1 flex-shrink-0 text-sage-primary" />
+            <Clock className="w-4 h-4 mr-2 flex-shrink-0 text-warm-primary" />
             <span className="min-w-0">{formatDuration(memory.duration)}</span>
           </span>
           <span className="flex items-center">
-            <FileAudio className="w-4 h-4 sm:w-3 sm:h-3 mr-2 sm:mr-1 flex-shrink-0 text-sage-primary" />
+            <FileAudio className="w-4 h-4 mr-2 flex-shrink-0 text-warm-primary" />
             <span className="min-w-0">{formatFileSize(memory.file_size)}</span>
           </span>
           <span className="flex items-center">
-            <Calendar className="w-4 h-4 sm:w-3 sm:h-3 mr-2 sm:mr-1 flex-shrink-0 text-sage-primary" />
-            <span className="min-w-0 truncate">{formatDistanceToNow(new Date(memory.created_at), { addSuffix: true })}</span>
+            <Calendar className="w-4 h-4 mr-2 flex-shrink-0 text-warm-primary" />
+            <span className="min-w-0 truncate">Planted {formatDistanceToNow(new Date(memory.created_at), { addSuffix: true })}</span>
           </span>
         </div>
 
         {memory.signedUrl && (
-          <div className="mt-4 -mx-1 sm:mx-0">
+          <div className="mt-4">
             <AudioPlayer
               src={memory.signedUrl}
               showDownload
               downloadUrl={memory.signedUrl}
               downloadFilename={`${memory.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.mp3`}
               compact
-              className=""
+              className="border-0 shadow-inner"
             />
           </div>
         )}

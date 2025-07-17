@@ -163,10 +163,10 @@ export default function VoiceProfileList() {
           )}
           <button
             onClick={() => setShowCreator(true)}
-            className="btn-primary flex items-center space-x-2 group"
+            className="btn-primary bg-gradient-to-r from-sage-primary to-sage-deep hover:from-sage-deep hover:to-sage-primary flex items-center space-x-2 group shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-6 py-3 text-lg font-semibold"
             disabled={profiles.length >= 5}
           >
-            <Plus className="w-5 h-5 transition-transform group-hover:rotate-90" />
+            <Plus className="w-6 h-6 transition-transform group-hover:rotate-90" />
             <span>Plant New Voice</span>
           </button>
         </div>
