@@ -72,7 +72,7 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
 
   return (
     <>
-      <div className="relative bg-warm-sand/30 border border-warm-stone/30 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group overflow-hidden">
+      <div className="relative bg-warm-sand/30 border border-warm-stone/30 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group">
         {/* AI Badge positioned absolutely */}
         {memory.is_cloned && (
           <div className="absolute top-4 right-4 z-10">
@@ -105,7 +105,7 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
             
             {/* Dropdown Menu */}
             {showMenu && (
-              <div ref={menuRef} className="absolute right-0 top-full mt-2 w-48 bg-warm-white rounded-lg shadow-elevated border border-warm-sand z-50 overflow-hidden">
+              <div ref={menuRef} className="absolute right-0 top-full mt-2 w-48 bg-warm-white rounded-lg shadow-elevated border border-warm-sand z-50">
                 <button className="w-full px-4 py-3 flex items-center gap-3 hover:bg-sage-mist/40 transition-colors text-text-primary">
                   <Edit className="w-4 h-4 text-sage-primary" />
                   <span className="text-body-sm">Edit Memory</span>
