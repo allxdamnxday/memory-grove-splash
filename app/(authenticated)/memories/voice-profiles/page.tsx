@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import VoiceProfileList from '@/components/voice/VoiceProfileList'
+import BackNavigation from '@/components/navigation/BackNavigation'
 
 export const metadata: Metadata = {
   title: 'Your Voice Garden - Memory Groves',
@@ -11,6 +12,11 @@ export default function VoiceProfilesPage() {
     <div className="min-h-screen bg-gradient-to-b from-warm-white via-sage-mist/20 to-warm-sand/30">
       <div className="container-grove py-16">
         <div className="max-w-6xl mx-auto">
+        <BackNavigation 
+          href="/account" 
+          label="Return to My Grove"
+          className="mb-6 animate-fade-in"
+        />
         <div className="mb-8 text-center animate-fade-in">
           <h1 className="font-serif text-h1 md:text-display-sm text-sage-deep mb-6">
             Your Voice Garden

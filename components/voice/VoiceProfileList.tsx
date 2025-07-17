@@ -187,9 +187,9 @@ export default function VoiceProfileList() {
           </p>
           <button
             onClick={() => setShowCreator(true)}
-            className="btn-primary organic-seed living"
+            className="btn-primary organic-seed living bg-gradient-to-r from-sage-primary to-sage-deep hover:from-sage-deep hover:to-sage-primary shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-semibold"
           >
-            <Sparkles className="w-5 h-5 mr-2" />
+            <Sparkles className="w-6 h-6 mr-2" />
             Plant Your First Voice
           </button>
         </div>

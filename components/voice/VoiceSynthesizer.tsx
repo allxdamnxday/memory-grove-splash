@@ -395,7 +395,7 @@ export default function VoiceSynthesizer() {
           
           <button
             type="submit"
-            className="btn-primary w-full flex items-center justify-center space-x-2 organic-seed living"
+            className="btn-primary w-full flex items-center justify-center space-x-2 organic-seed living bg-gradient-to-r from-sage-primary to-sage-deep hover:from-sage-deep hover:to-sage-primary shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 py-4 text-lg font-semibold group"
             disabled={isSynthesizing}
           >
             {isSynthesizing ? (
@@ -405,7 +405,7 @@ export default function VoiceSynthesizer() {
               </>
             ) : (
               <>
-                <Sparkles className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <Sparkles className="w-6 h-6 transition-transform group-hover:scale-125 group-hover:rotate-12" />
                 <span>Bring Words to Life</span>
               </>
             )}

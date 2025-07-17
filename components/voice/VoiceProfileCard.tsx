@@ -223,9 +223,9 @@ export default function VoiceProfileCard({
         <div className="mt-4">
           <a
             href={`/memories/voice-synthesis?voice=${profile.id}`}
-            className="btn-primary w-full text-center flex items-center justify-center space-x-2 group"
+            className="btn-primary w-full text-center flex items-center justify-center space-x-2 group bg-gradient-to-r from-accent-dawn to-sage-primary hover:from-sage-primary hover:to-accent-dawn shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 py-3 text-lg font-semibold animate-pulse hover:animate-none"
           >
-            <Sparkles className="w-4 h-4 transition-transform group-hover:scale-110" />
+            <Sparkles className="w-5 h-5 transition-transform group-hover:scale-125 group-hover:rotate-12" />
             <span>Speak With This Voice</span>
           </a>
         </div>
