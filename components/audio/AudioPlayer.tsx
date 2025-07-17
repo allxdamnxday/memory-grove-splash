@@ -147,7 +147,7 @@ export default function AudioPlayer({
   }
 
   return (
-    <div className={`bg-gradient-to-br from-warm-white to-sage-mist/20 rounded-2xl shadow-inner border border-sage-light/30 ${compact ? 'p-5' : 'p-6'} ${className}`}>
+    <div className={`bg-sage-mist/10 rounded-xl ${compact ? 'p-4' : 'p-5'} ${className}`}>
       <audio ref={audioRef} src={src} preload="metadata" />
       
       {title && (
@@ -156,51 +156,51 @@ export default function AudioPlayer({
         </div>
       )}
 
-      <div className={compact ? 'space-y-3' : 'space-y-4'}>
+      <div className={compact ? 'space-y-2' : 'space-y-3'}>
         {/* Progress Bar */}
         <div 
           ref={progressRef}
           onClick={handleProgressClick}
-          className="relative h-3 bg-warm-sand/60 rounded-full cursor-pointer group py-4 -my-4 overflow-hidden"
+          className="relative h-1.5 bg-warm-sand/40 rounded-full cursor-pointer group"
         >
           <div 
-            className="absolute h-full bg-gradient-to-r from-sage-primary to-sage-light rounded-full transition-all duration-100 shadow-sm"
+            className="absolute h-full bg-sage-primary rounded-full transition-all duration-100"
             style={{ width: `${progressPercentage}%` }}
           />
           <div 
-            className="absolute w-5 h-5 bg-sage-primary rounded-full -top-1 transition-all duration-100 shadow-soft border-2 border-warm-white"
-            style={{ left: `calc(${progressPercentage}% - 10px)` }}
+            className="absolute w-3 h-3 bg-sage-primary rounded-full -top-[3px] transition-all duration-100 opacity-0 group-hover:opacity-100"
+            style={{ left: `calc(${progressPercentage}% - 6px)` }}
           />
         </div>
 
         {/* Time Display */}
-        <div className="flex justify-between text-body-sm text-text-secondary px-1">
-          <span className="min-w-0 font-medium text-sage-deep">{formatTime(currentTime)}</span>
-          <span className="min-w-0 text-right font-medium text-sage-deep">{formatTime(duration)}</span>
+        <div className="flex justify-between text-caption text-text-tertiary">
+          <span className="min-w-0">{formatTime(currentTime)}</span>
+          <span className="min-w-0 text-right">{formatTime(duration)}</span>
         </div>
 
         {/* Controls */}
         <div className="flex items-center justify-between">
-          <div className={`flex items-center ${compact ? 'space-x-3' : 'space-x-4'}`}>
+          <div className={`flex items-center ${compact ? 'space-x-2' : 'space-x-3'}`}>
             {/* Play/Pause Button */}
             <Button
               onClick={togglePlayPause}
               variant="primary"
-              size="icon-lg"
+              size="icon-md"
               loading={isLoading}
-              icon={isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-0.5" />}
-              className="!rounded-full !bg-sage-primary hover:!bg-sage-deep !shadow-soft !w-14 !h-14"
+              icon={isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+              className="!rounded-full !bg-sage-primary hover:!bg-sage-deep !w-10 !h-10"
               aria-label={isPlaying ? 'Pause' : 'Play'}
             />
 
             {/* Volume Controls - Hidden on mobile */}
-            <div className="hidden sm:flex items-center space-x-3">
+            <div className="hidden sm:flex items-center space-x-2">
               <Button
                 onClick={toggleMute}
                 variant="ghost"
                 size="icon-sm"
-                icon={isMuted || volume === 0 ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-                className="!p-2 hover:!bg-sage-light/20 !rounded-full"
+                icon={isMuted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                className="!p-1.5 hover:!bg-sage-light/20 !rounded-full"
                 aria-label={isMuted ? 'Unmute' : 'Mute'}
               />
               <input
@@ -210,7 +210,7 @@ export default function AudioPlayer({
                 step="0.1"
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeChange}
-                className="w-24 h-2 bg-warm-sand/50 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-sage-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-sm"
+                className="w-20 h-1 bg-warm-sand/40 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-sage-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer"
               />
             </div>
           </div>
@@ -220,10 +220,10 @@ export default function AudioPlayer({
             <a
               href={downloadUrl}
               download={downloadFilename}
-              className="min-w-touch min-h-touch sm:min-w-0 sm:min-h-0 sm:p-3 flex items-center justify-center bg-sage-light/20 hover:bg-sage-light/30 rounded-full transition-all transform active:scale-95 shadow-sm"
+              className="p-2 flex items-center justify-center hover:bg-sage-light/20 rounded-full transition-all"
               title="Download memory"
             >
-              <Download className="w-5 h-5 text-sage-primary" />
+              <Download className="w-4 h-4 text-sage-primary" />
             </a>
           )}
         </div>

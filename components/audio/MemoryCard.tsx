@@ -72,25 +72,25 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
 
   return (
     <>
-      <MemoryOrganicCard 
-        className="bg-warm-stone shadow-gentle hover:shadow-elevated hover:scale-[1.02] transition-all duration-300 group"
-      >
-        <CardContent className="p-6 sm:p-7 md:p-8">
-          <div className="flex items-start justify-between gap-3 mb-5">
-          <div className="flex-1 min-w-0">
-            <div className="flex flex-col sm:flex-row sm:items-start gap-2 mb-3">
-              <h3 className="text-mobile-lg sm:text-h3 font-serif text-sage-deep leading-snug">
-                {memory.title}
-              </h3>
-              {memory.is_cloned && (
-                <div className="flex items-center px-3 py-1 bg-sage-mist rounded-full self-start">
-                  <Sparkles className="w-3.5 h-3.5 text-sage-primary mr-1.5 flex-shrink-0" />
-                  <span className="text-body-xs text-sage-deep font-medium whitespace-nowrap">AI Generated</span>
-                </div>
-              )}
+      <div className="relative bg-warm-white border border-warm-sand rounded-2xl shadow-sm hover:shadow-soft transition-all duration-300 group overflow-hidden">
+        {/* AI Badge positioned absolutely */}
+        {memory.is_cloned && (
+          <div className="absolute top-4 right-4 z-10">
+            <div className="flex items-center px-2.5 py-1 bg-sage-mist/80 backdrop-blur-sm rounded-full">
+              <Sparkles className="w-3 h-3 text-sage-primary mr-1" />
+              <span className="text-caption text-sage-deep font-medium">AI Generated</span>
             </div>
-            {memory.description && (
-              <p className="text-mobile-sm sm:text-body-sm text-text-secondary line-clamp-2 leading-relaxed">
+          </div>
+        )}
+        
+        <div className="p-5 sm:p-6">
+          <div className="flex items-start justify-between gap-3 mb-4">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-heading-sm font-serif text-sage-deep leading-tight mb-2">
+              {memory.title}
+            </h3>
+            {memory.description && memory.description !== memory.title && (
+              <p className="text-body-sm text-text-secondary line-clamp-2 leading-relaxed">
                 {memory.description}
               </p>
             )}
@@ -98,14 +98,14 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
           <div className="relative">
             <button
               onClick={() => setShowMenu(!showMenu)}
-              className="flex-shrink-0 min-w-touch-primary min-h-touch-primary flex items-center justify-center -m-2 hover:bg-sage-light/20 rounded-full transition-all text-text-tertiary hover:text-sage-deep opacity-0 group-hover:opacity-100"
+              className="flex-shrink-0 w-8 h-8 flex items-center justify-center hover:bg-sage-light/20 rounded-full transition-all text-text-tertiary hover:text-sage-deep"
             >
-              <MoreVertical className="w-5 h-5" />
+              <MoreVertical className="w-4 h-4" />
             </button>
             
             {/* Dropdown Menu */}
             {showMenu && (
-              <div ref={menuRef} className="absolute right-0 top-full mt-2 w-48 bg-warm-white rounded-xl shadow-elevated border border-warm-stone z-50">
+              <div ref={menuRef} className="absolute right-0 top-full mt-2 w-48 bg-warm-white rounded-lg shadow-elevated border border-warm-sand z-50">
                 <button className="w-full px-4 py-3 flex items-center gap-3 hover:bg-sage-mist/30 transition-colors text-text-primary">
                   <Edit className="w-4 h-4 text-sage-primary" />
                   <span className="text-body-sm">Edit Memory</span>
@@ -134,35 +134,35 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 mb-6 sm:flex-row sm:items-center sm:gap-5 text-mobile-xs sm:text-body-sm text-text-secondary">
+        <div className="flex flex-wrap gap-4 mb-4 text-caption text-text-tertiary">
           <span className="flex items-center">
-            <Clock className="w-4 h-4 mr-2 flex-shrink-0 text-warm-primary" />
-            <span className="min-w-0">{formatDuration(memory.duration)}</span>
+            <Clock className="w-3.5 h-3.5 mr-1.5 flex-shrink-0 text-text-tertiary opacity-60" />
+            <span>{formatDuration(memory.duration)}</span>
           </span>
           <span className="flex items-center">
-            <FileAudio className="w-4 h-4 mr-2 flex-shrink-0 text-warm-primary" />
-            <span className="min-w-0">{formatFileSize(memory.file_size)}</span>
+            <FileAudio className="w-3.5 h-3.5 mr-1.5 flex-shrink-0 text-text-tertiary opacity-60" />
+            <span>{formatFileSize(memory.file_size)}</span>
           </span>
           <span className="flex items-center">
-            <Calendar className="w-4 h-4 mr-2 flex-shrink-0 text-warm-primary" />
-            <span className="min-w-0 truncate">Planted {formatDistanceToNow(new Date(memory.created_at), { addSuffix: true })}</span>
+            <Calendar className="w-3.5 h-3.5 mr-1.5 flex-shrink-0 text-text-tertiary opacity-60" />
+            <span>Planted {formatDistanceToNow(new Date(memory.created_at), { addSuffix: true })}</span>
           </span>
         </div>
 
         {memory.signedUrl && (
-          <div className="mt-4">
+          <div className="">
             <AudioPlayer
               src={memory.signedUrl}
               showDownload
               downloadUrl={memory.signedUrl}
               downloadFilename={`${memory.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.mp3`}
               compact
-              className="border-0 shadow-inner"
+              className="border-0"
             />
           </div>
         )}
-        </CardContent>
-      </MemoryOrganicCard>
+        </div>
+      </div>
 
       {/* Delete Confirmation Modal */}
       {showConfirmDelete && (

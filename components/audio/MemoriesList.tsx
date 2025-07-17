@@ -206,53 +206,53 @@ export default function MemoriesList() {
             {pagination?.total || 0} {pagination?.total === 1 ? 'memory blooming' : 'memories blooming'} in your garden
           </p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           <Link
             href="/account/memories/new"
-            className="inline-flex items-center justify-center min-h-touch px-6 sm:px-8 py-3 bg-sage-primary hover:bg-sage-deep text-white rounded-full shadow-soft hover:shadow-elevated transition-all transform hover:scale-105 active:scale-95 text-body-sm flex-1 sm:flex-initial"
+            className="inline-flex items-center justify-center px-5 py-2.5 bg-sage-primary hover:bg-sage-deep text-white rounded-lg shadow-sm hover:shadow transition-all text-body-sm"
           >
-            <Plus className="w-5 h-5 mr-2.5" />
-            <span className="font-medium">Record New Memory</span>
+            <Plus className="w-4 h-4 mr-2" />
+            <span className="font-medium">Record New</span>
           </Link>
           <Link
             href="/memories/voice-synthesis"
-            className="inline-flex items-center justify-center min-h-touch px-6 sm:px-8 py-3 bg-warm-white hover:bg-sage-mist border-2 border-sage-light text-sage-deep rounded-full shadow-sm hover:shadow-soft transition-all transform hover:scale-105 active:scale-95 text-body-sm flex-1 sm:flex-initial"
+            className="inline-flex items-center justify-center px-5 py-2.5 bg-warm-white hover:bg-sage-mist/50 border border-sage-light text-sage-deep rounded-lg transition-all text-body-sm"
           >
-            <Sparkles className="w-5 h-5 mr-2.5" />
-            <span className="font-medium">Create with AI</span>
+            <Sparkles className="w-4 h-4 mr-2" />
+            <span className="font-medium">AI Create</span>
           </Link>
         </div>
       </div>
 
       {/* Filters and Sorting */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-sage-mist/20 rounded-2xl p-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-sage-mist/10 rounded-lg p-3">
         <div className="flex gap-2">
           <button
             onClick={() => setFilter('all')}
-            className={`px-4 py-2 rounded-full text-body-sm font-medium transition-all ${
+            className={`px-3 py-1.5 rounded-md text-body-sm font-medium transition-all ${
               filter === 'all' 
-                ? 'bg-sage-primary text-white shadow-sm' 
-                : 'bg-warm-white text-sage-deep hover:bg-sage-light/20'
+                ? 'bg-sage-primary text-white' 
+                : 'text-sage-deep hover:bg-sage-light/20'
             }`}
           >
             All Memories
           </button>
           <button
             onClick={() => setFilter('voice')}
-            className={`px-4 py-2 rounded-full text-body-sm font-medium transition-all ${
+            className={`px-3 py-1.5 rounded-md text-body-sm font-medium transition-all ${
               filter === 'voice' 
-                ? 'bg-sage-primary text-white shadow-sm' 
-                : 'bg-warm-white text-sage-deep hover:bg-sage-light/20'
+                ? 'bg-sage-primary text-white' 
+                : 'text-sage-deep hover:bg-sage-light/20'
             }`}
           >
             Voice Only
           </button>
           <button
             onClick={() => setFilter('ai')}
-            className={`px-4 py-2 rounded-full text-body-sm font-medium transition-all ${
+            className={`px-3 py-1.5 rounded-md text-body-sm font-medium transition-all ${
               filter === 'ai' 
-                ? 'bg-sage-primary text-white shadow-sm' 
-                : 'bg-warm-white text-sage-deep hover:bg-sage-light/20'
+                ? 'bg-sage-primary text-white' 
+                : 'text-sage-deep hover:bg-sage-light/20'
             }`}
           >
             AI Enhanced
@@ -262,11 +262,11 @@ export default function MemoriesList() {
         <div className="relative" ref={sortDropdownRef}>
           <button
             onClick={() => setShowSortDropdown(!showSortDropdown)}
-            className="flex items-center gap-2 px-4 py-2 bg-warm-white rounded-full text-body-sm font-medium text-sage-deep hover:bg-sage-light/20 transition-all"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-body-sm font-medium text-sage-deep hover:bg-sage-light/20 transition-all"
           >
-            <SlidersHorizontal className="w-4 h-4" />
-            <span>Sort by: {sortBy === 'newest' ? 'Newest' : sortBy === 'oldest' ? 'Oldest' : sortBy === 'name' ? 'Name' : 'Longest'}</span>
-            <ChevronDown className={`w-4 h-4 transition-transform ${showSortDropdown ? 'rotate-180' : ''}`} />
+            <SlidersHorizontal className="w-3.5 h-3.5" />
+            <span>Sort: {sortBy === 'newest' ? 'Newest' : sortBy === 'oldest' ? 'Oldest' : sortBy === 'name' ? 'Name' : 'Longest'}</span>
+            <ChevronDown className={`w-3.5 h-3.5 transition-transform ${showSortDropdown ? 'rotate-180' : ''}`} />
           </button>
           
           {showSortDropdown && (
