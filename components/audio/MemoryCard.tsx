@@ -73,22 +73,20 @@ export default function MemoryCard({ memory, onDelete }: MemoryCardProps) {
   return (
     <>
       <div className="relative bg-warm-sand/30 border border-warm-stone/30 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group">
-        {/* AI Badge positioned absolutely */}
-        {memory.is_cloned && (
-          <div className="absolute top-4 left-4 z-10">
-            <div className="flex items-center px-2.5 py-1 bg-sage-mist/80 backdrop-blur-sm rounded-full">
-              <Sparkles className="w-3 h-3 text-sage-primary mr-1" />
-              <span className="text-caption text-sage-deep font-medium">AI Generated</span>
-            </div>
-          </div>
-        )}
-        
         <div className="p-5 sm:p-6">
           <div className="flex items-start justify-between gap-3 mb-4">
           <div className="flex-1 min-w-0">
-            <h3 className="text-h2 font-serif text-sage-deep leading-tight mb-2">
-              {memory.title}
-            </h3>
+            <div className="flex items-start gap-2 mb-2">
+              <h3 className="text-h2 font-serif text-sage-deep leading-tight">
+                {memory.title}
+              </h3>
+              {memory.is_cloned && (
+                <div className="flex items-center px-2.5 py-1 bg-sage-mist/80 backdrop-blur-sm rounded-full flex-shrink-0">
+                  <Sparkles className="w-3 h-3 text-sage-primary mr-1" />
+                  <span className="text-caption text-sage-deep font-medium">AI Generated</span>
+                </div>
+              )}
+            </div>
             {memory.description && memory.description !== memory.title && (
               <p className="text-body-sm text-text-secondary line-clamp-2 leading-relaxed">
                 {memory.description}
