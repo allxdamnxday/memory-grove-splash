@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { Plus, Loader2, FileAudio, Sparkles, SlidersHorizontal, ChevronDown, TreePine } from 'lucide-react'
+import { Plus, Loader2, FileAudio, Sparkles, SlidersHorizontal, ChevronDown, TreePine, Mic } from 'lucide-react'
 import Link from 'next/link'
 import SwipeableMemoryCard from './SwipeableMemoryCard'
 
@@ -209,14 +209,14 @@ export default function MemoriesList() {
         <div className="flex gap-2">
           <Link
             href="/account/memories/new"
-            className="inline-flex items-center justify-center px-5 py-2.5 bg-sage-primary hover:bg-sage-deep text-white rounded-lg shadow-sm hover:shadow transition-all text-body-sm"
+            className="inline-flex items-center justify-center px-5 py-2.5 bg-sage-primary hover:bg-sage-deep text-white rounded-lg shadow-md hover:shadow-lg transition-all text-body-sm transform hover:scale-105"
           >
-            <Plus className="w-4 h-4 mr-2" />
-            <span className="font-medium">Record New</span>
+            <Mic className="w-4 h-4 mr-2" />
+            <span className="font-semibold">Record New</span>
           </Link>
           <Link
             href="/memories/voice-synthesis"
-            className="inline-flex items-center justify-center px-5 py-2.5 bg-warm-white hover:bg-sage-mist/50 border border-sage-light text-sage-deep rounded-lg transition-all text-body-sm"
+            className="inline-flex items-center justify-center px-5 py-2.5 bg-warm-white/80 hover:bg-warm-white border border-sage-light/50 text-sage-deep rounded-lg transition-all text-body-sm hover:border-sage-light"
           >
             <Sparkles className="w-4 h-4 mr-2" />
             <span className="font-medium">AI Create</span>
@@ -229,30 +229,30 @@ export default function MemoriesList() {
         <div className="flex gap-2">
           <button
             onClick={() => setFilter('all')}
-            className={`px-3 py-1.5 rounded-md text-body-sm font-medium transition-all ${
+            className={`px-4 py-2 rounded-lg text-body-sm font-medium transition-all ${
               filter === 'all' 
-                ? 'bg-sage-primary text-white' 
-                : 'text-sage-deep hover:bg-sage-light/20'
+                ? 'bg-sage-primary text-white shadow-sm' 
+                : 'text-sage-deep hover:bg-sage-light/30 hover:text-sage-deep'
             }`}
           >
             All Memories
           </button>
           <button
             onClick={() => setFilter('voice')}
-            className={`px-3 py-1.5 rounded-md text-body-sm font-medium transition-all ${
+            className={`px-4 py-2 rounded-lg text-body-sm font-medium transition-all ${
               filter === 'voice' 
-                ? 'bg-sage-primary text-white' 
-                : 'text-sage-deep hover:bg-sage-light/20'
+                ? 'bg-sage-primary text-white shadow-sm' 
+                : 'text-sage-deep hover:bg-sage-light/30 hover:text-sage-deep'
             }`}
           >
             Voice Only
           </button>
           <button
             onClick={() => setFilter('ai')}
-            className={`px-3 py-1.5 rounded-md text-body-sm font-medium transition-all ${
+            className={`px-4 py-2 rounded-lg text-body-sm font-medium transition-all ${
               filter === 'ai' 
-                ? 'bg-sage-primary text-white' 
-                : 'text-sage-deep hover:bg-sage-light/20'
+                ? 'bg-sage-primary text-white shadow-sm' 
+                : 'text-sage-deep hover:bg-sage-light/30 hover:text-sage-deep'
             }`}
           >
             AI Enhanced

@@ -147,7 +147,7 @@ export default function AudioPlayer({
   }
 
   return (
-    <div className={`bg-sage-mist/10 rounded-xl ${compact ? 'p-4' : 'p-5'} ${className}`}>
+    <div className={`bg-gradient-to-r from-sage-mist/5 to-warm-sand/10 rounded-xl ${compact ? 'p-4' : 'p-5'} ${className}`}>
       <audio ref={audioRef} src={src} preload="metadata" />
       
       {title && (
@@ -156,76 +156,75 @@ export default function AudioPlayer({
         </div>
       )}
 
-      <div className={compact ? 'space-y-2' : 'space-y-3'}>
-        {/* Progress Bar */}
-        <div 
-          ref={progressRef}
-          onClick={handleProgressClick}
-          className="relative h-1.5 bg-warm-sand/40 rounded-full cursor-pointer group"
-        >
-          <div 
-            className="absolute h-full bg-sage-primary rounded-full transition-all duration-100"
-            style={{ width: `${progressPercentage}%` }}
-          />
-          <div 
-            className="absolute w-3 h-3 bg-sage-primary rounded-full -top-[3px] transition-all duration-100 opacity-0 group-hover:opacity-100"
-            style={{ left: `calc(${progressPercentage}% - 6px)` }}
-          />
-        </div>
+      <div className={compact ? 'space-y-3' : 'space-y-4'}>
+        {/* Controls and Progress Container */}
+        <div className="flex items-center gap-3">
+          {/* Play/Pause Button */}
+          <Button
+            onClick={togglePlayPause}
+            variant="primary"
+            size="icon-md"
+            loading={isLoading}
+            className="!rounded-full !bg-sage-primary hover:!bg-sage-deep !w-10 !h-10 !shadow-sm hover:!shadow-md transition-all"
+            aria-label={isPlaying ? 'Pause' : 'Play'}
+          >
+            {isPlaying ? (
+              <Pause className="w-4 h-4" />
+            ) : (
+              <Play className="w-4 h-4 ml-0.5" style={{ transform: 'translateX(1px)' }} />
+            )}
+          </Button>
 
-        {/* Time Display */}
-        <div className="flex justify-between text-caption text-text-tertiary">
-          <span className="min-w-0">{formatTime(currentTime)}</span>
-          <span className="min-w-0 text-right">{formatTime(duration)}</span>
-        </div>
-
-        {/* Controls */}
-        <div className="flex items-center justify-between">
-          <div className={`flex items-center ${compact ? 'space-x-2' : 'space-x-3'}`}>
-            {/* Play/Pause Button */}
-            <Button
-              onClick={togglePlayPause}
-              variant="primary"
-              size="icon-md"
-              loading={isLoading}
-              icon={isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
-              className="!rounded-full !bg-sage-primary hover:!bg-sage-deep !w-10 !h-10"
-              aria-label={isPlaying ? 'Pause' : 'Play'}
-            />
-
-            {/* Volume Controls - Hidden on mobile */}
-            <div className="hidden sm:flex items-center space-x-2">
-              <Button
-                onClick={toggleMute}
-                variant="ghost"
-                size="icon-sm"
-                icon={isMuted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-                className="!p-1.5 hover:!bg-sage-light/20 !rounded-full"
-                aria-label={isMuted ? 'Unmute' : 'Mute'}
+          {/* Progress Bar with Time */}
+          <div className="flex-1">
+            <div 
+              ref={progressRef}
+              onClick={handleProgressClick}
+              className="relative h-2 bg-warm-sand/30 rounded-full cursor-pointer group overflow-hidden"
+            >
+              {/* Background track effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-sage-light/10 to-transparent" />
+              
+              {/* Progress fill */}
+              <div 
+                className="absolute h-full bg-gradient-to-r from-sage-primary to-sage-light rounded-full transition-all duration-100"
+                style={{ width: `${progressPercentage}%` }}
               />
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.1"
-                value={isMuted ? 0 : volume}
-                onChange={handleVolumeChange}
-                className="w-20 h-1 bg-warm-sand/40 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-sage-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer"
+              
+              {/* Hover indicator */}
+              <div 
+                className="absolute w-4 h-4 bg-white border-2 border-sage-primary rounded-full -top-1 transition-all duration-100 opacity-0 group-hover:opacity-100 shadow-sm"
+                style={{ left: `calc(${progressPercentage}% - 8px)` }}
               />
+            </div>
+            
+            {/* Time Display */}
+            <div className="flex justify-between mt-1 text-caption text-text-tertiary">
+              <span className="font-medium">{formatTime(currentTime)}</span>
+              <span>{formatTime(duration)}</span>
             </div>
           </div>
 
-          {/* Download Button */}
-          {showDownload && downloadUrl && (
-            <a
-              href={downloadUrl}
-              download={downloadFilename}
-              className="p-2 flex items-center justify-center hover:bg-sage-light/20 rounded-full transition-all"
-              title="Download memory"
-            >
-              <Download className="w-4 h-4 text-sage-primary" />
-            </a>
-          )}
+          {/* Volume Controls - Hidden on mobile */}
+          <div className="hidden sm:flex items-center gap-2 ml-3">
+            <Button
+              onClick={toggleMute}
+              variant="ghost"
+              size="icon-sm"
+              icon={isMuted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+              className="!p-1.5 hover:!bg-sage-light/20 !rounded-full transition-all"
+              aria-label={isMuted ? 'Unmute' : 'Mute'}
+            />
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.1"
+              value={isMuted ? 0 : volume}
+              onChange={handleVolumeChange}
+              className="w-16 h-1 bg-warm-sand/30 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-sage-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer hover:[&::-webkit-slider-thumb]:scale-125 transition-all"
+            />
+          </div>
         </div>
       </div>
     </div>
