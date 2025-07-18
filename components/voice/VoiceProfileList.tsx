@@ -155,18 +155,18 @@ export default function VoiceProfileList() {
           {hasTrainedVoices && (
             <a
               href="/memories/voice-synthesis"
-              className="btn-secondary flex items-center space-x-2 group"
+              className="inline-flex items-center justify-center px-6 py-3 bg-warm-white hover:bg-sage-mist border-2 border-sage-light text-sage-deep rounded-full shadow-sm hover:shadow-soft transition-all transform hover:scale-105 text-body-sm font-medium group"
             >
-              <Sparkles className="w-5 h-5 group-hover:animate-pulse" />
+              <Sparkles className="w-5 h-5 mr-2 group-hover:animate-pulse" />
               <span>Create Memory</span>
             </a>
           )}
           <button
             onClick={() => setShowCreator(true)}
-            className="btn-primary bg-gradient-to-r from-sage-primary to-sage-deep hover:from-sage-deep hover:to-sage-primary flex items-center space-x-2 group shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-6 py-3 text-lg font-semibold"
+            className="inline-flex items-center justify-center px-8 py-3 bg-sage-primary hover:bg-sage-deep text-white rounded-full shadow-soft hover:shadow-elevated transition-all transform hover:scale-105 text-body-md font-semibold group"
             disabled={profiles.length >= 5}
           >
-            <Plus className="w-6 h-6 transition-transform group-hover:rotate-90" />
+            <Plus className="w-6 h-6 mr-2 transition-transform group-hover:rotate-90" />
             <span>Plant New Voice</span>
           </button>
         </div>
@@ -187,9 +187,9 @@ export default function VoiceProfileList() {
           </p>
           <button
             onClick={() => setShowCreator(true)}
-            className="btn-primary organic-seed living bg-gradient-to-r from-sage-primary to-sage-deep hover:from-sage-deep hover:to-sage-primary shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-semibold"
+            className="inline-flex items-center justify-center px-10 py-4 bg-gradient-to-r from-sage-primary to-sage-deep hover:from-sage-deep hover:to-sage-primary text-white rounded-full shadow-elevated hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-body-lg font-semibold"
           >
-            <Sparkles className="w-6 h-6 mr-2" />
+            <Sparkles className="w-6 h-6 mr-3 animate-pulse" />
             Plant Your First Voice
           </button>
         </div>

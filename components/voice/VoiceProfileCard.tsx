@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Mic, MoreVertical, Check, AlertCircle, Loader2, Trash2, Edit, Flower2, Sprout, TreePine, Sparkles, Droplets } from 'lucide-react'
+import { Mic, MoreVertical, Check, AlertCircle, Loader2, Trash2, Edit, Flower2, Sprout, TreePine, Sparkles, Droplets, Calendar, Clock } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 import OrganicCard, { CardContent, CardFooter } from '@/components/ui/OrganicCard'
 import Card from '@/components/ui/Card'
@@ -90,7 +90,7 @@ export default function VoiceProfileCard({
 
   return (
     <OrganicCard 
-      className={`p-6 transition-all duration-500 hover:shadow-elevated overflow-visible ${!profile.is_active ? 'opacity-60' : ''} ${
+      className={`p-6 bg-warm-stone transition-all duration-500 hover:shadow-elevated hover:scale-[1.02] overflow-visible group ${!profile.is_active ? 'opacity-60' : ''} ${
         profile.training_status === 'processing' ? 'animate-pulse' : ''
       }`}
       colorScheme={getCardColorScheme()}
@@ -112,7 +112,12 @@ export default function VoiceProfileCard({
             <h3 className="font-serif text-h4 text-sage-deep">
               {profile.name}
             </h3>
-            <p className={`text-body-sm font-medium ${getStatusColor()}`}>
+            <p className={`text-body-sm font-medium ${getStatusColor()} px-3 py-1 rounded-full ${
+              profile.training_status === 'completed' ? 'bg-sage-mist/50' :
+              profile.training_status === 'processing' ? 'bg-warm-sand/50' :
+              profile.training_status === 'failed' ? 'bg-error-light/20' :
+              'bg-warm-sand/30'
+            }`}>
               {getStatusText()}
             </p>
           </div>
@@ -121,21 +126,21 @@ export default function VoiceProfileCard({
         <div className="relative">
           <button
             onClick={() => setShowMenu(!showMenu)}
-            className="p-2 hover:bg-warm-sand/20 rounded-lg transition-colors"
+            className="p-2 hover:bg-sage-light/20 rounded-full transition-all hover:scale-110 opacity-0 group-hover:opacity-100"
             aria-label="More options"
           >
-            <MoreVertical className="w-5 h-5 text-text-secondary" />
+            <MoreVertical className="w-5 h-5 text-text-secondary hover:text-sage-deep transition-colors" />
           </button>
           
           {showMenu && (
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-soft py-2 z-10">
+            <div className="absolute right-0 mt-2 w-48 bg-warm-white rounded-2xl shadow-elevated border border-warm-stone py-1 z-10">
               {profile.training_status === 'pending' && onTrain && (
                 <button
                   onClick={() => {
                     onTrain(profile)
                     setShowMenu(false)
                   }}
-                  className="w-full text-left px-4 py-2 text-body-sm text-text-secondary hover:bg-sage-mist/20 hover:text-sage-primary transition-colors flex items-center space-x-2"
+                  className="w-full text-left px-4 py-3 text-body-sm text-text-secondary hover:bg-sage-mist/30 hover:text-sage-primary transition-all rounded-xl flex items-center space-x-2"
                 >
                   <Sprout className="w-4 h-4" />
                   <span>Nurture Voice</span>
@@ -148,7 +153,7 @@ export default function VoiceProfileCard({
                     onEdit(profile)
                     setShowMenu(false)
                   }}
-                  className="w-full text-left px-4 py-2 text-body-sm text-text-secondary hover:bg-warm-sand/20 hover:text-sage-primary transition-colors flex items-center space-x-2"
+                  className="w-full text-left px-4 py-3 text-body-sm text-text-secondary hover:bg-sage-mist/30 hover:text-sage-primary transition-all rounded-xl flex items-center space-x-2"
                 >
                   <Edit className="w-4 h-4" />
                   <span>Edit</span>
@@ -161,9 +166,10 @@ export default function VoiceProfileCard({
                     onToggleActive(profile)
                     setShowMenu(false)
                   }}
-                  className="w-full text-left px-4 py-2 text-body-sm text-text-secondary hover:bg-sage-mist/20 hover:text-sage-primary transition-colors rounded-organic"
+                  className="w-full text-left px-4 py-3 text-body-sm text-text-secondary hover:bg-sage-mist/30 hover:text-sage-primary transition-all rounded-xl flex items-center space-x-2"
                 >
-                  {profile.is_active ? 'Deactivate' : 'Activate'}
+                  <TreePine className="w-4 h-4" />
+                  <span>{profile.is_active ? 'Deactivate' : 'Activate'}</span>
                 </button>
               )}
               
@@ -173,7 +179,7 @@ export default function VoiceProfileCard({
                     onDelete(profile)
                     setShowMenu(false)
                   }}
-                  className="w-full text-left px-4 py-2 text-body-sm text-error-primary hover:bg-error-light/20 transition-colors flex items-center space-x-2"
+                  className="w-full text-left px-4 py-3 text-body-sm text-error-primary hover:bg-error-light/20 transition-all rounded-xl flex items-center space-x-2"
                 >
                   <Trash2 className="w-4 h-4" />
                   <span>Delete</span>
@@ -198,16 +204,19 @@ export default function VoiceProfileCard({
         </div>
       )}
       
-      <div className="flex items-center justify-between text-caption text-text-light">
-        <span className="flex items-center space-x-1">
-          <Sparkles className="w-3 h-3" />
-          <span>{profile.model_type === 'speech-02-hd' ? 'Crystal Clear' : 'Swift Growth'}</span>
+      <div className="flex items-center justify-between text-body-sm text-text-secondary">
+        <span className="flex items-center space-x-2">
+          <Sparkles className="w-4 h-4 text-warm-primary" />
+          <span className="font-medium">{profile.model_type === 'speech-02-hd' ? 'Crystal Clear' : 'Swift Growth'}</span>
         </span>
-        <span>
-          {profile.training_completed_at 
-            ? `Bloomed ${formatDistanceToNow(new Date(profile.training_completed_at))} ago`
-            : `Planted ${formatDistanceToNow(new Date(profile.created_at))} ago`
-          }
+        <span className="flex items-center space-x-2">
+          <Calendar className="w-4 h-4 text-warm-primary" />
+          <span className="font-medium">
+            {profile.training_completed_at 
+              ? `Bloomed ${formatDistanceToNow(new Date(profile.training_completed_at))} ago`
+              : `Planted ${formatDistanceToNow(new Date(profile.created_at))} ago`
+            }
+          </span>
         </span>
       </div>
       
@@ -223,9 +232,9 @@ export default function VoiceProfileCard({
         <div className="mt-4">
           <a
             href={`/memories/voice-synthesis?voice=${profile.id}`}
-            className="btn-primary w-full text-center flex items-center justify-center space-x-2 group bg-gradient-to-r from-accent-dawn to-sage-primary hover:from-sage-primary hover:to-accent-dawn shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 py-3 text-lg font-semibold animate-pulse hover:animate-none"
+            className="w-full inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-sage-primary to-sage-deep hover:from-sage-deep hover:to-sage-primary text-white rounded-full shadow-soft hover:shadow-elevated transition-all transform hover:scale-105 text-body-md font-semibold group"
           >
-            <Sparkles className="w-5 h-5 transition-transform group-hover:scale-125 group-hover:rotate-12" />
+            <Sparkles className="w-5 h-5 mr-2 transition-transform group-hover:scale-125 group-hover:rotate-12 animate-pulse" />
             <span>Speak With This Voice</span>
           </a>
         </div>
